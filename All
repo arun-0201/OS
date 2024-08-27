@@ -1,0 +1,386 @@
+Exp 1:
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+int main()
+{
+  int p[2];
+  int pid;
+  char inbuf[10],outbuf[10];
+  pipe(p); //To send message between parent and child //
+  pid=fork(); // Fork call to create child process //
+  if(pid) //// Code of Parent process
+  {
+    printf("In parent process\n");
+    printf("type the data to be sent to child");
+    scanf("%s",outbuf); // Writing a message into the pipe
+    write (p[1],outbuf, sizeof(outbuf)); //p[1] indicates write
+    sleep(2); // To allow the child to run
+    printf("after sleep in parent process\n");
+  }
+  else // Coding of child process //
+  {
+    sleep(2);
+    printf("In child process\n");
+    read(p[0],inbuf,10); // Read the message written by parent
+    printf("the data received by the child is %s\n",inbuf);
+  }
+  return 0;
+}
+====================================================================================================================================================================================================
+Exp 2a: 
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/ipc.h>
+#include<sys/shm.h>
+#include<unistd.h>
+#include<string.h>
+#define SHMSZ 50
+void main()
+{
+char c;
+int shmid;
+key_t key;
+char*shm,*s;
+key=5678; // A random number used as key
+shmid=shmget(key,SHMSZ,IPC_CREAT|0666); // Create shared
+//memory
+shm=(char*)shmat(shmid,NULL,0); //Attach shared memory
+s=shm; // Temporary pointer to avoid moving shm from base address of
+//shared memory
+printf("Enter the message you want to send: ");
+scanf("%s", s); // Message copied into Shared memory directly through
+//spointer
+while(*shm!='*') // Sender waits until received acknowledge it has read
+//by appending * into shared memory
+sleep(1);
+}
+CLIENT
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#define SHMSZ 50
+void main()
+{
+int shmid;
+key_t key;
+char *shm, *s;
+key = 5678;
+shmid = shmget(key, SHMSZ, 0666);
+shm = (char*)shmat(shmid, NULL, 0);
+for (s = shm; *s != '\0'; s++)
+putchar(*s);
+*shm = '*';
+}
+====================================================================================================================================================================================================
+exp 2b: 
+SENDER
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <string.h>
+// structure for message queue
+struct mesg_buffer {
+long mesg_type;
+char mesg_text[100];
+} message;
+int main()
+{
+key_t key;
+int msgid;
+// ftok to generate unique key
+key = ftok("progfile", 65);
+// msgget creates a message queue
+// and returns identifier
+msgid = msgget(key, 0666 | IPC_CREAT);
+//message.mesg_type = 1;
+printf("Writing Data : ");
+printf("\nEnter the message:");
+scanf("%s",message.mesg_text);
+do
+{
+printf("\nEnter the type for message:");
+scanf("%ld",&message.mesg_type);
+// msgsnd to send message
+msgsnd(msgid, &message, sizeof(message), 0);
+// display the message
+//printf("Data send is : %s \n", message.mesg_text);
+printf("\nEnter the message:");
+scanf("%s",message.mesg_text);
+}while(strcmp(message.mesg_text,"end")!=0);
+return 0;
+}
+
+RECEIVER
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <string.h>
+// structure for message queue
+struct mesg_buffer {
+long mesg_type;
+char mesg_text[100];
+} message;
+int main()
+{
+key_t key;
+int msgid,type;
+char choice[10];
+key = ftok("progfile", 65);
+msgid = msgget(key, 0666 | IPC_CREAT);
+printf("Read Data : ");
+do{
+printf("\nEnter the type of the message: ");
+scanf("%d",&type);
+msgrcv(msgid, &message, sizeof(message),type, 0);
+printf("\nMessage is : %s \n", message.mesg_text);
+printf("Do you want to continue: ");
+scanf("%s",choice);
+}while(strcmp(choice,"no")!=0);
+msgctl(msgid, IPC_RMID, NULL);
+return 0;
+}
+====================================================================================================================================================================================================
+Exp 3:
+Fcfs :
+#include <stdio.h>
+struct process {
+int at, st, ft;
+} ready_list[10];
+int n;
+int dispatcher(int time) {
+for (int i = 0; i < n; i++) {
+if (ready_list[i].ft == 0 && ready_list[i].at <= time)
+return i;
+}
+return -1;
+}
+int main() {
+printf("Enter number of processes: ");
+scanf("%d", &n);
+for (int i = 0; i < n; i++) {
+printf("Enter Arrival Time and Service Time for Process %d: ", i + 1);
+scanf("%d %d", &ready_list[i].at, &ready_list[i].st);
+}
+int cur_time = 0, i = 0;
+while (i < n) {
+int pid = dispatcher(cur_time);
+if (pid == -1) {
+cur_time++;
+continue;
+}
+ready_list[pid].ft = cur_time + ready_list[pid].st;
+cur_time = ready_list[pid].ft;
+i++;
+}
+printf("Process\tAT\tBT\tFT\tTT\tWT\n");
+for (int i = 0; i < n; i++) {
+int tt = ready_list[i].ft - ready_list[i].at;
+int wt = tt - ready_list[i].st;
+printf("%d\t%d\t%d\t%d\t%d\t%d\n", i + 1, ready_list[i].at, ready_list[i].st, ready_list[i].ft,
+tt, wt);
+}
+return 0;
+}
+
+==============================================================================================================================
+SJF :
+#include <stdio.h>
+#include <limits.h>
+struct process {
+int at, st, ft;
+} ready_list[10];
+int n;
+int dispatcher(int time) {
+int bt = INT_MAX, index = -1;
+for (int i = 0; i < n; i++) {
+if (ready_list[i].ft == 0 && ready_list[i].at <= time && ready_list[i].st < bt) {
+bt = ready_list[i].st;
+index = i;
+}
+}
+return index;
+}
+int main() {
+printf("Enter number of processes: ");
+scanf("%d", &n);
+for (int i = 0; i < n; i++) {
+printf("Enter Arrival Time and Service Time for Process %d: ", i + 1);
+scanf("%d %d", &ready_list[i].at, &ready_list[i].st);
+}
+int cur_time = 0, i = 0;
+while (i < n) {
+int pid = dispatcher(cur_time);
+if (pid == -1) {
+cur_time++;
+continue;
+}
+ready_list[pid].ft = cur_time + ready_list[pid].st;
+cur_time += ready_list[pid].st;
+i++;
+}
+printf("Process\tAT\tBT\tFT\tTT\tWT\n");
+for (int i = 0; i < n; i++) {
+int tt = ready_list[i].ft - ready_list[i].at;
+int wt = tt - ready_list[i].st;
+printf("%d\t%d\t%d\t%d\t%d\t%d\n", i + 1, ready_list[i].at, ready_list[i].st, ready_list[i].ft,
+tt, wt);
+}
+return 0;
+}
+==============================================================================================================================
+
+SRTF :
+#include <stdio.h>
+struct process {
+int at, st, ft;
+} ready_list[10];
+int n;
+int dispatcher(int time) {
+int s_bt = 9999, index = -1;
+for (int i = 0; i < n; i++) {
+if (ready_list[i].st > 0 && ready_list[i].at <= time && ready_list[i].st < s_bt) {
+s_bt = ready_list[i].st;
+index = i;
+}
+}
+return index;
+}
+int main() {
+printf("Enter number of processes: ");
+scanf("%d", &n);
+int original_bt[n];
+for (int i = 0; i < n; i++) {
+printf("Enter Arrival Time and Burst Time for Process %d: ", i + 1);
+scanf("%d %d", &ready_list[i].at, &ready_list[i].st);
+original_bt[i] = ready_list[i].st;
+}
+int cur_time = 0, rem_procs = 0;
+while (rem_procs < n) {
+int pid = dispatcher(cur_time);
+if (pid == -1) {
+cur_time++;
+continue;
+}
+ready_list[pid].st--;
+cur_time++;
+if (ready_list[pid].st == 0) {
+ready_list[pid].ft = cur_time;
+rem_procs++;
+}
+}
+printf("Process\tAT\tBT\tFT\tTT\tWT\n");
+for (int i = 0; i < n; i++) {
+int tt = ready_list[i].ft - ready_list[i].at;
+int wt = tt - original_bt[i];
+printf("%d\t%d\t%d\t%d\t%d\t%d\n", i + 1, ready_list[i].at, original_bt[i], ready_list[i].ft, tt, wt);
+}
+return 0;
+}
+
+==============================================================================================================================
+
+RR :
+#include <stdio.h>
+struct process {
+int at, st, ft, status;
+} ready[10];
+int n, t, completed = 0;
+int Dispatch(int cur_time) {
+for (int i = 0; i < n; i++) {
+if (ready[i].status != 2 && ready[i].at <= cur_time) {
+return i;
+}
+}
+return -1;
+}
+int main() {
+printf("Enter number of processes and time slice: ");
+scanf("%d %d", &n, &t);
+int original_st[10];
+for (int i = 0; i < n; i++) {
+printf("Enter Arrival and Service Time for Process %d: ", i + 1);
+scanf("%d %d", &ready[i].at, &ready[i].st);
+original_st[i] = ready[i].st;
+ready[i].status = 0;
+}
+int cur_time = 0;
+while (completed < n) {
+int pid = Dispatch(cur_time);
+if (pid == -1) {
+cur_time++;
+continue;
+}
+if (ready[pid].st <= t) {
+cur_time += ready[pid].st;
+ready[pid].ft = cur_time;
+ready[pid].status = 2;
+completed++;
+} else {
+cur_time += t;
+ready[pid].st -= t;
+}
+}
+printf("Process\tAT\tST\tFT\tTT\tWT\n");
+for (int i = 0; i < n; i++) {
+int tt = ready[i].ft - ready[i].at;
+int wt = tt - original_st[i];
+printf("%d\t%d\t%d\t%d\t%d\t%d\n", i + 1, ready[i].at, original_st[i], ready[i].ft, tt, wt);
+}
+return 0;
+}
+
+=================================================================================================================================
+MPS :
+#include <stdio.h>
+struct process {
+int at, st, ft, status, cpu;
+} ready_list[10];
+int n, h;
+int dispatcher(int time) {
+for (int i = 0; i < n; i++) {
+if (ready_list[i].status == 0 && ready_list[i].at <= time) {
+return i;
+}
+}
+return -1;
+}
+int main() {
+printf("Enter number of processes and CPUs: ");
+scanf("%d %d", &n, &h);
+for (int i = 0; i < n; i++) {
+printf("Process %d: Enter Arrival Time and Service Time: ", i + 1);
+scanf("%d %d", &ready_list[i].at, &ready_list[i].st);
+ready_list[i].status = 0;
+}
+int cur_time[10] = {0}; // Initialize current times for each CPU
+int completed = 0;
+while (completed < n) {
+for (int j = 0; j < h && completed < n; j++) {
+int pid = dispatcher(cur_time[j]);
+if (pid != -1) {
+ready_list[pid].ft = cur_time[j] + ready_list[pid].st;
+ready_list[pid].cpu = j + 1;
+ready_list[pid].status = 1;
+cur_time[j] += ready_list[pid].st;
+completed++;
+}
+}
+}
+printf("Process\tAT\tST\tFT\tCPU\tTT\tWT\n");
+for (int i = 0; i < n; i++) {
+int tt = ready_list[i].ft - ready_list[i].at;
+int wt = tt - ready_list[i].st;
+printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\n", i + 1, ready_list[i].at, ready_list[i].st,
+ready_list[i].ft, ready_list[i].cpu, tt, wt);
+}
+return 0;
+}
+
+====================================================================================================================================================================================================
+Exp - 4:
+
+====================================================================================================================================================================================================
+====================================================================================================================================================================================================
+====================================================================================================================================================================================================
