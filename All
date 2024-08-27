@@ -379,8 +379,130 @@ return 0;
 }
 
 ====================================================================================================================================================================================================
-Exp - 4:
+Exp - 4a:
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+int g = 0;
+void *myThreadFun(void *vargp)
+{
+	int *myid = (int *)vargp;
+	static int s = 0;
+	++s; ++g;
+  printf("Thread ID: %d, Static: %d, Global: %d\n", *myid, ++s, ++g);
+}
+
+int main()
+{
+	int i;
+	pthread_t tid;
+	for (i = 0; i < 3; i++)
+		pthread_create(&tid, NULL, myThreadFun, (void *)&tid);
+		pthread_join(tid,NULL);
+	return 0;
+}
 
 ====================================================================================================================================================================================================
+include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h> 
+#include <pthread.h>
+
+
+void *myThreadFun(void *a)
+{
+	sleep(1);
+	printf("SASTRA Deemed Univeristy \n");
+	return NULL;
+}
+
+int main()
+{
+	pthread_t thread_id;
+	printf("Before Thread\n");
+	pthread_create(&thread_id, NULL, myThreadFun, NULL);
+	pthread_join(thread_id, NULL);
+	printf("After Thread\n");
+	exit(0);
+}
 ====================================================================================================================================================================================================
+#include <stdio.h>
+struct process
+{
+int at;
+int st;
+int cpu;
+int status;
+int ft;
+}ready_list[10];
+int n;
+int main()
+{
+int i,j,pid,h;
+printf("Enter number of processes:");
+scanf("%d",&n);
+printf("Enter no of cpu");
+scanf("%d",&h);
+// Collect process details -
+for(i=0;i<n;i++)
+{
+printf("Process %d\n",i+1);
+printf("*****\n");
+printf("Enter Arrival Time:");
+scanf("%d",&ready_list[i].at);
+printf("Enter Service Time:");
+scanf("%d",&ready_list[i].st);
+ready_list[i].status=0;
+}
+i=0;
+int cur_time[h];
+int m=0;
+for(m=0;m<h;m++){
+cur_time[m]=0;
+}
+while(i < n)
+{
+for(j=0;j<h;j++)
+{
+pid=dispatcher(cur_time[j]);
+while(pid==-1){
+cur_time[j]++;
+pid=dispatcher(cur_time[j]);
+}
+if(pid!=-1){
+ready_list[pid].ft=cur_time[j]+ ready_list[pid].st;
+ready_list[pid].status=1;
+ready_list[pid].cpu=j+1;
+cur_time[j]+= ready_list[pid].st;
+i++;
+}
+}
+}
+printf("Process\t Arrival Time\t Burst Time\t Finish Time \t CPU \t TT \t
+WT\n");
+printf("**\t ****\t ****\t ****\n");
+for(i=0;i<n;i++)
+{
+printf("%d\t\t%d\t\t%d\t\t\t%d\t%d\t%d\t%d\n",i,ready_list[i].at,ready_list[i].st,
+ready_list[i].ft,ready_list[i].cpu,
+(ready_list[i].ft-ready_list[i].at),(ready_list[i].ft-ready_list[i].at)
+-ready_list[i].st);
+}
+}
+int dispatcher(int time)
+{
+int i,index=-1;
+for(i=0;i<n;i++)
+{
+if(ready_list[i].status != 1)
+if(ready_list[i].at <= time)
+{
+index=i;
+return index;
+}
+}
+return index;
+}
+
 ====================================================================================================================================================================================================
