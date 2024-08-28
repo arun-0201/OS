@@ -92,13 +92,13 @@ printf("\nEnter the message:");
 scanf("%s",message.mesg_text);
 do
 {
-printf("\nEnter the type for message:");
-scanf("%ld",&message.mesg_type);
-msgsnd(msgid, &message, sizeof(message), 0);
-printf("\nEnter the message:");
-scanf("%s",message.mesg_text);
-}while(strcmp(message.mesg_text,"end")!=0);
-return 0;
+	printf("\nEnter the type for message:");
+	scanf("%ld",&message.mesg_type);
+	msgsnd(msgid, &message, sizeof(message), 0);
+	printf("\nEnter the message:");
+	scanf("%s",message.mesg_text);
+	}while(strcmp(message.mesg_text,"end")!=0);
+	return 0;
 }
 
 RECEIVER
