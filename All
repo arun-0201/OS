@@ -38,19 +38,20 @@ Exp 2a:
 #define SHMSZ 50
 void main()
 {
-char c;
-int shmid;
-key_t key;
-char*shm,*s;
-key=5678; 
-shmid=shmget(key,SHMSZ,IPC_CREAT|0666);
-shm=(char*)shmat(shmid,NULL,0); 
-s=shm;
-printf("Enter the message you want to send: ");
-scanf("%s", s); 
-while(*shm!='*') 
-sleep(1);
+	char c;
+	int shmid;
+	key_t key;
+	char*shm,*s;
+	key=5678; 
+	shmid=shmget(key,SHMSZ,IPC_CREAT|0666);
+	shm=(char*)shmat(shmid,NULL,0); 
+	s=shm;
+	printf("Enter the message you want to send: ");
+	scanf("%s", s); 
+	while(*shm!='*') 
+	sleep(1);
 }
+
 CLIENT
 #include <stdio.h>
 #include <sys/types.h>
