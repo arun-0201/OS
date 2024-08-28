@@ -42,17 +42,13 @@ char c;
 int shmid;
 key_t key;
 char*shm,*s;
-key=5678; // A random number used as key
-shmid=shmget(key,SHMSZ,IPC_CREAT|0666); // Create shared
-//memory
-shm=(char*)shmat(shmid,NULL,0); //Attach shared memory
-s=shm; // Temporary pointer to avoid moving shm from base address of
-//shared memory
+key=5678; 
+shmid=shmget(key,SHMSZ,IPC_CREAT|0666);
+shm=(char*)shmat(shmid,NULL,0); 
+s=shm;
 printf("Enter the message you want to send: ");
-scanf("%s", s); // Message copied into Shared memory directly through
-//spointer
-while(*shm!='*') // Sender waits until received acknowledge it has read
-//by appending * into shared memory
+scanf("%s", s); 
+while(*shm!='*') 
 sleep(1);
 }
 CLIENT
@@ -74,13 +70,12 @@ putchar(*s);
 *shm = '*';
 }
 ====================================================================================================================================================================================================
-exp 2b: 
+exp 2b: Msg Queue
 SENDER
 #include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <string.h>
-// structure for message queue
 struct mesg_buffer {
 long mesg_type;
 char mesg_text[100];
@@ -89,12 +84,8 @@ int main()
 {
 key_t key;
 int msgid;
-// ftok to generate unique key
 key = ftok("progfile", 65);
-// msgget creates a message queue
-// and returns identifier
 msgid = msgget(key, 0666 | IPC_CREAT);
-//message.mesg_type = 1;
 printf("Writing Data : ");
 printf("\nEnter the message:");
 scanf("%s",message.mesg_text);
@@ -102,10 +93,7 @@ do
 {
 printf("\nEnter the type for message:");
 scanf("%ld",&message.mesg_type);
-// msgsnd to send message
 msgsnd(msgid, &message, sizeof(message), 0);
-// display the message
-//printf("Data send is : %s \n", message.mesg_text);
 printf("\nEnter the message:");
 scanf("%s",message.mesg_text);
 }while(strcmp(message.mesg_text,"end")!=0);
@@ -117,7 +105,6 @@ RECEIVER
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <string.h>
-// structure for message queue
 struct mesg_buffer {
 long mesg_type;
 char mesg_text[100];
