@@ -1,0 +1,936 @@
+SocketServer.java
+------------------
+import java.net.*;  
+import java.io.*;  
+class SocketServer{  
+  public static void main(String args[])throws Exception{  
+    ServerSocket ss=new ServerSocket(3333);  
+    Socket s=ss.accept();  
+    DataInputStream din=new DataInputStream(s.getInputStream());  
+    DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+      
+    String str="",str2="";  
+    while(!str.equals("stop")){  
+    str=din.readUTF();  
+    System.out.println("client says: "+str);  
+    str2=br.readLine();  
+    dout.writeUTF(str2);  
+    dout.flush();  
+  }  
+  din.close();  
+  s.close();  
+  ss.close();  
+  }
+}
+
+SocketClient.java
+-----------------
+import java.net.*;  
+import java.io.*;  
+class SocketClient{  
+public static void main(String args[])throws Exception{  
+Socket s=new Socket("localhost",3333);  
+DataInputStream din=new DataInputStream(s.getInputStream());  
+DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+  
+String str="",str2="";  
+while(!str.equals("stop")){  
+str=br.readLine();  
+dout.writeUTF(str);  
+dout.flush();  
+str2=din.readUTF();  
+System.out.println("Server says: "+str2);  
+}  
+  
+dout.close();  
+s.close();  
+}} 
+
+--------------------------------------------------------------------------------------------------------
+
+Server.java
+----------
+public class Server 
+{
+        
+	public static void main(String[] args) 
+	{
+		chat___server myServer=new chat___server();
+                	myServer.startServer();
+	}
+}
+
+Client.java
+------------
+public class Client 
+{
+
+    public static void main(String[] args) 
+    {
+        chat_client client=new chat_client("127.0.0.1");
+        client.startRunning();
+    }
+}
+
+chat___server.java
+-------------
+import java.io.*;
+import java.net.*;
+import javax.swing.*;
+
+public class chat___server extends JFrame {
+    private ObjectOutputStream output;
+    private ObjectInputStream input;
+    private JTextArea chatArea = new JTextArea(15, 30);
+    private JTextField inputField = new JTextField(25);
+    private JLabel statusLabel = new JLabel("Status: Not Connected");
+    private int port = 8880;
+    public chat___server() {
+        setTitle("Chat Server");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new java.awt.BorderLayout());
+        add(new JScrollPane(chatArea), java.awt.BorderLayout.CENTER);
+        add(inputField, java.awt.BorderLayout.SOUTH);
+        add(new JButton("Send") {{
+            addActionListener(e -> sendMessage(inputField.getText()));
+        }}, java.awt.BorderLayout.EAST);
+        add(statusLabel, java.awt.BorderLayout.NORTH);
+        chatArea.setEditable(false);
+        pack();
+        setVisible(true);
+        startServer();
+    }
+    private void sendMessage(String message) {
+        try {
+            chatArea.append("Me: " + message + "\n");
+            output.writeObject("Server: " + message);
+            output.flush();
+            inputField.setText("");
+        } catch (IOException e) {
+            chatArea.append("Failed to send message\n");
+        }
+    }
+    public void startServer() {
+        try (ServerSocket server = new ServerSocket(port)) {
+            statusLabel.setText("Waiting for client to connect...");
+            while (true) {
+                try (Socket connection = server.accept()) {
+                    statusLabel.setText("Connected to: " + connection.getInetAddress().getHostName());
+                    output = new ObjectOutputStream(connection.getOutputStream());
+                    input = new ObjectInputStream(connection.getInputStream());
+                    String message;
+                    while ((message = (String) input.readObject()) != null) {
+                        chatArea.append(message + "\n");
+                    }
+                } catch (EOFException e) {
+                    statusLabel.setText("Client disconnected");
+                } catch (IOException | ClassNotFoundException e) {
+                    chatArea.append("Connection closed or error occurred\n");
+                }
+            }
+        } catch (IOException e) {
+            statusLabel.setText("Error starting server: " + e.getMessage());
+        }
+    }
+}
+
+chat_client.java
+-----------
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+
+public class chat_client extends JFrame {
+
+    private ObjectOutputStream output;
+    private ObjectInputStream input;
+    private JTextArea chatArea;
+    private JTextField inputField;
+    private JButton sendButton;
+    private JLabel statusLabel;
+    private Socket connection;
+    private String serverIP = "127.0.0.1";
+    private int port = 8880;
+
+    public chat_client(String serverIP) {
+        this.serverIP = serverIP;
+        initComponents();
+    }
+
+    private void initComponents() {
+        chatArea = new JTextArea(15, 30);
+        inputField = new JTextField(25);
+        sendButton = new JButton("Send");
+        statusLabel = new JLabel("Status: Not Connected");
+
+        chatArea.setEditable(false);
+        sendButton.addActionListener(e -> sendMessage(inputField.getText()));
+
+        setLayout(new java.awt.BorderLayout());
+        add(new JScrollPane(chatArea), java.awt.BorderLayout.CENTER);
+        add(inputField, java.awt.BorderLayout.SOUTH);
+        add(sendButton, java.awt.BorderLayout.EAST);
+        add(statusLabel, java.awt.BorderLayout.NORTH);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true); // Ensure the frame is visible
+    }
+
+    private void sendMessage(String message) {
+        try {
+            chatArea.append("Me: " + message + "\n");
+            output.writeObject("Client: " + message);
+            output.flush();
+            inputField.setText("");
+        } catch (IOException e) {
+            chatArea.append("Failed to send message\n");
+        }
+    }
+
+    public void startRunning() {
+        try {
+            statusLabel.setText("Connecting...");
+            connection = new Socket(InetAddress.getByName(serverIP), port);
+            output = new ObjectOutputStream(connection.getOutputStream());
+            output.flush();
+            input = new ObjectInputStream(connection.getInputStream());
+
+            statusLabel.setText("Connected to: " + connection.getInetAddress().getHostName());
+            receiveMessages();
+        } catch (IOException e) {
+            statusLabel.setText("Connection failed: " + e.getMessage());
+        }
+    }
+
+    private void receiveMessages() {
+        try {
+            String message;
+            while ((message = (String) input.readObject()) != null) {
+                chatArea.append(message + "\n");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            chatArea.append("Connection closed or error occurred\n");
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            chat_client client = new chat_client("127.0.0.1");
+            client.startRunning(); // Start client after GUI is set up
+        });
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+TCPClient.java
+--------------
+// ref: https://github.com/mansimarkaur/TCP-file-transfer
+
+import java.io.*;
+import java.net.*;
+import java.lang.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.Arrays;
+
+class TCPClient extends JFrame implements ActionListener, MouseListener {
+	JPanel panel;
+	JLabel title, subT, msg, error, servFiles;
+	Font font,labelfont;
+	JTextField txt;
+	JButton up, down;
+	String dirName;
+	Socket clientSocket;
+	InputStream inFromServer;
+	OutputStream outToServer;
+	BufferedInputStream bis;
+	PrintWriter pw;
+	String name, file, path;
+	String hostAddr;
+	int portNumber;
+	int c;
+	int size = 9022386;
+	JList<String> filelist;
+	String[] names = new String[10000];
+	int len; // number of files on the server retrieved
+
+	public TCPClient(String dir, String host, int port) {
+		super("TCP CLIENT");
+
+		// set dirName to the one that's entered by the user
+		dirName = dir;
+
+		// set hostAddr to the one that's passed by the user
+		hostAddr = host;
+
+		// set portNumber to the one that's passed by the user
+		portNumber = port;
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		panel = new JPanel(null);
+
+		font = new Font("Roboto", Font.BOLD, 60);
+		title = new JLabel("TCP CLIENT");
+		title.setFont(font);
+		title.setBounds(300, 50, 400, 50);
+		panel.add(title);
+
+		labelfont = new Font("Roboto", Font.PLAIN, 20);
+		subT = new JLabel("Enter File Name :");
+		subT.setFont(labelfont);
+		subT.setBounds(100, 450, 200, 50);
+		panel.add(subT);
+
+		txt = new JTextField();
+		txt.setBounds(400, 450, 500, 50);
+		panel.add(txt);
+
+		up = new JButton("Upload");
+		up.setBounds(250, 550, 200, 50);
+		panel.add(up);
+
+		down = new JButton("Download");
+		down.setBounds(550, 550, 200, 50);
+		panel.add(down);
+
+		error = new JLabel("");
+		error.setFont(labelfont);
+		error.setBounds(200, 650, 600, 50);
+		panel.add(error);
+
+		up.addActionListener(this);
+		down.addActionListener(this);
+
+		try {
+			clientSocket = new Socket(hostAddr, portNumber);
+			inFromServer = clientSocket.getInputStream();
+			pw = new PrintWriter(clientSocket.getOutputStream(), true);
+			outToServer = clientSocket.getOutputStream();
+			ObjectInputStream oin = new ObjectInputStream(inFromServer);
+			String s = (String) oin.readObject();
+			System.out.println(s);
+
+			len = Integer.parseInt((String) oin.readObject());
+			System.out.println(len);
+
+			String[] temp_names = new String[len];
+
+			for(int i = 0; i < len; i++) {
+				String filename = (String) oin.readObject();
+				System.out.println(filename);
+				names[i] = filename;
+				temp_names[i] = filename;
+			}
+
+			// sort the array of strings that's going to get displayed in the scrollpane
+			Arrays.sort(temp_names);
+
+			servFiles = new JLabel("Files in the Server Directory :");
+			servFiles.setBounds(350, 125, 400, 50);
+			panel.add(servFiles);
+
+			filelist = new JList<>(temp_names);
+			JScrollPane scroll = new JScrollPane(filelist);
+			scroll.setBounds(300, 200, 400, 200);
+
+			panel.add(scroll);
+			filelist.addMouseListener(this);
+
+		} 
+		catch (Exception exc) {
+			
+			System.out.println("Exception: " + exc.getMessage());
+			error.setText("Exception:" + exc.getMessage());
+			error.setBounds(300,125,600,50);
+			panel.revalidate();
+		}
+
+		getContentPane().add(panel);
+	}
+
+    public void mouseClicked(MouseEvent click) {
+        if (click.getClickCount() == 2) {
+           String selectedItem = (String) filelist.getSelectedValue();
+           txt.setText(selectedItem);
+           panel.revalidate();
+         }
+    }
+
+    public void mousePressed(MouseEvent e){}
+    public void mouseEntered(MouseEvent e){}
+    public void mouseExited(MouseEvent e){}
+    public void mouseReleased(MouseEvent e){}
+
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource() == up) {
+			try {
+				name = txt.getText();
+
+				FileInputStream file = null;
+				BufferedInputStream bis = null;
+
+				boolean fileExists = true;
+				path = dirName + name;
+
+				try {
+					file = new FileInputStream(path);
+					bis = new BufferedInputStream(file);
+				} catch (FileNotFoundException excep) {
+					fileExists = false;
+					System.out.println("FileNotFoundException:" + excep.getMessage());
+					error.setText("FileNotFoundException:" + excep.getMessage());
+					panel.revalidate();
+				}
+
+				if (fileExists) {
+					// send file name to server
+					pw.println(name);
+
+					System.out.println("Upload begins");
+					error.setText("Upload begins");
+					panel.revalidate();
+
+					// send file data to server
+					sendBytes(bis, outToServer);
+					System.out.println("Completed");
+					error.setText("Completed");
+					panel.revalidate();
+
+					boolean exists = false;
+					for(int i = 0; i < len; i++){
+						if(names[i].equals(name)){
+							exists = true;
+							break;
+						}
+					}
+
+					if(!exists){
+						names[len] = name;
+						len++;
+					}
+
+					String[] temp_names = new String[len];
+					for(int i = 0; i < len; i++){
+						temp_names[i] = names[i];
+					}
+
+					// sort the array of strings that's going to get displayed in the scrollpane
+					Arrays.sort(temp_names);
+
+					// update the contents of the list in scroll pane
+					filelist.setListData(temp_names);
+
+					// close all file buffers
+					bis.close();
+					file.close();
+					outToServer.close();
+				}
+			} 
+			catch (Exception exc) {
+				System.out.println("Exception: " + exc.getMessage());
+				error.setText("Exception:" + exc.getMessage());
+				panel.revalidate();
+			}
+		}
+		else if (event.getSource() == down) {
+			try {
+				File directory = new File(dirName);
+
+				if (!directory.exists()) {
+					directory.mkdir();
+				}
+				boolean complete = true;
+				byte[] data = new byte[size];
+				name = txt.getText();
+				file = new String("*" + name + "*");
+				pw.println(file); //lets the server know which file is to be downloaded
+
+				ObjectInputStream oin = new ObjectInputStream(inFromServer);
+				String s = (String) oin.readObject();
+
+				if(s.equals("Success")) {
+					File f = new File(directory, name);
+					FileOutputStream fileOut = new FileOutputStream(f);
+					DataOutputStream dataOut = new DataOutputStream(fileOut);
+
+					//empty file case
+																	int c;
+						System.out.println("Download");
+						while((c=inFromServer.read())!=-1)
+						{	
+							System.out.print("CT: ");
+							System.out.print(c);
+							System.out.println("-"+(char)c);
+							
+							// for CAESAR cipher - Decryption
+							c=(c-3)%256;
+							if(c<0) { c=c+256; }	
+							System.out.print("PT: ");
+							System.out.print(c);
+							System.out.println("-"+(char)c);
+							dataOut.write(c);
+							dataOut.flush();
+						}
+						System.out.println("Completed");
+						error.setText("Completed");
+						panel.revalidate();
+						fileOut.close();
+				}
+				else {
+					System.out.println("Requested file not found on the server.");
+					error.setText("Requested file not found on the server.");
+					panel.revalidate();
+				}
+			} 
+			catch (Exception exc) {
+				System.out.println("Exception: " + exc.getMessage());
+				error.setText("Exception:" + exc.getMessage());
+				panel.revalidate();
+			}
+		}
+	}
+
+	private static void sendBytes(BufferedInputStream in , OutputStream out) throws Exception {
+		int c;
+		while((c=in.read())!=-1)
+		{
+			System.out.println(c);
+			out.write((c+3)%256);	// for CAESAR cipher
+			out.flush();
+		}
+	}
+
+	public static void main(String args[]) {
+		// if at least three argument are passed, consider the first one as directory path,
+		// the second one as host address and the third one as port number
+		// If host address is not present, default it to "localhost"
+		// If port number is not present, default it to 3333
+		// If directory path is not present, show error
+		if(args.length >= 3){
+			TCPClient tcp = new TCPClient(args[0], args[1], Integer.parseInt(args[2]));
+			tcp.setSize(1000, 900);
+			tcp.setVisible(true);
+		}
+		else if(args.length == 2){
+			TCPClient tcp = new TCPClient(args[0], args[1], 3333);
+			tcp.setSize(1000, 900);
+			tcp.setVisible(true);
+		}
+		else if(args.length == 1){
+			TCPClient tcp = new TCPClient(args[0], "localhost", 3333);
+			tcp.setSize(1000, 900);
+			tcp.setVisible(true);
+		}
+		else {
+			System.out.println("Please enter the client directory address as first argument while running from command line.");
+		}
+	}
+}
+
+
+TCPServer.java
+--------------
+// ref: https://github.com/mansimarkaur/TCP-file-transfer
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class TCPServer {
+	public static void main(String args[]) throws Exception {
+		// if at least two argument are passed, consider the first one as directory path
+		// and the second one as port number
+		// If port number is not present, default it to 3333
+		// If directory path is not present, show error
+		if(args.length == 0) {
+			System.out.println("Please enter the server directory address as first argument while running from command line.");
+		}
+		else {
+			int id = 1;
+			System.out.println("Server started...");
+			System.out.println("Waiting for connections...");
+
+			ServerSocket welcomeSocket;
+
+			// port number is passed by the user
+			if(args.length >= 2){
+				welcomeSocket = new ServerSocket(Integer.parseInt(args[1]));
+			}
+			else{
+				welcomeSocket = new ServerSocket(3333);
+			}
+
+			while (true) {
+				Socket connectionSocket = welcomeSocket.accept();
+				System.out.println("Client with ID " + id + " connected from " + connectionSocket.getInetAddress().getHostName() + "...");
+				Thread server = new ThreadedServer(connectionSocket, id, args[0]);
+				id++;
+				server.start();
+			}
+		}
+	}
+}
+
+class ThreadedServer extends Thread {
+	int n;
+	int m;
+	String name, f, ch, fileData;
+	String filename;
+	Socket connectionSocket;
+	int counter;
+	String dirName;
+
+	public ThreadedServer(Socket s, int c, String dir) {
+		connectionSocket = s;
+		counter = c;
+
+		// set dirName to the one that's entered by the user
+		dirName = dir;
+	}
+
+	public void run() {
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+			InputStream inFromClient = connectionSocket.getInputStream();
+			PrintWriter outPw = new PrintWriter(connectionSocket.getOutputStream());
+			OutputStream output = connectionSocket.getOutputStream();
+
+			ObjectOutputStream oout = new ObjectOutputStream(output);
+			oout.writeObject("Server says Hi!");
+
+			File ff = new File(dirName);
+			ArrayList<String> names = new ArrayList<String>(Arrays.asList(ff.list()));
+			int len = names.size();
+			oout.writeObject(String.valueOf(names.size()));
+
+			for(String name: names) {
+				oout.writeObject(name);
+			}
+
+			name = in.readLine();
+			ch = name.substring(0, 1);
+
+			if (ch.equals("*")) {
+				n = name.lastIndexOf("*");
+				filename = name.substring(1, n);
+				FileInputStream file = null;
+				BufferedInputStream bis = null;
+				boolean fileExists = true;
+				System.out.println("Request to download file " + filename + " recieved from " + connectionSocket.getInetAddress().getHostName() + "...");
+				filename = dirName + filename;
+				//System.out.println(filename);
+				try {
+					file = new FileInputStream(filename);
+					bis = new BufferedInputStream(file);
+				} 
+				catch (FileNotFoundException excep) {
+					fileExists = false;
+					System.out.println("FileNotFoundException:" + excep.getMessage());
+				}
+				if (fileExists) {
+					oout = new ObjectOutputStream(output);
+					oout.writeObject("Success");
+					System.out.println("Download begins");
+					sendBytes(bis, output);
+					System.out.println("Completed");
+					bis.close();
+					file.close();
+					oout.close();
+					output.close();
+				}
+				else {
+					oout = new ObjectOutputStream(output);
+					oout.writeObject("FileNotFound");
+					bis.close();
+					file.close();
+					oout.close();
+					output.close();
+				}
+			} 
+			else{
+				try {
+					boolean complete = true;
+					System.out.println("Request to upload file " + name + " recieved from " + connectionSocket.getInetAddress().getHostName() + "...");
+					File directory = new File(dirName);
+					if (!directory.exists()) {
+						System.out.println("Dir made");
+						directory.mkdir();
+					}
+
+					int size = 9022386;
+					byte[] data = new byte[size];
+					File fc = new File(directory, name);
+					FileOutputStream fileOut = new FileOutputStream(fc);
+					DataOutputStream dataOut = new DataOutputStream(fileOut);
+
+					while (complete) {
+						m = inFromClient.read(data, 0, data.length);
+						if (m == -1) {
+							complete = false;
+							System.out.println("Completed");
+						} else {
+							dataOut.write(data, 0, m);
+							dataOut.flush();
+						}
+					}
+					fileOut.close();
+				} catch (Exception exc) {
+					System.out.println(exc.getMessage());
+				}
+			}
+		} 
+		catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+
+	private static void sendBytes(BufferedInputStream in , OutputStream out) throws Exception {
+		int c;
+		System.out.println("Ciphertext");
+		while((c=in.read())!=-1)
+		{
+			System.out.print("PT: ");
+			System.out.print(c);
+			System.out.println("-"+(char)c);
+			c=(c+3)%256;	// for CAESAR cipher - encryption
+			out.write(c);	
+			out.flush();
+			System.out.print("CT: ");			
+			System.out.print(c);
+			System.out.println("-"+(char)c);
+				
+		}
+	}
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------
+MyServer.java
+-------------
+import java.net.*;
+import java.rmi.*;
+
+public class MyServer
+{
+	public static void main(String[] arg)
+	{
+		try 	
+		{
+			MyServerImpl asi = new MyServerImpl();
+			Naming.rebind("RMServer",asi);	//remote object associate with name 
+			System.out.println("\nServer Started...");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception: "+e);
+		}
+	}
+}
+MyClient.java
+-------------
+import java.net.*;
+import java.rmi.*;
+
+public class MyClient
+{
+	public static void main(String[] arg)
+	{
+		try 	
+		{
+		String sName = "rmi://"+arg[0]+"/RMServer";
+		
+		MyServerIntf asif = (MyServerIntf)Naming.lookup(sName);  // requesting remote objects on    // the server
+			
+		double d1=2000,d2=500;
+
+		System.out.println("Addition: "+asif.add(d1,d2));
+
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception: "+e);
+		}
+	}
+}
+
+MyServerImpl
+------------
+import java.rmi.*;
+import java.rmi.server.*;
+
+// UnicastRemoteObject supports for point-to-point active object references (invocations, parameters, and // results) using TCP streams.
+
+public class MyServerImpl extends UnicastRemoteObject implements MyServerIntf
+{
+	MyServerImpl() throws RemoteException
+	{}
+
+	public double add(double a, double b) throws RemoteException
+	{
+		return(a+b);
+	}	
+}
+
+MyServerIntf
+------------
+//function prototype
+import java.rmi.*;
+
+public interface MyServerIntf extends Remote		//remote interface
+{	int i=0;
+	double add(double a, double b) throws RemoteException;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+analysis.awk
+-----------
+BEGIN {
+  rec= 0
+  drp=0
+  tot=0
+  rat=0.0
+  sum=0
+  sum1=0
+  throughput=0.0
+  throughput1=0.0
+}
+
+{
+  
+  if($1== "r" && $4== 4)
+    {
+    
+      rec++
+    }
+    
+    
+   if($1== "d" && $4 ==4 )
+     
+     {
+       drp++
+       
+     }
+     
+     
+     
+     if($2<1.00 && $4==4)
+      {
+     
+          sum=sum+$6
+ 
+      }
+ 
+    if($2<1.00 && $4==5)
+      {
+     
+          sum1=sum1+$6
+ 
+      }
+ 
+ }
+ 
+ 
+  
+END {
+   
+      tot = rec + drp
+      rat = (rec/tot) *100
+      throughput= (sum*8)/1000000
+      throughput1=(sum1*8)/1000000
+       printf(" \n Packets received %d ", rec)
+       printf(" \n Packets dropped %d ", drp)
+       printf("\n Packets delivery ratio %f",rat)
+        printf("\n Throughput for udp is %f",throughput)
+         
+        printf("\n Throughput for tcp is %f",throughput1)
+     }
+
+wired.tcl
+----------
+set ns [new Simulator]
+
+$ns color 0 blue
+$ns color 1 black
+
+
+set tr [open droptail-queue-out.tr w]
+$ns trace-all $tr
+
+set ftr [open droptail-queue-out.nam w]
+$ns namtrace-all $ftr
+
+set n0 [$ns node]
+set n1 [$ns node]
+set n2 [$ns node]
+set n3 [$ns node]
+set n4 [$ns node]
+set n5 [$ns node]
+
+$ns duplex-link $n0 $n2 5Mb 2ms DropTail
+$ns duplex-link $n1 $n2 10Mb 5ms DropTail
+$ns duplex-link $n2 $n3 4Mb 3ms DropTail
+$ns duplex-link $n3 $n4 100Mb 2ms DropTail
+$ns duplex-link $n3 $n5 15Mb 4ms DropTail
+
+set udp [new Agent/UDP]
+
+$udp set fid_ 1
+set null [new Agent/Null]
+
+$ns attach-agent $n0 $udp 
+$ns attach-agent $n4 $null
+$ns connect $udp $null
+
+set tcp [new Agent/TCP]
+$tcp set fid_ 0
+set sink [new Agent/TCPSink]
+$ns attach-agent $n1 $tcp
+$ns attach-agent $n5 $sink
+$ns connect $tcp $sink
+$ns connect $tcp $sink
+
+set cbr [new Application/Traffic/CBR]
+$cbr attach-agent $udp
+$cbr set interval 0.020
+
+set ftp [new Application/FTP]
+$ftp attach-agent $tcp
+
+$ftp set interval 0.020
+proc finish {} {
+           global ns tr ftr
+           $ns flush-trace
+           close $tr
+           close $ftr
+           exec nam droptail-queue-out.nam &
+           exec gawk -f analysis.awk droptail-queue-out.tr &
+           exit
+}
+
+$ns at 0.1 "$cbr start"
+$ns at 2.0 "$cbr stop"
+$ns at 0.1 "$ftp start"
+$ns at 2.0 "$ftp stop"
+$ns at 2.1 "finish"
+
+$ns run
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
