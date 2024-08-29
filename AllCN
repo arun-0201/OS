@@ -234,8 +234,276 @@ public class chat_client extends JFrame {
         });
     }
 }
+SocketClient
+------------
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
 
+public class SocketClient extends JFrame {
+    private JTextArea textArea;
+    private JTextField textField;
+    private JButton sendButton;
+    private JLabel connectionLabel;
+    private DataInputStream din;
+    private DataOutputStream dout;
+    private Socket socket;
+
+    public SocketClient() {
+        setTitle("Client");
+        setSize(400, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Connection status label
+        connectionLabel = new JLabel("Connected to Server at localhost:3333");
+        add(connectionLabel, BorderLayout.NORTH);
+
+        // Text area for chat messages
+        textArea = new JTextArea();
+        textArea.setEditable(false);
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        // Panel for input field and send button
+        JPanel inputPanel = new JPanel(new BorderLayout());
+        textField = new JTextField();
+        sendButton = new JButton("Send");
+
+        inputPanel.add(textField, BorderLayout.CENTER);
+        inputPanel.add(sendButton, BorderLayout.EAST);
+        add(inputPanel, BorderLayout.SOUTH);
+
+        // Button action to send message
+        sendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String message = textField.getText();
+                    dout.writeUTF(message);
+                    dout.flush();
+                    textField.setText("");
+                } catch (IOException ex) {
+                    textArea.append("Error sending message.\n");
+                }
+            }
+        });
+
+        // Establish connection
+        try {
+            socket = new Socket("localhost", 3333);
+            din = new DataInputStream(socket.getInputStream());
+            dout = new DataOutputStream(socket.getOutputStream());
+
+            // Thread to receive messages
+            new Thread(() -> {
+                try {
+                    String received;
+                    while (!(received = din.readUTF()).equals("stop")) {
+                        textArea.append("Server: " + received + "\n");
+                    }
+                } catch (IOException ex) {
+                    textArea.append("Disconnected from server.\n");
+                }
+            }).start();
+
+        } catch (Exception ex) {
+            textArea.append("Unable to connect to server.\n");
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new SocketClient().setVisible(true));
+    }
+}
+
+SocketServer
+------------
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SocketServer extends JFrame {
+    private JTextArea textArea;
+    private JTextField textField;
+    private JButton sendButton;
+    private JLabel connectionLabel;
+    private DataInputStream din;
+    private DataOutputStream dout;
+    private ServerSocket serverSocket;
+    private Socket socket;
+
+    public SocketServer() {
+        setTitle("Server");
+        setSize(400, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Connection status label
+        connectionLabel = new JLabel("Waiting for connection on port 3333...");
+        add(connectionLabel, BorderLayout.NORTH);
+
+        // Text area for chat messages
+        textArea = new JTextArea();
+        textArea.setEditable(false);
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        // Panel for input field and send button
+        JPanel inputPanel = new JPanel(new BorderLayout());
+        textField = new JTextField();
+        sendButton = new JButton("Send");
+
+        inputPanel.add(textField, BorderLayout.CENTER);
+        inputPanel.add(sendButton, BorderLayout.EAST);
+        add(inputPanel, BorderLayout.SOUTH);
+
+        // Button action to send message
+        sendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String message = textField.getText();
+                    dout.writeUTF(message);
+                    dout.flush();
+                    textField.setText("");
+                } catch (IOException ex) {
+                    textArea.append("Error sending message.\n");
+                }
+            }
+        });
+
+        // Establish server connection
+        new Thread(() -> {
+            try {
+                serverSocket = new ServerSocket(3333);
+                socket = serverSocket.accept();
+                connectionLabel.setText("Client connected: " + socket.getInetAddress());
+                din = new DataInputStream(socket.getInputStream());
+                dout = new DataOutputStream(socket.getOutputStream());
+
+                // Thread to receive messages
+                String received;
+                while (!(received = din.readUTF()).equals("stop")) {
+                    textArea.append("Client: " + received + "\n");
+                }
+            } catch (Exception ex) {
+                textArea.append("Connection error.\n");
+            }
+        }).start();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new SocketServer().setVisible(true));
+    }
+}
 --------------------------------------------------------------------------------------------------------------------
+FTPServer
+--------
+import java.io.*;
+import java.net.*;
+
+public class FTPServer {
+    public static void main(String[] args) {
+        ServerSocket serverSocket = null;
+        Socket socket = null;
+        DataInputStream dis = null;
+        FileOutputStream fos = null;
+
+        try {
+            serverSocket = new ServerSocket(3333);
+            System.out.println("Server is running and waiting for a connection...");
+
+            socket = serverSocket.accept();
+            System.out.println("Client connected: " + socket.getInetAddress());
+
+            dis = new DataInputStream(socket.getInputStream());
+
+            // Receiving the destination file path and file name
+            String filePath = dis.readUTF();
+            System.out.println("Saving file as: " + filePath);
+
+            // Creating a file output stream to save the file
+            fos = new FileOutputStream(filePath);
+
+            // Reading file data and saving it
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = dis.read(buffer)) > 0) {
+                fos.write(buffer, 0, bytesRead);
+            }
+
+            System.out.println("File received and saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (fos != null) fos.close();
+                if (dis != null) dis.close();
+                if (socket != null) socket.close();
+                if (serverSocket != null) serverSocket.close();
+            } catch (IOException e) {
+                System.out.println("Error closing resources: " + e.getMessage());
+            }
+        }
+    }
+}
+FTPClient
+--------
+import java.io.*;
+import java.net.*;
+import java.util.Scanner;
+
+public class FTPClient {
+    public static void main(String[] args) {
+        Socket socket = null;
+        DataOutputStream dos = null;
+        FileInputStream fis = null;
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            socket = new Socket("localhost", 3333);
+            System.out.println("Connected to the server.");
+
+            dos = new DataOutputStream(socket.getOutputStream());
+
+            // Prompt user to enter the path of the file to send
+            System.out.print("Enter the path of the file to send: ");
+            String filePath = scanner.nextLine();
+
+            // Prompt user to enter the destination path and name on the server
+            System.out.print("Enter the destination path and file name to save on the server: ");
+            String destinationPath = scanner.nextLine();
+
+            // Sending the destination path and filename to the server
+            dos.writeUTF(destinationPath);
+
+            // Reading the file and sending its data
+            fis = new FileInputStream(filePath);
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) > 0) {
+                dos.write(buffer, 0, bytesRead);
+            }
+
+            System.out.println("File sent successfully.");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (fis != null) fis.close();
+                if (dos != null) dos.close();
+                if (socket != null) socket.close();
+            } catch (IOException e) {
+                System.out.println("Error closing resources: " + e.getMessage());
+            }
+        }
+    }
+}
 
 TCPClient.java
 --------------
