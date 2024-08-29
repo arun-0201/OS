@@ -1003,6 +1003,23 @@ public class MyServer
 			MyServerImpl asi = new MyServerImpl();
 			Naming.rebind("RMServer",asi);	//remote object associate with name 
 			System.out.println("\nServer Started...");
+			/*MyServerImpl asi = new MyServerImpl();
+
+Registry reg Locate Registry.getRegistry("localhost"):
+
+String names = reg.list();
+
+for(String name:names)
+
+{
+System.out.println(name);
+}
+
+
+
+Naming.rebind("RMServer", asi); //remote object associate with name
+
+System.out.println("\nServer Started...");*/
 		}
 		catch(Exception e)
 		{
