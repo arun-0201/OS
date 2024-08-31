@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+struct process {
+    int at, cpu1, io, cpu2, ft, tt, wt;
+};
+
+int main() {
+    int n;
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+
+    struct process p[n];
+    for (int i = 0; i < n; i++) {
+        printf("Enter Arrival Time, CPU Burst Time 1, IO Burst Time, CPU Burst Time 2 for Process %d: ", i + 1);
+        scanf("%d %d %d %d", &p[i].at, &p[i].cpu1, &p[i].io, &p[i].cpu2);
+    }
+
+    int cur_time = 0;
+
+    for (int i = 0; i < n; i++) {
+        // CPU Burst 1
+        if (cur_time < p[i].at) {
+            cur_time = p[i].at;
+        }
+        printf("P%d (CPU1: %d ms to %d ms), goes for I/O\n", i + 1, cur_time, cur_time + p[i].cpu1);
+        cur_time += p[i].cpu1;
+
+        // CPU Burst 2 after IO
+        printf("P%d (CPU2: %d ms to %d ms), completes\n", i + 1, cur_time + p[i].io, cur_time + p[i].io + p[i].cpu2);
+        cur_time += p[i].io + p[i].cpu2;
+
+        p[i].ft = cur_time;
+        p[i].tt = p[i].ft - p[i].at;
+        p[i].wt = p[i].tt - (p[i].cpu1 + p[i].cpu2);
+    }
+
+    // Displaying the turnaround time and waiting time for each process
+    printf("\nProcess\tAT\tCPU1\tIO\tCPU2\tFT\tTT\tWT\n");
+    for (int i = 0; i < n; i++) {
+        printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", i + 1, p[i].at, p[i].cpu1, p[i].io, p[i].cpu2, p[i].ft, p[i].tt, p[i].wt);
+    }
+
+    return 0;
+}
