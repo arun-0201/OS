@@ -1,0 +1,3170 @@
+Attribute setting 
+<!DOCTYPE html> 
+<html><head><title>Example 1</title> 
+<script> 
+function test() 
+{ 
+var x=document.getElementById("paragraph1"); 
+x.setAttribute("align","right"); 
+x.setAttribute("style","font-family:verdana;color:red;background-color:orange"); //x.setAttribute("style","color:red"); 
+//x.setAttribute("style","font-family:verdana"); 
+alert(x.getAttribute("style")); 
+x.removeAttribute("align"); 
+alert(x.getAttribute("align")); 
+} 
+</script> 
+</head> 
+<body> 
+<p id="paragraph1">This is some text.</p> 
+<table id="table1"> 
+<tr id="xx"> 
+<td>hgj</td> 
+<td>hh</td> 
+</tr> 
+<tr> 
+<td>hgj</td> 
+<td>hh</td> 
+</tr>
+</table> 
+<input type="button" value="clickme" onclick="test()"> 
+</body> 
+<script> 
+function test() 
+{ 
+var x=document.getElementById("xx").firstElementChild.nodeValue; document.write(x); 
+x.setAttribute("align","right"); 
+x.setAttribute("style","font-family:verdana;color:red;background-color:orange"); //x.setAttribute("style","color:red"); 
+//x.setAttribute("style","font-family:verdana"); 
+alert(x.getAttribute("style")); 
+x.removeAttribute("align"); 
+alert(x.getAttribute("align")); 
+} 
+</script> 
+</html> 
+String object 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Search array</title> 
+<script> 
+function start() 
+{ 
+var s= "ZEBRAFGHTBZAFGHHZDGZDHZ"; 
+var s1="hello" ; 
+var s2="Programming is always interesting in the world";
+document.write(s.toLowerCase()+"<br>"); 
+document.write(s1.toUpperCase()+"<br>"); 
+document.write(s.substring(3,9)+"<br>"); 
+document.write(String.fromCharCode( 99, 79, 82, 68 )+"<br>"); document.write(s.substr(3,9)+"<br>"); 
+document.write(s.charAt(3)+"<br>"); 
+document.write(s.charCodeAt(3)+"<br>"); 
+document.write(s.indexOf("AFG",0)+"<br>"); 
+document.write(s.indexOf("AFT",0)+"<br>"); 
+document.write(s.lastIndexOf("H",13)+"<br>"); 
+document.write(s1.concat(s2)+"<br>"); 
+document.write(s2.slice(2,10)+"<br>"); 
+document.write(s2.replace("i","work")+"<br>"); document.write(String.fromCharCode( 99, 79, 82, 68 )+"<br>"); document.write(s2.split(" ")+"<br>"); 
+var s3=s2.split(" "); 
+for(var i=0;i<s3.length;i++) 
+{ 
+document.write(s3[i]+"<br>"); 
+} 
+} 
+window.addEventListener("load",start); 
+</script> 
+</head> 
+<body> 
+<div id="results"> 
+</body> 
+</html>
+Ternary operator 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<p>Vote Eligibility</p> 
+<input type="text" id="txtage" /> 
+<button onclick="exampleOfTernaryOpearator()" id="btnClick">Submit</button> <p id="pId"></p> 
+<script> 
+function exampleOfTernaryOpearator() { 
+var minimumAge, donateable; 
+minimumAge = document.getElementById("txtage").value; 
+if (isNaN(minimumAge)) { 
+donateable = "Input should be an integer value"; 
+} else { 
+donateable= (minimumAge >18) ? "Eligible for vote" : "Not eligible for vote"; } 
+document.getElementById("pId").innerHTML =donateable; 
+} 
+</script> 
+</body> 
+</html> 
+Split and reverse text 
+<!DOCTYPE html> 
+<html> 
+<head><title>Example 1</title> 
+<script > 
+function splitAndReverseText()
+{ 
+var textToSplit=""; 
+var textareatxt=""; 
+textToSplit = document.getElementById("tt1").value; 
+textareatxt=document.getElementById("txtarea"); 
+//document.write(typeof(textareatxt)); 
+textareatxt.value+=textToSplit+"\n"; 
+document.getElementById("tt1").value=""; 
+document.getElementById("yy").style.color="magenta"; 
+document.getElementById("yy").style.textAlign="right"; 
+document.body.bgColor = "RED"; 
+document.getElementById("yy").style.backgroundColor="yellow"; document.getElementById("yy").style.fontStyle = "italic"; 
+document.getElementById("xx").style.fontFamily="Cursive"; 
+document.getElementById("yy").style.textDecoration = "underline"; } 
+</script></head>. 
+<body> 
+<form name="form1"> 
+<textarea id="txtarea" rows="20" cols="40" name="textarea1" > </textarea> 
+<input type="text" placeholder="Enter a text" id="tt1" name="txtareaa1" value=""> <br /> 
+<input type="button" value="Reverse Line Order" name="buttonSplit" onclick="splitAndReverseText()"> 
+</form> 
+<p id="yy">hhhh</p> 
+<h3 id="xx">Heading3</h3> 
+</body>
+</html> 
+DOM basic 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<script type="text/javascript"> 
+function GetNodeInfo () { 
+ var div = document.getElementById ("myDiv1"); 
+var c1=div.firstChild; 
+var c2=div.lastChild; 
+var c3=div.firstElementChild; 
+var c4=div.lastElementChild; 
+var c5=div.firstChild.nextSibling; 
+var c6=div.firstChild.nextElementSibling; 
+var c7=div.lastChild.previousElementSibling; 
+var c8=div.lastElementChild.previousSibling; 
+alert("The first child is" +c1); 
+alert("The last child is " +c2); 
+alert("The firstElementChild is "+c3); 
+alert("The lastElementChild is "+c4); 
+alert("The firstChild nextSibling is"+c5); 
+alert("The firstChild nextElementSibling is"+c6); 
+alert("The lastChild previousSibling"+c7); 
+alert("The lastElementChildChild previousSibling"+c8); 
+ var commentNode1 = div.firstElementChild.nextElementSibling; var commentNode2 = div.firstChild.nextSibling;//.nextElementSibling; 
+ //var message = ""; 
+ alert (commentNode.nodeName); 
+alert (commentNode.nodeType);
+var list = document.getElementsByTagName('div')[1].childNodes; 
+alert(list.length); 
+} 
+ </script> 
+</head> 
+<body> 
+ <div id="myDiv"><!-- this text is not rendered --></div> 
+<div id="myDiv1"> 
+<!-- this text is not rendered --> 
+<h1>hello header</h1> 
+<input type="text" name="dd"> 
+<p>sdfdf</p></div> 
+ <button onclick="GetNodeInfo ()">Get node info!</button> 
+</body> 
+</html> 
+DOM document object 
+<html>  
+<head>  
+<title> My page </title>  
+<script type="text/javascript">  
+function myFunc()  
+{  
+ alert(document.forms[1] );  
+ alert(document.title); 
+ alert(document.URL);  
+ alert(document.body); 
+ alert(document.body.children);  
+ alert(document.images);
+ alert(document.images[0]); 
+ alert("it is " +document.links); 
+ alert("it is " +document.links[0]); 
+ alert(document.forms[0].elements[1]);  
+ var list = document.getElementsByTagName('div')[0].children;  var list = document.getElementsByTagName('div')[0].childNodes; alert(list.length); 
+for(var i=0;i<list.length;i++) 
+{ 
+alert("The child of div is "+list[i]);} 
+ var x=document.body.children; 
+ document.write("The length is "+x.length +"<br>");  for(var i=0;i<x.length;i++) 
+ { 
+ document.write("The ans is "+x[i] +"<br>"); 
+ } 
+ }  
+</script>  
+</head>  
+<body>  
+<h1 id="title">This is main title</h1> 
+<p>hello hai</p>  
+<form name="FirstForm">  
+<input type="button" value="Click Me" onclick="myFunc();" />  <input type="text">  
+</form> 
+<div>dfg 
+<p>sdf</p> 
+<a href="https://www.google.com">ffg</a>
+</div>  
+<a href="https://www.google.com">ffg</a> 
+<img src="flower.jpg" alt="ttt"/> 
+<img src="flower1.jpg" alt="sf"/> 
+</body>  
+</html> 
+<!DOCTYPE html> 
+<html> 
+<head><title>Example 1</title> 
+<script > 
+function CopyText() 
+{ 
+var texttocopy; 
+var textareatxt=""; 
+texttocopy=document.getElementById("tt1").value; //if(texttocopy!="") 
+//{ 
+textareatxt=document.getElementById("txtarea"); textareatxt.value+=texttocopy+"\n"; 
+//} 
+document.getElementById("tt1").value=""; 
+document.getElementById("yy").style.color="magenta"; document.getElementsByTagName('h3')[0].style.color="blue"; } 
+</script> 
+</head> 
+<body> 
+<form name="form1">
+<textarea id="txtarea" rows="20" cols="40" name="txtarea1"> 
+</textarea> 
+<br> 
+<br> 
+<input type="text" placeholder="Enter a text" id="tt1" name="text1"> <input type="button" value="Copy fron txt to txtarea" name="split" onclick="CopyText()"> </form> 
+<p id="yy">Paragraph1</p> 
+<h3 id="xx">Heading 3 content </h3> 
+</body> 
+</html> 
+DOM nodetype 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<script type="text/javascript"> 
+function GetNodeInfo () { 
+var list = document.getElementsByTagName('div')[1].childNodes; 
+for(var i=0;i<list.length;i++) 
+{ 
+if(list[i].nodeType==8 || list[i].nodeType==3) 
+{ 
+document.write("The child of div is "+list[i].nextElementSibling+"<br>");} } 
+} 
+</script> 
+</head> 
+<body> 
+ <div id="myDiv"><!-- this text is not rendered --></div>
+<div id="myDiv1"> 
+<h1>hello header</h1><!-- this text is not rendered --> <input type="text" name="dd"> 
+<p>sdfdf</p></div> 
+ <button onclick="GetNodeInfo ()">Get node info!</button> </body> 
+</html> 
+Array 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Initializing an Array</title> 
+</head> 
+<script> 
+function start() 
+{ 
+var array1 = [ [ 1, 2, 3 ],  
+[ 4, 5, 6 ,7], 
+[7,8,9 ,6,7,8,9], 
+[9,10], 
+[5,6]]; 
+document.write("The length is "+array1[2].length+"<br>"); var total = 0; 
+var rows = array1.length; 
+for ( var row = 0; row < rows; ++row ) 
+{  
+document.write("The row is " +row+"<br>" );
+ var columns = a[ row ].length;  
+ for ( var col = 0; col < columns; ++col ) { 
+document.write("The row is " +col+"<br>" ); total += a[ row ][ col ]; 
+}  
+} 
+/* 
+printArray(array1); 
+document.write("<br>"); 
+} 
+function printArray(theArray) 
+{ 
+var sum1=0; 
+for (var i=0; i<theArray.length;i++) { 
+var no=theArray[i].length; 
+for (var j=0;j<no;j++) 
+{ 
+theArray[2][i]=0; 
+document.write(theArray[i][j]+" " ); } 
+document.write("<br>" ); 
+}*/ 
+} 
+window.addEventListener("load",start); </script> 
+<body>
+<h1>Sorting an Array</h1> 
+</body> 
+</html> 
+Dynamic creation of element using DOM 
+<html> 
+<head> 
+<title>Chapter 12: Example 3</title> 
+</head> 
+<script type="text/javascript"> 
+var newElem = document.createElement("h1"); 
+var newText = document.createTextNode("My Heading"); document.write(typeof(newElem)); 
+document.write(typeof(newText)); 
+newElem.appendChild(newText); 
+document.body.appendChild(newElem); 
+newElem = document.createElement("p"); 
+newText = document.createTextNode("This is some text in a paragraph"); //newElem = document.createElement("p"); 
+newElem.appendChild(newText); 
+document.body.appendChild(newElem); 
+</script> 
+<body> 
+<h3> hello headder 3</h3> 
+<p>dgdfg</p> 
+</body> 
+</html>
+Document object 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Hello world</title> 
+<script> 
+function check() 
+{ 
+var data1,data2; 
+data1=document.getElementsByTagName("tr")[0]; document.getElementById("test").innerHTML=data1.length; for(i=0;i<data1.length;i++) 
+{ 
+if(i%2==0){ 
+data1[i].style.color="red";} 
+else 
+data1[i].style.color="magenta"; 
+}} 
+</script> 
+</head> 
+<body> 
+<table border ="1"> 
+<tr>  
+<td>hello1</td> 
+<td>hello2</td> 
+</tr> 
+<tr>  
+<td>hello3</td> 
+<td>hello4</td>
+</tr> 
+<input type="button" onclick="check()" value="Click me"> </div> 
+<p id="test"></p> 
+<p>sdfd</p> 
+<p>sdfsdfd</p> 
+</body> 
+</html> 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Hello world</title> 
+<script> 
+function check() 
+{ 
+var data1,data2; 
+data1=document.getElementsByTagName("input"); data2=document.getElementsByTagName('p'); for(i=0;i<data1.length;i++) 
+{ 
+data2[i].textContent=data1[i].value; 
+} 
+} 
+window.addEventListener("load", check); 
+</script> 
+</head> 
+<body> 
+<p></p>
+<p></p> 
+<p></p> 
+<h2>Select by tag name<h3>sdfs</h3></h2> 
+<input type="text" placeholder="Enter name1"><br> 
+<input type="text" placeholder="Enter name2"><br> 
+<input type="text" placeholder="Enter name3"><br> 
+<h3>sdfds</h3> 
+<input type="button" value="Click me"onclick="check()" />  
+</body> 
+</html> 
+NodeNAME 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<script> 
+function test() { 
+ var list = document.getElementById("myList1").firstChild.nextSibling.nodeName;  document.getElementById("example").innerHTML = list; 
+} 
+</script> 
+</head> 
+<body> 
+<p>Example list:</p> 
+<ul id="myList1"><li>engg</li><ol>hgf</ol></ul> 
+<button onclick="test()">Try it</button> 
+<p id="example"></p>
+</body> 
+</html> 
+Attribute 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Example 1</title> 
+<script> 
+function test() 
+{ 
+var pElement = document.getElementById("paragraph1"); pElement.setAttribute("align", "right"); 
+//var pElement = document.getElementById("paragraph1"); pElement.setAttribute("style", "color:red"); 
+var pElements = document.getElementById("table1"); pElements.setAttribute("border", "4","cellspacing","33"); var pElements = document.getElementsByTagName("tr")[0]; pElements.setAttribute("style", "color:red"); 
+var x=document.getElementsByTagName("body")[0].firstChild; alert(x); 
+alert(pElement.getAttribute("align")); 
+//pElement.removeAttribute("align"); 
+} 
+</script> 
+</head> 
+<body> 
+<p id="paragraph1">This is some text.</p> 
+<table id="table1"> 
+<tr>
+<td>hgj</td> 
+<td>hh</td> 
+</tr> 
+<tr> 
+<td>hgj</td> 
+<td>hh</td> 
+</tr> 
+</table> 
+<input type="button" value="clickme" onclick="test()"> </body> 
+Ajax request 
+<html> 
+<body> 
+<h1>The XMLHttpRequest Object</h1> 
+<p id="demo">Let AJAX change this text.</p> 
+<button type="button" onclick="loadDoc()">Change Content</button> 
+<script> 
+function loadDoc() { 
+ var xhttp = new XMLHttpRequest(); 
+ xhttp.open("GET", "tt.txt", true); 
+ xhttp.send(); 
+ xhttp.onreadystatechange = function() { 
+ if (xhttp.readyState == 4 && xhttp.status == 200) { 
+ document.getElementById("demo").innerHTML =xhttp.responseText;  }
+ }; 
+  
+} 
+</script> 
+</body> 
+</html> 
+Nodetype 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>Using Links Collection</title> 
+<script> 
+function test() 
+{ 
+var x = document.getElementById("mylist1").firstChild; if(x.nodeType==1) 
+{ 
+x.style.color="red"; 
+} 
+else if(x.nodeType==3) 
+{ 
+/*var y=document.getElementById("mylist1"); var g=y.removeChild(x); 
+//document.write(g); 
+document.write(y.firstChild);*/ 
+x=x.nextSibling; 
+x.style.color="blue";
+} 
+} 
+</script> 
+</head> 
+<body> 
+<p>My example</p> 
+<ul id="mylist1"> 
+<p id="tt">hello</p> 
+<li>Engg</li> 
+<li>hjghj</li> 
+<ol>hgh</ol></ul> 
+<input type="button" value="click me" onclick="test()"> <p id="example">Computer Science</p> 
+<div id="hh">sdftyyyy</div> 
+</body> 
+</html> 
+To capture links in document 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>Using Links Collection</title> 
+<script > 
+function processLinks() 
+{ 
+var linksList = document.links;  
+var contents = "<ul>";
+for ( var i = 0; i < linksList.length; ++i ) 
+{ 
+var currentLink = linksList[ i ]; 
+contents +="<li> "+currentLink+" </li>"; 
+} 
+contents+="</ul>"; 
+document.getElementById( "links" ).innerHTML = contents; 
+}  
+window.addEventListener( "load", processLinks, false ); 
+</script> </head> 
+<body> 
+<p> 
+<a href = "http://www.google.com">Google</a></p> 
+<a href = "http://www.sastra.edu">Sastra</a></p> 
+<a href = "http://www.deitel.com/books/iw3htp5">Internet www, 5th Edition</a></p> <a href = "http://www.tcs.com">TCS</a></p> 
+<a >Sciencedirect</a></p>  
+<a href = "http://www.yahoo.com">Yahoo</a></p> 
+<a href = "http://www.deitel.com/HTML5">Deital</a></p> 
+<a href = "http://www.deitel.com/JavaScript">JavaScript</a></p> <p>Links in this page:</p> 
+<div id = "links"> </div> 
+</body> 
+</html>
+DOM insert before 
+<html> 
+<head><title>Inserting Before</title> 
+<style type="text/css"> 
+p { 
+color:darkblue; 
+} 
+</style> 
+<script> 
+function insertMessage() { 
+var newPara = document.createElement("p"); 
+// var newText = document.createTextNode("Hi i am new para!"); newPara.textContent="hi i am new"; 
+//newPara.appendChild(newText); 
+var firstPara = document.getElementById("firstp").nextSibling; document.body.insertBefore(newPara, firstPara); // document.body.appendChild(newPara); 
+} 
+window.addEventListener("load",insertMessage,false); </script> 
+</head> 
+<body > 
+<p id="firstp1">I was supposed to be ddd.</p> 
+<p id="firstp">I was supposed to be first.</p> 
+</body> 
+</html>
+Document object for appendchild 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Hello world</title> 
+<script> 
+function test() 
+{ 
+var btn=document.createElement("p"); 
+var x=document.createTextNode("helloo1"); 
+var e=btn.appendChild(x); 
+document.body.appendChild(e); 
+//test1(); 
+var tdElement = document.body.length; 
+document.write(tdElement); 
+tdElement.style.color = "red"; 
+var Container=document.body.children; 
+//var Container=document.body.childNodes.length; 
+//document.write(Container.length); 
+for(var i=0;i<Container.length;i++) 
+{ 
+// document.write(Container[i]); 
+}  
+} 
+</script> 
+</head> 
+<body> 
+<div> 
+<p>sdfsdd</p>
+<p id="demo"></p></div> 
+<input type="button" onclick="test()" value="click me"> </body> 
+</html> 
+Math object 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>A Programmer-Defined square Function</title>  </head> 
+<script> 
+var x = 19.64256; 
+document.write(Math.ceil(x)+"<br>"); 
+document.write(Math.abs(x)+"<br>"); 
+document.write(Math.abs(-2.5)+"<br>"); 
+document.write(Math.abs(0)+"<br>"); 
+document.write(Math.exp(x)+"<br>"); 
+document.write(Math.sin(x)+"<br>"); 
+document.write(Math.floor(x)+"<br>"); 
+document.write(Math.round(x)+"<br>"); 
+</script> 
+</head> 
+<body> 
+</body> 
+</html>
+Capturing by event target 
+<!DOCTYPE html> 
+<html> 
+<p>This is paragraph.</p> 
+<h3>This is a heading</h3> 
+<span>A span element</span> 
+<div>A div element</div> 
+<p id="demo">dgghththt</p> 
+<body style="background-color:yellow" onclick="myFunction(event)"> <button> gjhg</button> 
+<script> 
+function myFunction(event) {  
+ var x = event.target; 
+ //document.write(x); 
+if(x.tagName=="P") 
+{ 
+ x.style.color="red"; 
+} 
+else if(x.tagName=="H3") 
+{ 
+ x.style.color="magenta"; 
+} 
+else if(x.tagName=="DIV") 
+{ 
+x.style.color="green"; 
+} 
+else if(x.tagName=="SPAN") 
+{
+x.style.color="ORANGE"; 
+} 
+else if(x.tagName=="BUTTON") 
+{ 
+x.style.color="pink"; 
+} 
+else 
+{ 
+} 
+} 
+</script> 
+</body> 
+</html> 
+JqUERY 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <script> 
+$(document).ready(function() { 
+ $("p").css("background-color","red"); 
+$("h1").css("color","yellow"); 
+ $("ul li a").css("color","magenta"); 
+ $("ul").after("<h2> hello </h2>"); 
+// var t=$("p").text(); 
+ //document.write(t); 
+ $("p").text("script");
+ $("button").click(function(){ 
+ $("ul li:first").hide(); 
+// alert($("#sometext").val()); 
+ //alert("hello"); 
+ }); 
+ }); 
+</script> 
+</head> 
+<body> 
+<h1>This is a heading</h1> 
+<p>This is a paragraph.</p> 
+<ul> 
+<li>Apple <a href="google.com">hhh</a></li> 
+<li>Orange</li> 
+<li>Banana</li> 
+</ul> 
+<input type="text" id="sometext" value=""> 
+<button> submit</button> 
+</body> 
+</html> 
+DoM attribute setting 
+<!DOCTYPE html> 
+<html><head><title>Example 1</title> 
+<script> 
+function test() 
+{ 
+var pElement = document.getElementById("paragraph1"); var pElement1 = document.getElementById("paragraph1"); pElement.setAttribute("align", "right");
+pElement.setAttribute("style","font-family:verdana;color:red;background-color:orange" ); alert(pElement.getAttribute("style")); 
+//pElement.removeAttribute("align"); 
+alert(pElement.getAttribute("align")); 
+} 
+</script> 
+</head> 
+<body> 
+<p id="paragraph1">This is some text.</p> 
+<table id="table1"> 
+<tr> 
+<td>hgj</td> 
+<td>hh</td> 
+</tr> 
+<tr> 
+<td>hgj</td> 
+<td>hh</td> 
+</tr> 
+</table> 
+<input type="button" value="clickme" onclick="test()"> 
+</body> 
+</html> 
+Creating and replacing child 
+<html>  
+<head>  
+<title> My page </title>  
+<script type="text/javascript">  
+function myFunc()  
+{ 
+var Container=document.body.childNodes;//.nodeName; 
+//document.write(Container.length); 
+for(i=0;i<Container.length;i++) 
+{ 
+//document.write(Container[i]+"<br>"); 
+} 
+for(i=0;i<Container.length;i++) 
+{ 
+if(Container[i].nodeName=='DIV') 
+{ 
+var btn = document.createElement("h1"); 
+var x=document.createTextNode("hello am newly inserted"); 
+var e=btn.appendChild(x);  
+document.getElementById("div1").appendChild(e); 
+}  
+if(Container[i].nodeName=='UL') 
+{ 
+var x=document.getElementById("mylist1").firstElementChild.nextElementSibling; var btn=document.createElement("li"); 
+btn.textContent="Google cloud"; 
+var x1=document.getElementById("mylist1"); 
+x1.replaceChild(btn,x); 
+} 
+if(Container[i].nodeName=='H1') 
+{ 
+var newPara = document.createElement("p"); 
+var t=document.createTextNode("HI I AM NEW "); 
+newPara.appendChild(t); 
+var firstPara = document.getElementById("parax");//.childNodes[0];
+firstPara.appendChild(newPara); 
+} 
+} 
+} 
+//window.addEventListener("load",myFunc); </script>  
+</head> 
+<body><p>Para 1</p> 
+<p>Para 2</p> 
+<h1 id="head1">Para 3</h1> 
+<p id="parax"></p> 
+<div id="div1"> 
+<p>Hello</p> 
+</div> 
+<ul id="mylist1"> 
+<li>Script</li> 
+<li>cryptography</li> 
+<li>software testing</li> 
+<li>Python programming</li> 
+<li>Database systems</li> 
+</ul> 
+<p id="firstp">I was supposed to be first.</p> <input type="button" onclick="myFunc()"> </body> 
+</html>
+<html>  
+<head>  
+<title> My page </title>  
+<script type="text/javascript">  
+function myFunc()  
+{  
+var Container=document.body.childNodes; 
+for(i=0;i<Container.length;i++) 
+{ 
+/*if(Container[i].nodeName=='DIV') 
+{ 
+var btn = document.createElement("p"); 
+var x=document.createTextNode("New hello"); 
+var e=btn.appendChild(x);  
+document.getElementById("div1").appendChild(e); 
+} */ 
+/*if(Container[i].nodeName=='UL') 
+{ 
+var x=document.getElementById("mylist1").lastElementChild.previousElementSibling; var btn=document.createElement("li"); 
+btn.textContent="hellooG"; 
+var x1=document.getElementById("mylist1"); 
+x1.replaceChild(btn,x); 
+}*/ 
+if(Container[i].nodeName=='H1') 
+{ 
+var newPara = document.createElement("p"); 
+// var newText = document.createTextNode("Hi i am new para!"); newPara.textContent="hi i am new";
+//newPara.appendChild(newText); 
+var firstPara = document.getElementById("head1").previousSibling; document.body.insertBefore(newPara, firstPara); 
+firstPara.appendChild(newPara); 
+} 
+} 
+} 
+window.addEventListener("load",myFunc); 
+</script>  
+</head> 
+<body><p>para1</p> 
+<p>para2</p> 
+<h1 id="head1">para3</h1> 
+<p></p> 
+<div id="div1"> 
+<p>Hello</p> 
+</div> 
+<ul id="mylist1"> 
+<li>Script</li> 
+<li>cryptography</li> 
+<li>software testing</li> 
+<li>Python programming</li> 
+<li>Database systems</li> 
+</ul> 
+<p id="firstp">I was supposed to be first.</p> 
+</body> 
+</html>
+Identify and count nodetypes 
+<!DOCTYPE html> 
+<html><head><script type="text/javascript"> 
+function GetNodeInfo () 
+ { 
+var x=document.body.childNodes; 
+var onetype=threetype=eighttype=0; 
+for (i=0;i<x.length;i++) 
+{ 
+if(x[i].nodeType=="1") 
+{ 
+x[i].setAttribute("style","color:magenta"); 
+onetype++; 
+} 
+if(x[i].nodeType=="3") 
+{ 
+threetype++; 
+} 
+if(x[i].nodeType=="8") 
+{ 
+eighttype++; 
+} 
+} 
+var output=""; 
+output+="element nodes are"+onetype+"text nodes are"+threetype+"comment nodes  are"+eighttype; 
+document.getElementById("myDiv1").innerHTML=output; 
+} 
+</script>
+</head> 
+<body> 
+ <div id="myDiv"> 
+<h1>header1</h1> 
+<p>para1</p> 
+<h1>header2</h1> 
+</div> 
+<!--hello--> 
+<h1>hello</h1> 
+<div id="myDiv1"> 
+<p>para2</p> 
+</div> 
+<!--hello--> 
+<p>para</p> 
+<ul id="test"> 
+<li>dfg</li> 
+<li>sdfd</ul> 
+<!--hello--> 
+ <button onclick="GetNodeInfo ()">Get node info!</button> </body> 
+</html>
+Removechild 
+<!DOCTYPE html> 
+<html> 
+<script> 
+function myFunction() { 
+ var list = document.getElementById("myList").firstElementChild;  list.removeChild(list.childNodes[0]); 
+} 
+</script> 
+<body> 
+<ul id="myList"> 
+<li>Hello1</li> 
+<li>Hello2</li> 
+<li>Hello3</li> 
+</ul> 
+<p>Click the button to remove the first item from the list.</p> 
+<button onclick="myFunction()">Try it</button> 
+</body> 
+</html>
+All DOM operations 
+<html>  
+<head>  
+<title> My page </title>  
+<script type="text/javascript">  
+function myFunction() 
+{ 
+var test=document.body.childNodes; 
+for(var i=0;i<test.length;i++) 
+{ 
+if(test[i].nodeName=='DIV') 
+{ 
+var paragraph=document.createElement("p"); 
+var x=document.createTextNode("I have inserted new p tag"); 
+var t=paragraph.appendChild(x); 
+document.getElementById("div1").appendChild(t); 
+} 
+if(test[i].nodeName=='UL') 
+{ 
+var g=document.getElementById("mylist1").lastElementChild.previousElementSibling; var lis=document.createElement("li"); 
+//document.write(typeof(lis)); 
+lis.textContent="new list added"; 
+var x1=document.getElementById("mylist1"); 
+x1.replaceChild(lis,g); 
+} 
+if(test[i].nodeName=='H1') 
+{ 
+var paragraph1=document.createElement("p");
+paragraph1.textContent="Hi i am a new para inserted"; var firsthead=document.getElementById("head1").nextSibling; document.body.insertBefore(paragraph1,firsthead); } 
+} 
+} 
+window .addEventListener("load",myFunction); </script>  
+</head> 
+<body><p>para1</p> 
+<p>para2</p> 
+<h1 id="head1">para3</h1> 
+<p></p> 
+<div id="div1"> 
+<p>Hello</p> 
+</div> 
+<ul id="mylist1"> 
+<li>Script</li> 
+<li>cryptography</li> 
+<li>software testing</li> 
+<li>Python programming</li> 
+<li>Database systems</li> 
+</ul> 
+<p id="firstp">I was supposed to be first.</p> 
+</body> 
+</html>
+<!DOCTYPE html> 
+<html> 
+<head> 
+<script type="text/javascript"> 
+function CountOfNodes() 
+{ 
+var x=document.body.childNodes; var ones=threes=eights=0; 
+for(var i=0;i<x.length;i++) 
+{ 
+if(x[i].nodeType==1) 
+{ 
+x[i].setAttribute("style","color:magenta"); ones++; 
+} 
+if(x[i].nodeType==3) 
+{ 
+threes++; 
+} 
+if(x[i].nodeType==8) 
+{ 
+eights++; 
+} 
+}
+//var output=""; 
+//document.write("The element nodes are "+ones +"<br>"); //document.write("The text Nodes are"+threes+"<br>"); //document.write("The comment nodes are"+eights+"<br>"); } 
+</script> 
+</head> 
+<body> 
+<div id="mydiv1"> 
+<h1>head1</h1> 
+<p>para1</p> 
+<h3>head3</h3> 
+</div> 
+<!--Comment1--> 
+<h1>header2</h1> 
+<div id="myDiv2"> 
+<p>para2</p> 
+</div> 
+<!--Comment2--> 
+<p>sfsd</p> 
+<ul id="df"> 
+<li>sdfd</li> 
+<li>sdfsdf</li> 
+<li>sdf</li> 
+</ul> 
+<!---Comment3-->
+<button onclick="CountOfNodes()"> Count Nodes </button> </body> 
+</html> 
+Date object 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>sdf</title> 
+<script> 
+function start() 
+{ 
+var t=new Date(); 
+document.write(t.toString()+"<br>"); 
+document.write(t.toLocaleString()+"<br>"); 
+document.write(t.toUTCString()+"<br>"); 
+document.write(t.toString()+"<br>"); 
+document.write(t.valueOf()+"<br>"); 
+document.write(t.getTime()+"<br>");//Returns the time in ms from janu 1 1970 document.write(t.getHours()+"<br>"); 
+document.write(t.getMinutes()+"<br>"); 
+document.write(t.getUTCDay()+"<br>"); 
+document.write(t.getTimezoneOffset()+"<br>"); 
+document.write(t.getSeconds()+"<br>"); 
+document.write(t.getMilliseconds()+"<br>"); 
+document.write(t.getDate()+"<br>"); 
+document.write(t.getDay()+"<br>"); 
+document.write(t.getMonth()+"<br>"); 
+document.write(t.getFullYear()+"<br>");
+var newdate=new Date(); 
+newdate.setHours(10,23,45); 
+document.write(newdate.getHours()+"<br>"); document.write(newdate.getMinutes()+"<br>"); document.write(newdate.getSeconds()+"<br>"); 
+} 
+window.addEventListener("load",start,false); 
+</script> 
+<body> 
+<section id = "newArguments"></section> <section id = "setMethods"></section> </body> 
+</html> 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>sdf</title> 
+<script> 
+function start() 
+{ 
+var t=new Date(); 
+document.write(t.toString()+"<br>"); document.write(t.toLocaleString()+"<br>"); document.write(t.toUTCString()+"<br>"); document.write(t.toString()+"<br>"); document.write(t.valueOf()+"<br>");
+document.write(t.getTime()+"<br>");//Returns the time in ms from janu 1 1970 document.write(t.getHours()+"<br>"); 
+document.write(t.getMinutes()+"<br>"); 
+document.write(t.getUTCDay()+"<br>"); 
+document.write(t.getTimezoneOffset()+"<br>"); 
+document.write(t.getSeconds()+"<br>"); 
+document.write(t.getMilliseconds()+"<br>"); 
+document.write(t.getDate()+"<br>"); 
+document.write(t.getDay()+"<br>"); 
+document.write(t.getMonth()+"<br>"); 
+document.write(t.getFullYear()+"<br>"); 
+var newdate=new Date(); 
+newdate.setHours(10,23,45); 
+document.write(newdate.getHours()+"<br>"); 
+document.write(newdate.getMinutes()+"<br>"); 
+document.write(newdate.getSeconds()+"<br>"); 
+} 
+window.addEventListener("load",start,false); 
+</script> 
+<body> 
+<section id = "newArguments"></section> 
+<section id = "setMethods"></section> 
+</body> 
+</html> 
+S2.js 
+function start() 
+{
+alert("hello"); 
+var x1=8; 
+var x2=6; 
+alert(x1+x2); 
+} 
+<!DOCTYPE html> 
+<html> 
+<script> 
+function myFunction() { 
+var pElement = document.getElementById("ggg"); 
+pElement.setAttribute("src", "1.jpg"); 
+ var x = document.images.length; 
+ document.getElementById("demo").innerHTML = x; 
+} 
+</script> 
+<body> 
+<img id="ggg" alt="flower" width="152" height="128"> 
+<img src="3.jpg" alt="Smiley face" width="42" height="42"> <img alt="sdf"> 
+<p>Click the button to display the number of images in the document.</p> <button onclick="myFunction()">Try it</button> 
+<p id="demo"></p> 
+</body> 
+</html> 
+Display child nodes 
+<!DOCTYPE html> 
+<html>
+<head> 
+</head> 
+<body> 
+<p>sfs</p> 
+<ul id="list1"> 
+<li>aaa</li> 
+<ol>bbb</ol> 
+</ul> 
+<button onclick="test1()"> CLICK ME </button> <h1>dsgdfg</h1> 
+</body> 
+<script> 
+function test1() 
+{ 
+var t1=document.body.childNodes; 
+//alert(t1); 
+alert(t1.length); 
+for(var i=0;i<t1.length;i++) 
+{ 
+document.write(t1[i].nodeName +"<br>"); } 
+} 
+</script> 
+</html>
+jQuery 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<style> 
+h2 { 
+ color: blue; 
+ } 
+ </style> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <script> 
+$(document).ready(function() { 
+var spans = $("h2"); 
+ $("p").css("background-color","red"); 
+$("h1").css("color","yellow"); 
+$("#dfgdf").css( "color", "blue"); 
+ $("ul li a").css("color","magenta"); 
+ $("ul").after("<h2> hello </h2>"); 
+ $( "ul.gg" ).children().css( "background-color", "orange" ); 
+// var t=$("p").text(); 
+ //document.write(t); 
+ //$("p").text("script"); 
+ $("button").click(function(){ 
+ //$("ul li:first").hide(); 
+// alert($("#sometext").val()); 
+ //alert("hello"); 
+ //$("#jj"). 
+ }); 
+ });
+</script> 
+</head> 
+<body> 
+<h1>This is a heading</h1> 
+<p>dsff <h2>dffsdf</h2></p> 
+<p>This is a paragraph.</p> 
+<p id="dfgdf">dsff</p> 
+<ul class="gg"> 
+<li >Apple <a href="google.com">hhh</a></li> 
+<li>Orange <a href="google.com">hhh</a></li> 
+<li>Banana</li> 
+</ul> 
+<input type="text" id="sometext" value=""> 
+<button> submit</button> 
+</body> 
+</html> 
+<!DOCTYPE html> 
+<html > 
+<head> 
+  
+ <title>find demo</title> 
+  
+ <script src="https://code.jquery.com/jquery-3.5.0.js"></script>  <script> 
+ $(document).ready(function() { 
+var spans = $( "span" ); 
+$( "p" ).find( spans ).css( "color", "red" ); 
+$( "ul li:last-child" ).css( "text-decoration", "underline" );
+$( "ul li:first-child" ).css( "color", "green" ); $("li").siblings().css( "color", "magenta" ); $("li.gg").siblings().css( "color", "magenta" ); $( "#gt" ).before( "<h1>Hello</h1>" ); 
+}); 
+</script> 
+</head> 
+<body> 
+<ul class="hh"> 
+<li >Apple hhh</a></li> 
+<li>Orange hhh</a></li> 
+<li class="gg">Banana</li><li> hhh</li> </ul> 
+<p id="gt"><span>Hello</span>, how are you?</p> <p>Me <span>good</span>.</p> 
+<div>Did you <span>eat</span> yet?</div> 
+</body> 
+</html>
+
+
+
+Javascript programs 
+Example 1 : Printing text on screen 
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+<script type = "text/javascript"> 
+document.writeln("<h1>Welcome to JavaScript Programming!</h1>" ); document.writeln("<p>Welcome to JavaScript Programming!</p>" ); </script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 2: Printing text on screen 
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+<script type = "text/javascript"> 
+document.write( "<h1 style = 'color: magenta'>Welcome to all</h1>" ); document.write( "<p style = 'color: blue'>Welcome to JavaScript " +"Programming!</p>" ); </script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 3: Using alert box 
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+<script type = "text/javascript"> 
+window.alert( "Welcome to\nJavaScript\nProgramming!" ); 
+</script> 
+</head> 
+<body> 
+</body>
+</html> 
+Example 4: Prompt box  
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+<script type = "text/javascript"> 
+var name; 
+name = window.prompt( "Please enter your name" ); 
+document.writeln( "<h1>Hello " + name +", welcome to JavaScript programming!</h1>" ); </script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 5: 
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+<script type = "text/javascript"> 
+document.write("hello"); 
+var firstNumber; // first string entered by user 
+var secondNumber; // second string entered by user 
+var number1; // first number to add 
+var number2; // second number to add 
+var sum; 
+firstNumber = 10; 
+secondNumber = 20; 
+number1 = parseInt( firstNumber ); 
+number2 = parseInt( secondNumber ); 
+sum = number1 + number2; 
+document.writeln( "<h1>The sum is " + sum + "</h1>" ); 
+</script> 
+</head> 
+<body> 
+</body> 
+</html>
+Example 6: Date Object 
+<!DOCTYPE html> 
+<!--First html5 example--> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>welcome to script</title> 
+<script type="text/javascript"> 
+var name;  
+var x = new Date();// current date and time 
+var hour = x.getHours(); // current hour (0-23) 
+name = window.prompt( "Please enter your name" ); if ( hour < 12 ) 
+document.write( "<h1>Good Morning, " ); 
+if ( hour >= 12 ){ 
+hour = hour - 12; 
+if ( hour < 6 ) 
+document.write( "<h1>Good Afternoon, " ); 
+if ( hour >= 6 ) 
+document.write( "<h1>Good Evening, " );} 
+document.write( name +", welcome to Js programming!</h1>" ); </script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 7 : Counter controlled repetition 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Class Average Program</title> 
+<script> 
+var total; // sum of grades 
+var gradeCounter; // number of grades entered 
+var grade; // grade typed by user (as a string) 
+var gradeValue; 
+var average; 
+var total = 0; 
+gradeCounter = 1; 
+while ( gradeCounter <= 10 ) 
+{ 
+grade = window.prompt( "Enter integer grade:", "0" ); gradeValue = parseInt( grade ); 
+total = total + gradeValue; 
+gradeCounter = gradeCounter + 1; 
+} 
+average = total / 10;  
+document.writeln("<h1>Class average is " + average + "</h1>" ); </script> 
+</head><body></body> 
+</html> 
+Example 8 : Printing text on screen 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Class Average Program: Sentinel-controlled Repetition</title> <script type="text/javascript"> 
+var total; // sum of grades 
+var gradeCounter; // number of grades entered 
+var grade; // grade typed by user (as a string) 
+var gradeValue; // grade value (converted to integer) var average; 
+total = 0;  
+gradeCounter = 0; 
+grade = window.prompt("Enter Integer Grade, -1 to Quit:", "0" ); gradeValue = parseInt( grade ); 
+while ( gradeValue != -1 ) 
+{ 
+// add gradeValue to total 
+total = total + gradeValue; 
+gradeCounter = gradeCounter + 1; 
+grade = window.prompt("Enter Integer Grade, -1 to Quit:", "0" ); gradeValue = parseInt( grade );} 
+if ( gradeCounter != 0 ){ 
+average = total / gradeCounter; 
+document.writeln("<h1>Class average is " + average + "</h1>" ); } // end if
+else 
+document.writeln( "<p>No grades were entered</p>" ); </script> 
+</head><body></body> 
+</html> 
+Example 9 : Nested Control statements 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Class Average Program: Sentinel-controlled Repetition</title> <script type="text/javascript"> 
+var passes = 0; // number of passes 
+var failures = 0; // number of failures 
+var student = 1; // student counter 
+var result; // an exam result 
+while ( student <= 10 ) 
+{ 
+result = window.prompt( "Enter result (1=pass,2=fail)", "0" ); if ( result == "1" ) 
+passes = passes + 1; 
+else 
+failures = failures + 1; 
+student = student + 1; 
+} 
+document.writeln("<h1>Examination Results</h1>" ); 
+document.writeln("<p>Passed: " + passes +"; Failed: " + failures + "</p>"); if ( passes > 8 ) 
+document.writeln( "<p>Bonus to instructor!</p>" ); 
+</script> 
+</head><body></body> 
+</html> 
+Example 10 : Increment/Decrement operators 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Class Average Program</title> 
+<script type="text/javascript"> 
+var c;
+c = 5; 
+document.writeln( "<h3>Postincrementing</h3>" ); 
+document.writeln( "<p>" + c ); // prints 5 
+document.writeln( " " + c++ ); 
+document.writeln( " " + c + "</p>" ); // prints 6 
+c = 5; 
+document.writeln( "<h3>Preincrementing</h3>" ); 
+document.writeln( "<p>" + c ); // prints 5 
+document.writeln( " " + ++c ); 
+document.writeln( " " +c+ "</p>" ); // prints 6*/ 
+</script> 
+</head><body></body> 
+</html> 
+Example 11: Fahrenheit to centigrade 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>More Forms</title> 
+</head> 
+<script type="text/javascript"> 
+var degFahren = window.prompt("Enter the degrees in Fahrenheit", 50); var degCent; 
+degCent = 5/9 * (degFahren - 32); 
+alert(degFahren + " Fahrenheit is " + degCent + "centigrade"); </script> 
+<body> 
+<p>hello</p> 
+</body> 
+</html> 
+Example 12: Making use of counter controlled repetition 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Counter-Controlled Repetition</title> 
+<script> 
+var counter = 1; 
+while ( counter <= 7 ) 
+//for ( var counter = 1; counter <= 7; ++counter ) 
+{ 
+document.writeln( "<p style = 'font-size: " +counter + "ex'>HTML5 font size " + counter + "ex</p>" ); ++counter; 
+}  
+</script> 
+</head><body></body> 
+</html> 
+Example 13: Sum of integers 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Counter-Controlled Repetition</title> 
+<script> 
+var sum = 0; 
+for ( var number = 2; number <= 100; number += 2 ) 
+sum += number; 
+document.writeln("The sum of the even integers " +"from 2 to 100 is" +sum ); </script> 
+</head><body></body> 
+</html> 
+Example 14: Calculating Compound Interest with the for Statement 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Calculating Compound Interest</title> 
+<style type = "text/css"> 
+p{font-family: courier; 
+ font-size: 20px; 
+ color:red; 
+ background-color:magenta;} 
+h1{font-family: courier; 
+ font-size: 20px; 
+ color:red; 
+ background-color:blue;} 
+ 
+table { width: 200px; 
+border-collapse: collapse; 
+} 
+th,td { border: 3px solid black; 
+padding: 6px;color:magenta; } 
+th { text-align: left; 
+color: white; 
+background-color: darkblue; } 
+tr { background-color: yellow; } 
+</style> 
+<script> 
+var amount; // current amount of money 
+var principal = 1000.00; // principal amount 
+var rate = 0.05; 
+//document.writeln("<p>hello</p>"); 
+//document.writeln("<h1>hello</h1>"); 
+document.writeln("<table>"); // begin the table 
+document.writeln("<caption>Calculating Compound Interest</caption>" ); document.writeln("<thead><tr><th>Year</th>" ); // year column heading document.writeln("<th>Amount on deposit</th>" ); // amount column heading document.writeln( "</tr></thead><tbody>" ); 
+for ( var year = 1; year <= 10; ++year ) 
+{ 
+amount = principal * Math.pow( 1.0 + rate, year ); 
+if ( year % 2==0 ) 
+document.writeln( "<tr ><td>" + year +"</td><td>" + amount.toFixed(2) + "</td></tr>" ); else 
+document.writeln( "<tr><td>" + year +"</td><td>" + amount.toFixed(3) + "</td></tr>" ); }  
+document.writeln( "</tbody></table>" ); 
+</script> 
+</head><body></body> 
+</html> 
+Example 15: Using CSS style classes  
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>table style</title> 
+<style>
+p.a{ 
+background-color:red; 
+color:white; 
+} 
+p.b{ 
+background-color:green; 
+color:yellow; 
+} 
+p.c{ 
+background-color:magenta; 
+color:blue; 
+} 
+</style> 
+<script> 
+var x=window.prompt("Enter a no","1"); 
+var no=parseInt(x); 
+if( no> 0 ) 
+{ 
+document.writeln("<p class='a'>positive</p>"); 
+} 
+else if(no<0) 
+{ 
+document.writeln("<p class='b'>negative</p>"); 
+} 
+else{ 
+document.writeln("<p class='c'>zero</p>"); 
+} 
+</script> 
+</head><body></body></html> 
+Example 16: do … while repetition statement 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>table style</title> 
+<script> 
+var counter = 1; 
+do { 
+document.writeln( "<h" + counter + ">This is " +"an h" + counter + " level head" + "</h" +counter + ">" ); ++counter;
+}while ( counter <= 6 ); 
+</script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 17: break statement 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>table style</title> 
+<script> 
+for ( var count = 1; count <= 10; ++count ) 
+{ 
+if ( count == 5 ) 
+break; 
+document.writeln( count + " " ); 
+} //end for 
+document.writeln("<p>Broke out of loop at count = " + count + "</p>" ); </script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 18: continue statement 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>table style</title> 
+<script> 
+for ( var count = 1; count <= 10; ++count ) 
+{ 
+if ( count == 5 ) 
+continue;  
+document.writeln( count + " " );
+}  
+</script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 19: Even or odd with styles 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title> 
+Using the break Statement in a for Statement </title> 
+<style> 
+p{ 
+text-align:left; 
+color:magenta; 
+font-size:30px; 
+} 
+h1,h3,h5{ 
+text-align:center; 
+color:red; 
+} 
+h2,h4,h6{ 
+text-align:center; 
+color:red; 
+} 
+</style> 
+<script> 
+for ( var count = 1; count <= 10; ++count ) 
+{ 
+if ( count %2 ==0 ) 
+{ 
+document.writeln( "<p>The no "+count+" is even </p>"); }  
+else 
+{ 
+if(count>6){ 
+document.writeln( "<h1>The no "+count+" is odd </h1>");}
+else{ 
+//document.writeln( "<h" + counter + ">The no " + counter + " is odd" + "</h" +counter + ">" ); document.writeln( "<h" + count + ">the no " + count + " is odd" + "</h" +count + ">" ); } 
+} 
+} 
+</script> 
+</head><body></body> 
+</html> 
+Example 20a: Switch case using style 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Switching between HTML5 List Formats</title> 
+<style> 
+ol { 
+ background: #ff9999; 
+list-style-type: decimal-leading-zero; 
+} 
+</style> 
+<script> 
+var choice; // user’s choice 
+var startTag; // starting list item tag 
+var endTag; // ending list item tag 
+var validInput = true; // true if input valid else false 
+var listType; 
+choice = window.prompt( "Select a list style:\n" + 
+"1 (numbered), 2 (lettered), 3 (roman numbered)", "1" ); 
+switch ( choice ) 
+{ 
+case "1": 
+startTag = "<ol>"; 
+endTag = "</ol>"; 
+listType = "<h1>Numbered List</h1>"; 
+break; 
+case "2": 
+startTag = "<ol style = 'list-style-type: upper-alpha; background:red'>"; 
+endTag = "</ol>";
+listType = "<h1>Lettered List</h1>"; 
+break; 
+case "3": 
+startTag = "<ol style = 'list-style-type: upper-roman;background:yellow'>"; 
+endTag = "</ol>"; 
+listType = "<h1>Roman Numbered List</h1>"; 
+break; 
+default: 
+validInput = false; 
+break; 
+} 
+if ( validInput == true ) 
+{ 
+document.writeln( listType + startTag ); 
+for ( var i = 1; i <= 3; ++i ) 
+document.writeln( "<li>List item " +i+ "</li>" ); 
+document.writeln( endTag ); 
+}  
+else 
+document.writeln( "Invalid choice: " + choice ); 
+</script> 
+</head><body></body> 
+</html> 
+Example 20b: Switch case  
+<!-- Get number corresponding to the current month, with 0 being January and 11 being December--> <!doctype html> 
+<html> 
+<head> 
+<script> 
+var month = new Date().getMonth(); 
+switch (month) { 
+ // January, February, March 
+ case 0: 
+ case 1: 
+ case 2: 
+ document.write("Winter"); 
+ break; 
+ // April, May, June 
+ case 3: 
+ case 4:
+ case 5: 
+ document.write("Spring"); 
+ break; 
+ // July, August, September 
+ case 6: 
+ case 7: 
+ case 8: 
+ document.write("Summer"); 
+ break; 
+ // October, November, December 
+ case 9: 
+ case 10: 
+ case 11: 
+ document.write("Autumn"); 
+ break; 
+ default: 
+ document.write("Something went wrong."); } 
+</script> 
+<body></body></html> 
+Example 21: Logical AND and styles 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Switching between HTML5 List Formats</title> <style> 
+ol.a{ 
+background:red; 
+color:white; 
+list-style-type: upper-alpha; 
+} 
+ol.b{ 
+background:green; 
+color:yellow; 
+list-style-type: upper-roman; 
+} 
+ol.c{ 
+background:magenta; 
+color:blue;
+list-style-type: upper-alpha; 
+} 
+</style> 
+<script> 
+var age=window.prompt("enter age"); 
+var x=parseInt(age); 
+document.writeln("<ol>"); 
+if(age>5&&age<15){ 
+document.writeln("<ol class='a'>"); 
+//document.writeln("<ol style = 'list-style-type: upper-alpha; background:red' >"); document.writeln("<li>Apple </li><li>banana</li><li>pineapple</li>");} else if(age>16&&age<40){ 
+document.writeln("<ol class='b'>"); 
+//document.writeln("<ol style = 'list-style-type: upper-alpha; background:blue' >"); document.writeln("<li>Carrot </li><li>Beetroot</li><li>Ladysfinger</li>");} else 
+{ 
+document.writeln("<ol class='c'>"); 
+//document.writeln("<ol style = 'list-style-type: upper-alpha; background:green' >"); document.writeln("<li>Ragi</li><li>grains</li><li>spinach</li>"); } 
+document.writeln("</ol>"); 
+</script> 
+</head><body></body> 
+</html> 
+Example 22: Functions –Addition 
+<html> 
+ <head> 
+ <title>Add program</title> 
+ <script language="javascript"> 
+ function addNumbers() 
+ { 
+ var val1 = parseInt(document.getElementById("value1").value);  var val2 = parseInt(document.getElementById("value2").value);  var ansD= val1 + val2; 
+document.getElementById("answer").value=ansD; 
+ } 
+ </script> 
+ </head>
+ <body> 
+ value1 = <input type="text" id="value1" value=""> 
+ value2 = <input type="text" id="value2" " value=""/> 
+ <input type="button" name="Sumbit" value="Click here" onclick="javascript:addNumbers()"/>  Answer = <input type="text" id="answer" name="answer" value=""/> 
+ </body> 
+</html> 
+Example 23: Functions – Square of numbers 
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+<script type = "text/javascript"> 
+document.writeln( "<h1>Square the numbers from 1 to 10</h1>" ); 
+for ( var x = 1; x <= 10; ++x ) 
+document.writeln( "<p>The square of " +x+ " is " + square( x )+ "</p>" ); 
+function square( y ) 
+{ 
+return y * y; 
+} 
+</script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 24: Functions – Maximum of numbers 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Maximum of Three Values</title> 
+<style type = "text/css"> 
+p { margin: 15; } 
+</style> 
+<script> 
+var input1 = window.prompt( "Enter first number", "0" ); 
+var input2 = window.prompt( "Enter second number", "0" ); 
+var input3 = window.prompt( "Enter third number", "0" ); 
+var value1 = parseFloat( input1 );
+var value2 = parseFloat( input2 ); 
+var value3 = parseFloat( input3 ); 
+var maxValue = maximum( value1, value2, value3 ); 
+document.writeln( "<p>First number: " + value1 + "</p>" + "<p>Second number: " + value2 + "</p>" + 
+"<p>Third number: " + value3 + "</p>" + 
+"<p>Maximum is: " + maxValue + "</p>" ); 
+function maximum( x, y, z ) 
+{ 
+return Math.max( x, Math.max( y, z ) ); 
+} 
+</script> 
+</head><body></body> 
+</html> 
+Example 25: Functions – Factorial 
+<!doctype html> 
+<html> 
+<head> 
+<script> 
+//factorial(); 
+function factorial() 
+{ 
+var i, fact=1,no; 
+no=document.getElementById("txt").value; 
+for(i=1;i<=no;i++) 
+{ 
+fact=fact*i; 
+} 
+document.getElementById("txt1").value=fact; 
+} 
+</script> 
+</head> 
+<body> 
+<input type="text" id="txt" placeholder="enter a no"> <input type="button" onclick="factorial()"id="btn" value="Factorial"> <input type="text" id="txt1"> 
+</body> 
+</html>
+Example 26: Functions & Event listener 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"></meta> 
+<title> 
+</title> 
+</head> 
+<body> 
+<button id="btn">ol list </button> 
+<button id ="btn1"> ul list</button> 
+<p id="list">hello</p> 
+<p id ="list1">script</p> 
+</body> 
+<script type="text/javascript"> 
+function fun() 
+{ 
+document.getElementById("list").innerHTML="<ol> <li> banana</li><li>apple</li><li>mango</li></ol>"; } 
+function fun1() 
+{ 
+document.getElementById("list1").innerHTML="<ul> <li> 
+banana</li><li>apple</li><li>mango</li></ul>"; 
+} 
+document.getElementById("btn").addEventListener("click",fun,false); 
+document.getElementById("btn1").addEventListener("dblclick",fun,false); 
+</script> 
+</html> 
+Example 27: use of ex unit 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Counter-Controlled Repetition</title> 
+<script> 
+var i=1; 
+for (var i=1;i<=7;i++) 
+//while(i<=7) 
+{ 
+document.write("<p style='font-size:"+i+"ex'>hello</p>"); 
+//i++; 
+} 
+</script> 
+</head><body></body></html>
+Example 28: Logical Operators 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<script type="text/javascript"> 
+var myAge = parseInt(prompt("Enter your age",30)); 
+if (myAge >= 0 && myAge <= 10) 
+{ 
+document.write("myAge is between 0 and 10<br />"); 
+} 
+if ( !(myAge >= 0 && myAge <= 10) ) 
+{ 
+document.write("myAge is NOT between 0 and 10<br />"); 
+} 
+if ( myAge >= 80 || myAge <= 10 ) 
+{ 
+document.write("myAge is 80 or above OR 10 or below<br />"); } 
+if ( (myAge >= 30 && myAge <= 39) || (myAge >= 80 && myAge <= 89) ) { 
+document.write("myAge is between 30 and 39 or myAge is between 80 and 89"); } 
+</script> 
+</head> 
+<body> 
+<input type="button" id="button1" value="click me"> 
+<p id="ss"></p> 
+</body> 
+</html> 
+Example 29: Date object with table output(resize to see the output) 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"></meta> 
+<title>welcome to Functions</title> 
+<script type="text/javascript"> 
+var c =""; 
+var x=new Date(); 
+function func() 
+{ 
+hr(); 
+mnth(); 
+mint(); 
+dy();
+} 
+function hr() 
+{ 
+c=c+"<table border='3'><tr><th>Date</th><th>Description</th></tr>"; c=c+"<tr><td>GetHours</td><td>"+x.getHours()+"</td></tr>"; } 
+function mnth(){ 
+c=c+"<tr><td>GetMonths</td><td>"+x.getMonth()+"</td></tr>";} function mint(){ 
+c=c+"<tr><td>GetMinutes</td><td>"+x.getMinutes()+"</td></tr>";} function dy(){ 
+c=c+"<tr><td>GetDay</td><td>"+x.getDay()+"</td></tr></table>"; document.getElementById("Date1").innerHTML=c; 
+} 
+//window.addEventListener("resize",function(){alert("hello")},false); window.addEventListener("resize",func,false); 
+</script> 
+</head> 
+<body> 
+<p id="Date1"></p></body></html> 
+Example 30: Addition with controls 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>script</title> 
+<style type="text/css"> 
+</style> 
+<script type="text/javascript"> 
+function add() 
+{ 
+var t1= parseInt(document.getElementById("val1").value); var t2= parseInt(document.getElementById("val2").value); //document.getElementById("ans").innerHTML=t1+t2; document.getElementById("val3").value=t1+t2; 
+} 
+function sub() 
+{ 
+var t1= parseInt(document.getElementById("val1").value); var t2= parseInt(document.getElementById("val2").value); //document.getElementById("ans").innerHTML=t1+t2; document.getElementById("val3").value=t1-t2; 
+} 
+</script> 
+</head> 
+<body> 
+<form>
+<input type="text" id="val1" name="txtval1"> 
+<input type="text" id="val2" name="txtval2"> 
+<input type="text" id="val3" name="txtvl3"> 
+<br> <br> 
+<input type="button" value="Add" onclick="add()"> 
+<input type="button" value="Subtract" onclick="sub()"> 
+<p id="ans"></p> 
+</form> 
+</body> 
+</html> 
+Example 31: Functions with tables 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"></meta> 
+<title>Switching between HTML5 List Formats</title> 
+<script type="text/javascript"> 
+var c=""; 
+function test() 
+{ 
+evenodd(); 
+sqrt1(); 
+} 
+function evenodd() 
+{ 
+var x=parseInt(window.prompt("enter a no")); 
+c=c+"<table border='4'><tr><td>Values are</td><td>Answer</td></tr>"; if(x%2==0) 
+c=c+"<tr><td>"+x+"</td><td>even no</td></tr>"; 
+else 
+c=c+"<tr><td>"+x+"</td><td>odd no</td></tr>"; 
+//document.getElementById("table").innerHTML=c; 
+} 
+function sqrt1() 
+{ 
+var x=parseInt(window.prompt("enter a no")); 
+var y=Math.sqrt(x); 
+c=c+"<tr><td>sqrt of "+x+" is</td><td>"+y+"</td></tr>"; document.getElementById("table").innerHTML=c; 
+} 
+</script> 
+</head><body> 
+<input type="button" value="click me" onclick="test()">
+<p id ="table"></p></body></html> 
+Example 32:form redirect  
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+</head> 
+<body> 
+<form action="Lab2 demo.html" method ="get" target="_blank"> <label for ="name1"> First Name</label> 
+<input type ="text" name="fname"> 
+<label for ="name1"> Last Name</label> 
+<input type ="text" name="lname"> 
+<input type="submit" value="submit"> 
+</form> 
+</body> 
+</html> 
+Example 33: Frames 
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+</head> 
+<frameset cols="20%,80%"> 
+ <frameset rows="45%,55%"> 
+ <frame src="E://My Programs//parseInt.html"/>  <frame src="E://My Programs//parsetoday.html"/>  </frameset> 
+ <frameset rows="45%,55%"> 
+ <frame src="E://My Programs//parseInt.html"/>  <frame src="E://My Programs//parsetoday.html"/>  </frameset> 
+</frameset> 
+<noframes>  
+<body> 
+<p>sfsd</p> 
+</body> 
+</noframes> 
+</html>
+Example 34: Date and control statements 
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset = "utf-8"> 
+<title>A First Program in JavaScript</title> 
+<script type="text/javascript"> 
+var x=new Date(); 
+var c; 
+function hours() 
+{ 
+var h=x.getHours(); 
+if(h>7) 
+{ 
+c="<h1> the time is now "+h+"</h1>"; 
+document.getElementById("Date").innerHTML=c; 
+} 
+} 
+function day() 
+{ 
+if(x.getDay()==2) 
+{ 
+c="Today we have lab"; 
+c=typeof(x.getDay()); 
+document.getElementById("Date").innerHTML=c; 
+} 
+else if (x.getDay()==3) 
+{ 
+c="No class today"; 
+document.getElementById("Date").innerHTML=c; 
+} 
+else if(x.getDay()==4) 
+{ 
+c="Theory class"; 
+document.getElementById("Date").innerHTML=c; 
+} 
+else 
+{ 
+document.getElementById("Date").innerHTML="Invalid day"; } 
+} 
+function month() 
+{ 
+c="<h1 style='color:magenta'>The current month is now "+x.getMonth()+"</h1>" document.getElementById("Date").innerHTML=c;
+} 
+function minutes() 
+{ 
+c="<h1 style='color:orange'>The minute is noe "+x.getMinutes()+"</h1>" 
+document.getElementById("Date").innerHTML=c; 
+} 
+</script> 
+</head> 
+<body> 
+<input type="button" value="Print hour" onclick="hours()"> 
+<input type="button" value="Print day" onclick="day()"> 
+<input type="button" value="Print month" onclick="month()"> 
+<input type="button" value="Print minutes" onclick="minutes()"> 
+<h1>ghhgf</h1> 
+<p id="Date"></p> 
+</body> 
+</html> 
+Example 35: More on P tag 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<style type="text/css"> 
+p { 
+font-family : arial; 
+background-color : magenta;} 
+</style> 
+</head> 
+<body> 
+<p style = "width : 20%; text-align : left;"> there is an elephant standing near the temple .. Go and visit  the temple now itself.</p> 
+<p style = "width : 20%; height : 150px ; overflow:scroll;">  
+there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. there is an elephant standing near the temple .. Go and visit the temple now itself. </p> 
+</body> 
+</html>
+Example 36: Internal Linking 
+<!DOCTYPE html> 
+<html> 
+<head> 
+</head> 
+<body> 
+<a href="#lesson1"> Lesson1 </a><br> <a href="#lesson2"> Lesson2 </a><br> <a href="#lesson3"> Lesson3 </a><br> <br> 
+<br> 
+<br> 
+<div id="lesson1"> Introduction to Lesson1  <p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p></div> <br> 
+<br> 
+<div id="lesson2"> Introduction to lesson2 <p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p>
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p></div> 
+<br> 
+<br> 
+<div id="lesson3"> Introduction to lesson3 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p> 
+<p> This is sub topic 1</p></div> 
+<br> 
+<br> 
+</body> 
+</html> 
+Example 37: Logical operators example 
+<!DOCTYPE html> 
+<html > 
+<head> 
+<title>Demonstrating the Logical Operators</title> 
+<style type = "text/css"> 
+table { width: 100% } 
+td.left { width: 25% } 
+</style> 
+<script type = "text/javascript"> 
+document.writeln("<table border = \"1\"" ); 
+document.writeln( "<caption>Demonstrating Logical " +"Operators</caption>" );  document.writeln("<tr><td class = \"left\">Logical AND (&&)</td>" +"<td>false && false: " + ( false &&  false ) + 
+"<br />false && true: " + ( false && true ) + 
+"<br />true && false: " + ( true && false ) + 
+"<br />true && true: " + ( true && true ) + 
+"</td></tr>" ); 
+document.writeln( 
+"<tr><td class = \"left\">Logical OR (||)</td>" +
+"<td>false || false: " + ( false || false ) + 
+"<br />false || true: " + ( false || true ) + 
+"<br />true || false: " + ( true || false ) + 
+"<br />true || true: " + ( true || true ) + 
+"</td></tr>" ); 
+document.writeln( 
+"<tr><td class = \"left\">Logical NOT (!)</td>" + 
+"<td>!false: " + ( !false ) + 
+"<br />!true: " + ( !true ) + "</td></tr>" ); 
+document.writeln( "</table>" ); 
+</script> 
+</head><body></body> 
+</html> 
+Example 38: Number validation 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<input id="txtNumber" type="number" min="200" max="500" required > <button onclick="formValidation()" id="btnClick">Click</button> <p id="pId"></p> 
+<script> 
+function formValidation() { 
+var inputValue = document.getElementById("txtNumber").value; if ((inputValue>=200) && (inputValue<=500)) { 
+document.getElementById("pId").innerHTML = "Input is valid"; } 
+else 
+{ 
+alert("enter valid input ! i.e between 200 to 500 only"); } 
+} 
+</script> 
+</body> 
+</html>
+Example 39: Using global function parseFloat() , simple pattern example 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Maximum of Three Values</title> 
+<script> 
+var input1=parseFloat(window.prompt("Enter 1st number","1")); var input2=parseFloat(window.prompt("Enter 2nd number","2")); var input3=parseFloat(window.prompt("Enter 3rd number","3"));  
+document.write(Math.max(input1,Math.max(input2,input3))); document.write("<br>");  
+document.write( "*<br />" ); 
+document.write( "***<br />" ); 
+document.write( "*****<br />" ); 
+document.write( "****<br />" ); 
+document.writeln( "**" ); 
+</script> 
+</head><body></body> 
+</html> 
+Example 40: Factorial using recursion 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+ <title>Recursive Factorial Function</title> 
+ <script> 
+ var output = "";  
+ function calculateFactorials() 
+ { 
+ for ( var i = 0; i <= 10; ++i )  
+ output += "<p>" + i + "! = " + factorial( i ) + "</p>"; 
+  
+ document.getElementById( "results" ).innerHTML = output;  }  
+ function factorial( number )  
+ {  
+ if ( number <= 1 ) //base case  
+ return 1;  
+ else  
+ return number * factorial( number - 1 ); 
+ }  
+ window.addEventListener( "load", calculateFactorials, false );  </script> 
+ </head>
+ <body> 
+ <h1>Factorials of 0 to 10</h1> 
+ <div id = "results"></div> 
+ </body> 
+</html> 
+Example 41: IsFinite() and isNaN() global function 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<style> 
+#divId{ 
+width: 300px; 
+height: 300px; 
+background-color:blue; 
+color: white; 
+} 
+</style> 
+</head> 
+<body> 
+<div id="divId"> 
+</div> 
+<script> 
+document.write(isFinite('aa')+"<br>"); 
+document.write(isFinite(10/0)+"<br>"); 
+document.write(isNaN('sdf')+"<br>"); 
+document.write(isNaN('123')+"<br>"); 
+document.write(isNaN(123)+"<br>"); 
+document.write(isNaN('*')+"<br>"); 
+</script> 
+</body> 
+</html> 
+Example 42: Random Number Generation for images 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Shifted and Scaled Random Integers</title> <script src="picturerandom.js" > 
+</script> 
+</head> 
+<body> 
+<img id ="img1" src="CPE.png" alt="CPE not available">
+</body> 
+</html> 
+Picturerandom.js 
+var pic; 
+var pictures=["CPE","PERF","PORT","EPT","GPP","GUI","SEO"]; var altetxt=["sdfsdf","sdfsdfsd","dgdfg"] 
+function insertpic() 
+{ 
+var i =Math.floor(Math.random()*7); 
+pic.setAttribute("src",pictures[i]+".png"); 
+pic.setAttribute("alt",altetxt[i]); 
+} 
+function start() 
+{ 
+pic=document.getElementById("img1"); 
+pic.addEventListener("click",insertpic,false); 
+} 
+window.addEventListener("load",start,false); 
+Example 43: Split and Join in arrays and its types 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<h2>JavaScript Arrays</h2> 
+<p>The Array.join() method returns an array as a string.</p> <p id="demo"></p> 
+<script> 
+var fruits=["banana","orange","apple","Mango"]; document.write(typeof(fruits)); 
+document.write("<br>"); 
+var y=fruits.join("fgh"); 
+document.write(typeof(y)); 
+document.write("<br>"); 
+document.write("The y is "+y[2]); 
+document.write("<br>"); 
+var z=y.split('fgh'); 
+document.write("<br>"); 
+document.write(typeof(z)); 
+document.write("<br>"); 
+document.write(z[2]);
+document.write(fruits.join("fgh")); 
+document.write("<br>"); 
+//(0,1,2,3,4,5,6) 
+var t; 
+t=Math.floor(1+Math.random()*6); 
+document.write(t); 
+document.write(t); 
+document.write("<p> Random number generation </p><ol>"); 
+for(var i=1;i<=30;i++) 
+{ 
+t=Math.floor(1+Math.random()*6); 
+document.write("<li>"+t+"</li>"); 
+} 
+document.write("<ol>"); 
+ //document.write("The rand is " +Math.random()+"Mul by 7 is "+(Math.random()*7)+"The inddex is  "+index+"<br>"); 
+</script> 
+</body> 
+</html> 
+Example 44: Find the occurrences of an element in array 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Chapter 5: Example 1</title> 
+</head> 
+<body> 
+<script type="text/javascript"> 
+var myarray=[2,4,4,55,61,7,4,1,4,7,8,7,7,4]; 
+var count=0; 
+var foundpos=0; 
+while( foundpos!=-1) 
+{ 
+foundpos=myarray.indexOf(7,foundpos); 
+document.write("The foundpos index of 4 is now "+foundpos+"<br>"); 
+if(foundpos!=-1) 
+{ 
+count++; 
+foundpos++; 
+} 
+} 
+document.write("<br>"); 
+document.write("There are "+count+" occurences");
+</script> 
+</body> 
+</html> 
+Example 45: Modify array element using pass by reference and value 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>A Programmer-Defined square Function</title>  
+</head> 
+<script> 
+function start() 
+{ 
+var a=[ 1, 2, 3, 4, 5 ]; 
+outputArray( "Original array: ", a,document.getElementById( "originalArray" ) ); modifyArray( a ); 
+outputArray( "Modified array: ", a,document.getElementById( "modifiedArray" ) ); document.getElementById( "originalElement" ).innerHTML ="a[3] before modifyElement: " + a[ 3 ]; modifyElement( a[ 3 ] );  
+document.getElementById( "modifiedElement" ).innerHTML ="a[3] after modifyElement: " + a[ 3 ]; } 
+function outputArray( heading, theArray, output ) 
+{ 
+output.innerHTML = heading + theArray.join( " " ); 
+}  
+function modifyArray( theArray ) 
+{ 
+for ( var j in theArray ) 
+{ 
+theArray[ j ] *= 2; 
+} 
+} 
+function modifyElement( e ) 
+{ 
+e *= 2; 
+document.getElementById( "inModifyElement" ).innerHTML = 
+"Value in modifyElement: " + e; 
+} 
+window.addEventListener( "load", start); 
+</script> 
+</head> 
+<body> 
+<body> 
+<h2>Effects of passing entire array by reference</h2> 
+<p id = "originalArray"></p> 
+<p id = "modifiedArray"></p>
+<h2>Effects of passing array element by value</h2> 
+<p id = "originalElement"></p> 
+<p id = "inModifyElement"></p> 
+<p id = "modifiedElement"></p> 
+</body> 
+</html> 
+Example 46: Scope 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>A Programmer-Defined square Function</title>  
+<script> 
+var output; // stores the string to display 
+var x = 1; 
+function start() 
+{ 
+var x = 5; 
+output = "<p>local x in start is " +x+ "</p>"; 
+functionA(); // functionA has local x 
+functionB(); // functionB uses global variable x 
+functionA(); // functionA reinitializes local x 
+functionB();  
+output += "<p >local x in start is " +x+"</p>"; 
+document.getElementById( "results" ).innerHTML = output; } 
+function functionA() 
+{ 
+var x = 25; 
+output += "<p>local x in functionA is " +x+" after entering functionA</p>"; ++x; 
+output += "<p>local x in functionA is " +x+" before exiting functionA</p>"; } 
+function functionB() 
+{ 
+output += "<p >global variable x is " +x+" on entering functionB"; x *= 10; 
+output += "<p>global variable x is " +x+" on exiting functionB</p>"; } 
+window.addEventListener( "load", start ); 
+</script> 
+</head> 
+<body> 
+<div id = "results"></div> 
+</body> 
+</html>
+Example 47 : Event bubbling and capturing 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>A Programmer-Defined square Function</title>  
+</head> 
+<body> 
+<h3>Event bubbling and capturing</h3> 
+<div id="output1">hello 
+<p id="output2">para 
+</p></div></body> 
+<script> 
+function start1() 
+{ 
+alert("hello div"); 
+} 
+function start2() 
+{ 
+alert("hello para"); 
+} 
+document.getElementById("output1").addEventListener("click",start1,false); document.getElementById("output2").addEventListener("click",start2,true); </script> 
+</html> 
+Example 48 : Array object methods 
+<!DOCTYPE html> 
+<html> 
+ <head> 
+ <meta charset = "utf-8"> 
+ <title>Using the do...while Repetition Statement</title>  <script> 
+ var count=0; 
+ var c=new Array(10,20,4,5,3,6,4,4,4,6,7); 
+ var g=new Array(1,2,3,4,5,6); 
+ var t=[10,20,,5,67,88]; 
+ var t1=c.indexOf(4); 
+ document.write("The index of 4 is " +t1+"<br>"); 
+ document.write("The index of 4 is"+c.indexOf(4)+"<br>"); 
+ document.write("The index of 4 is"+c.lastIndexOf(4)+"<br>");  var y1=c.splice(2,6); 
+ document.write(y1); 
+ document.write(g.shift()+"shift"); 
+ document.write(g.unshift()); 
+ document.write("<br>"); 
+ document.write("<br>");
+ for(var i=0;i<g.length;i++) 
+ { 
+ document.write(g[i]+ " " ); 
+  
+ } 
+ var p=c.split(4).join('$'); 
+ for(var i=0;i<c.length;i++) 
+ { 
+ document.write(c[i]+ " " ); 
+  
+ } 
+  
+ </script> 
+</head><body></body> 
+</html> 
+Example 48 :Array methods (push , pop, reverse) 
+<!DOCTYPE html> 
+<html> 
+ <head> 
+ <meta charset = "utf-8"> 
+ <title>Using the do...while Repetition Statement</title>  <script> 
+ var c=new Array(10,20,4,5,3,6); 
+ var g=new Array(1,2,3,4,5,6); 
+ var t=[10,20,,5,67,88]; 
+ var y=new Array(5,2); 
+ document.write(y[0]); 
+ document.write("<br>"); 
+ for(var i=0;i<c.length;i++) 
+ { 
+ document.write(c[i]+ " "); 
+ } 
+ document.write("<br>"); 
+ for(var i=0;i<t.length;i++) 
+ { 
+ if(t[i]==undefined) 
+ { 
+ t[i]=33; 
+ } 
+ document.write(t[i]+ " "); 
+ } 
+ document.write("<br>"); 
+ var x=[]; 
+ x.push(56,66,77,88); 
+ document.write(x[2]);
+ var h; 
+ h=x.pop(); 
+ document.write("The popped ele is" +h); 
+ document.write("<br>"); 
+ //document.write(c.reverse() + "It is reversed"); 
+ arrayrev(g); 
+ function arrayrev(g) 
+ { 
+ var arry=[]; 
+ for(var i=0;i<g.length;i++) 
+ { 
+ arry.push(g[i]); 
+ document.write(arry[i]+"The pushed elements are"+"<br>");  } 
+ document.write("<br>"); 
+ var revstr=[]; 
+ while(arry.length>0) 
+ { 
+ revstr=revstr+arry.pop(); 
+ } 
+ for(var i=0;i<revstr.length;i++) 
+ { 
+ document.write(revstr[i]+"");} } 
+</script> 
+</head><body></body> 
+</html> 
+Example 49 : Array methods (Splice and shift) 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Using the do...while Repetition Statement</title> <script> 
+var c=new Array(10,20,4,5,3,4,6,4,99,21); 
+var g=new Array(1,2,3,4,5,6); 
+document.write("The index 4 of "+c.indexOf(4)+"<br>"); document.write("The last index of 4 is "+c.lastIndexOf(4)+"<br>"); var y1=c.splice(2,5); 
+document.write(y1); 
+document.write(c.shift()+" "); 
+for(var i=0;i<c.length;i++) 
+{ 
+document.write(c[i]); 
+} 
+</script> 
+</head><body></body> 
+</html>
+Example 50 : do ..while repetition 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+ <title>Using the do...while Repetition Statement</title> 
+ <script> 
+ var counter = 1; 
+ do {  
+ document.writeln( "<h" + counter + ">This is " +  
+ "an h" + counter + " level head" + "</h" +  
+ counter + ">" ); 
+ ++counter; 
+ } while ( counter <= 6 ); 
+</script> 
+</head><body></body> 
+</html> 
+Example 51: switch case 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title> 
+Using the break Statement in a for Statement 
+</title> 
+<style> 
+ol{ 
+background:#f08080; 
+list-style-type:decimal-leading-zero; 
+} 
+</style> 
+<script> 
+var ch; 
+var startag; 
+var endtag; 
+var listype; 
+ch=window.prompt("Enter an input value"); 
+switch(ch) 
+{ 
+case "1": 
+startag="<ol>"; 
+endtag="</ol>"; 
+listype="<h1> Numbered list</h1>"; 
+break; 
+case "2": 
+startag="<ol style='list-style-type:upper-alpha;background:yellow;color:red'>";
+endtag="</ol>"; 
+listype="<h1> Numbered list</h1>"; 
+break; 
+ } 
+ document.write(listype + startag); 
+ for(var i=1;i<=5;i++) 
+ { 
+ document.write("<li> Fruit "+i+"</li>"); 
+ } 
+ //document.write(startag); 
+</script> 
+</html> 
+Example 52: Event listeners 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"></meta> 
+<title> 
+</title> 
+</head> 
+<body> 
+<button id="btn">ol list </button> 
+<button id ="btn1"> ul list</button> 
+<p id="list">hello</p> 
+<p id ="list1">script</p> 
+</body> 
+<script type="text/javascript"> 
+function fun() 
+{ 
+document.getElementById("list").innerHTML="<ol> <li> banana</li><li>apple</li><li>mango</li></ol>"; } 
+function fun1() 
+{ 
+document.getElementById("list1").innerHTML="<ul> <li>  
+banana</li><li>apple</li><li>mango</li></ul>"; 
+} 
+document.getElementById("btn").addEventListener("click",fun,false); 
+document.getElementById("btn1").addEventListener("dblclick",fun,false); 
+</script> 
+</html>
+
+
+Example 1: Find the number of occurrences in a given string 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Occurences</title> 
+</head> 
+<body> 
+<script type="text/javascript"> 
+var mystr1="welcome to script program "; 
+mystr1=mystr1+"The script book is available in amazon. "; mystr1=mystr1+"Read Script book and write script book.Thank you script"; var foundpos=0; 
+var count=0; 
+while(foundpos!=-1) 
+{ 
+foundpos=mystr1.indexOf("script",foundpos); 
+document.write("found at pos"+foundpos+"<br>"); 
+if(foundpos!=-1) 
+{ 
+count++; 
+foundpos++; 
+} 
+} 
+document.write("There are "+count+"occurences in the string"); </script> 
+</body> 
+</html> 
+Example 2: Reverse text in textarea 
+<!DOCTYPE html> 
+<html> 
+<head><title>Example 1</title> 
+<script > 
+function reversestring(textareaX) 
+{ 
+var textdata=textareaX.value; 
+//document.write(typeof(textdata)); 
+//document.write(typeof(textareaX)); 
+var splittext=textdata.split('\n'); 
+var reversed1=""; 
+for(var i=0;i<splittext.length;i++)
+{ 
+//document.write(splittext[i]); 
+} 
+var x=splittext.length; 
+//document.write(x); 
+for(var i=x-1;i>=0;i--) 
+{ 
+reversed1=reversed1+splittext[i]+"\n"; 
+} 
+textareaX.value=reversed1; 
+} 
+</script></head> 
+<body> 
+<form name="form1"> 
+<textarea name="textarea1"> 
+Mango 
+Banana 
+Apple 
+orange</textarea> 
+<input type="button" value="Reverse string" onclick="reversestring(document.form1.textarea1)"> </form> 
+</body> 
+</html> 
+Example 3: String Objects  
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Search array</title> 
+<script> 
+function start() 
+{ 
+var s= "ZEBRAFGHTBZAFGHHZDGZDHZ"; 
+var s1="hello" ; 
+var s2="Programming is always interesting in the world"; 
+document.write(s.toLowerCase()+"<br>"); 
+document.write(s1.toUpperCase()+"<br>"); 
+document.write(s.substring(3,9)+"<br>"); 
+document.write(String.fromCharCode( 99, 79, 82, 68 )+"<br>"); 
+document.write(s.substr(3,9)+"<br>"); 
+document.write(s.charAt(3)+"<br>"); 
+document.write(s.charCodeAt(3)+"<br>");
+document.write(s.indexOf("AFG",0)+"<br>"); 
+document.write(s.indexOf("AFT",0)+"<br>"); 
+document.write(s.lastIndexOf("H",13)+"<br>"); 
+document.write(s1.concat(s2)+"<br>"); 
+document.write(s2.slice(2,10)+"<br>"); 
+document.write(s2.replace("i","work")+"<br>"); 
+document.write(String.fromCharCode( 99, 79, 82, 68 )+"<br>"); document.write(s2.split(" ")+"<br>"); 
+var s3=s2.split(" "); 
+for(var i=0;i<s3.length;i++) 
+{ 
+document.write(s3[i]+"<br>"); 
+} 
+} 
+window.addEventListener("load",start); 
+</script> 
+</head> 
+<body> 
+<div id="results"> 
+</body> 
+</html> 
+Example 4: Number search using arrays 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Search array</title> 
+<script> 
+var a=new Array(10); 
+for(var i=0;i<a.length;i++) 
+{ 
+a[i]=2*i; 
+document.write(a[i]); 
+} 
+function buttonPressed() 
+{ 
+var inputVal=document.getElementById("inputVal"); var result=document.getElementById("result"); 
+var searchKey = parseInt( inputVal.value ); 
+var element = a.indexOf( searchKey ); 
+if ( element != -1 ) 
+{ 
+result.innerHTML = "Found value in element " + element;
+}  
+else 
+{ 
+result.innerHTML = "Value not found"; 
+}  
+}  
+function start() 
+{ 
+var searchButton = document.getElementById( "searchButton" ); searchButton.addEventListener( "click", buttonPressed, false ); }  
+window.addEventListener( "load", start, false ); 
+</script> 
+</head> 
+<body> 
+<form action = "#"> 
+<p><label>Enter integer search key: 
+<input id = "inputVal" type = "number"></label> 
+<input id = "searchButton" type = "button" value = "Search"> 
+</p> 
+<p id = "result"></p> 
+</form> 
+</body> 
+</html> 
+Example 5: Vote eligibility using ternary operator 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<p>Vote Eligibility</p> 
+<input type="text" id="txtage" /> 
+<button onclick="exampleOfTernaryOpearator()" id="btnClick">Submit</button> <p id="pId"></p> 
+<script> 
+function exampleOfTernaryOpearator() { 
+var minimumAge, donateable; 
+minimumAge = document.getElementById("txtage").value; 
+if (isNaN(minimumAge)) { 
+donateable = "Input should be an integer value"; 
+} else { 
+donateable= (minimumAge >18) ? "Eligible for vote" : "Not eligible for vote"; } 
+document.getElementById("pId").innerHTML =donateable;
+} 
+</script> 
+</body> 
+</html> 
+Example 6: Validation of number 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<input id="txtNumber" type="text" min="200" max="500" required > <button onclick="formValidation()" id="btnClick">Click</button> <p id="pId"></p> 
+<script> 
+function formValidation() { 
+var inputValue = document.getElementById("txtNumber").value; if(isNaN(inputValue)) 
+{ 
+document.write("Not a number"); 
+} 
+else if (inputValue =="") 
+document.write("empty"); 
+else if ((inputValue>=200) && (inputValue<=500)) { 
+document.getElementById("pId").innerHTML = "Input is valid"; } 
+else 
+{ 
+alert("enter valid input ! i.e between 200 to 500 only"); 
+} 
+} 
+</script> 
+</body> 
+</html> 
+Example 7: document style properties example, copy from one control to another 
+<!DOCTYPE html> 
+<html> 
+<head><title>Example 1</title> 
+<script > 
+function splitAndReverseText() 
+{ 
+var textToSplit=""; 
+var textareatxt="";
+textToSplit = document.getElementById("tt1").value; 
+textareatxt=document.getElementById("txtarea"); 
+//document.write(typeof(textareatxt)); 
+textareatxt.value+=textToSplit+"\n"; 
+document.getElementById("tt1").value=""; 
+document.getElementById("yy").style.color="magenta"; 
+document.getElementById("yy").style.textAlign="right"; 
+document.body.bgColor = "RED"; 
+document.getElementById("yy").style.backgroundColor="yellow"; document.getElementById("yy").style.fontStyle = "italic"; 
+document.getElementById("xx").style.fontFamily="Cursive"; 
+document.getElementById("yy").style.textDecoration = "underline"; } 
+</script></head>. 
+<body> 
+<form name="form1"> 
+<textarea id="txtarea" rows="20" cols="40" name="textarea1" > </textarea> 
+<input type="text" placeholder="Enter a text" id="tt1" name="txtareaa1" value=""> <br /> 
+<input type="button" value="Reverse Line Order" name="buttonSplit" onclick="splitAndReverseText()"> 
+</form> 
+<p id="yy">hhhh</p> 
+<h3 id="xx">Heading3</h3> 
+</body> 
+</html> 
+Example 8: document properties  
+<html>  
+<head>  
+<title> My page </title>  
+<script type="text/javascript">  
+function myFunc()  
+{  
+ alert(document.forms[1] );  
+ alert(document.title); 
+ alert(document.URL);  
+ alert(document.body); 
+ alert(document.body.children);  
+ alert(document.images); 
+ alert(document.images[0]); 
+ alert("it is " +document.links);
+ alert("it is " +document.links[0]); 
+ alert(document.forms[0].elements[1]);  
+ var list = document.getElementsByTagName('div')[0].children;  var list = document.getElementsByTagName('div')[0].childNodes;  alert(list.length); 
+ for(var i=0;i<list.length;i++) 
+ { 
+ alert("The child of div is "+list[i]);} 
+ var x=document.body.children; 
+ document.write("The length is "+x.length +"<br>");  for(var i=0;i<x.length;i++) 
+ { 
+ document.write("The ans is "+x[i] +"<br>"); 
+ } 
+ }  
+</script>  
+</head>  
+<body>  
+<h1 id="title">This is main title</h1> 
+<p>hello hai</p>  
+<form name="FirstForm">  
+<input type="button" value="Click Me" onclick="myFunc();" />  <input type="text">  
+</form> 
+<div>dfg 
+<p>sdf</p> 
+<a href="https://www.google.com">ffg</a> 
+</div>  
+<a href="https://www.google.com">ffg</a> 
+<img src="flower.jpg" alt="ttt"/> 
+<img src="flower1.jpg" alt="sf"/> 
+</body>  
+</html> 
+Example 9: Nodetype example 
+<!DOCTYPE html> 
+<html> 
+<head><title>Example 1</title> 
+<script > 
+function PrintAns() 
+{ 
+var list=document.getElementsByTagName('div')[1].childNodes; alert(list.length);
+for(var i=0;i<list.length;i++) 
+{ 
+if(list[i].nodeType==8 || list[i].nodeType==3) 
+{ 
+document.write("The node is " +list[i].nextElementSibling+"<br>"); } 
+//document.write("The name is "+ list[i]+"and the type is" +list[i].nodeType +"<br>"); } 
+} 
+</script> 
+</head> 
+<body> 
+<div id="myDiv"><!-- This text is not needed--></div> 
+<div id="myDiv1"> 
+<h1> heading1</h1> 
+<input type="text"> 
+<p>sdffg</p></div> 
+<input type="button" onclick="PrintAns()" value="Print Information" name="Click me" > </body> 
+</html> 
+Example 10: Basic Array operation 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>Initializing an Array</title> 
+<style> 
+table{ 
+width:200px; 
+border-collapse:collapse; 
+} 
+th, td 
+{ 
+color:magenta; 
+background-color:blue; 
+text-align:center; 
+border:3px solid black; 
+padding:6px; 
+} 
+tr,td{color:red;
+background-color:yellow;} 
+</style> 
+<script> 
+function start() 
+{ 
+var n1 = new Array( 5 );  
+var n2 = new Array(); 
+var length = n1.length; 
+for ( var i = 0; i < length; ++i ) 
+{ 
+n1[ i ] = i; 
+} 
+for (i= 0;i< 5; ++i ) 
+{ 
+n2[ i ] = i; 
+} 
+outputArray( "Array n1:", n1, document.getElementById( "output1" ) ); outputArray( "Array n2:", n2, document.getElementById( "output2" ) ); } 
+function outputArray( heading, theArray, output ) 
+{ 
+var content = "<h2>" + heading + "</h2><table>" + 
+"<thead><th>Index</th><th>Value</th></thead><tbody>"; var length = theArray.length;  
+for ( var i = 0; i < length; ++i ) 
+{ 
+content += "<tr><td>" +i+ "</td><td>" + theArray[ i ] +"</td></tr>"; } 
+content += "</tbody></table>"; 
+output.innerHTML = content; 
+} 
+window.addEventListener( "load", start ); 
+</script> 
+<body> 
+<div id = "output1"></div> 
+<div id = "output2"></div> 
+</body> 
+</html>
+Example 11 : Boolean object 
+<!DOCTYPE html>  
+<html>  
+<body>  
+<script>  
+document.write("Boolean(10) is " + Boolean(10));  
+document.write("<br>");  
+document.write("Boolean(sometext) is " + Boolean("Great"));  document.write("<br>");  
+document.write("Boolean(2.74) is " + Boolean(2.74));  document.write("<br>");  
+document.write("Boolean(-1) is " + Boolean(-1));  
+document.write("<br>");  
+document.write("Boolean(true) is " + Boolean(true));  document.write("<br>");  
+document.write("Boolean(false) is " + Boolean(false));  document.write("<br>");  
+document.write("Boolean(3 * 2 + 1.11) is " + Boolean(3 * 2 + 1.11));  document.write("<br>");  
+document.write("Boolean(1<2) is " + Boolean(1 < 2));  var e; //undefined  
+document.write("Boolean(0) is " + Boolean(0));  
+document.write("<br>");  
+document.write("Boolean(empty) is " + Boolean(""));  document.write("<br>");  
+document.write("Boolean(e) undefined is " + Boolean(e));  document.write("<br>");  
+document.write("Boolean(-0) is " + Boolean(-0));  
+document.write("<br>");  
+document.write("Boolean(false) is " + Boolean(false));  document.write("<br>");  
+document.write("<br>");  
+document.write("Boolean(null) is " + Boolean(null));  document.write("<br>");  
+document.write("Boolean(1>2) is " + Boolean(1 > 2));  </script>  
+</body>  
+</html>
+Example 12: Internal linking 
+<!DOCTYPE html> 
+<html> 
+<head> 
+</head> 
+<body> 
+ <a href="#lession1">Lession.1</a><br />  <a href="#lession2">Lession.2</a><br />  <a href="#lession3">Lession.3</a><br />  <br /> 
+ <div id="lession1">Introduction of Lession.1  <p>This is sub topic.1</p> 
+ <p>This is sub topic.2</p> 
+ <p>This is sub topic.3</p> 
+ <p>This is sub topic.4</p> 
+ <p>This is sub topic.5</p> 
+ <p>This is sub topic.6</p> 
+ <p>This is sub topic.7</p> 
+ <p>This is sub topic.8</p> 
+ <p>This is sub topic.9</p> 
+ <p>This is sub topic.10</p> 
+ <p>This is sub topic.11</p> 
+ <p>This is sub topic.12</p> 
+ <p>This is sub topic.13</p> 
+ <p>This is sub topic.14</p> 
+ <p>This is sub topic.15</p> 
+ <p>This is sub topic.16</p></div>  <br /> 
+ <br /> 
+ <div id="lession2">Introduction of Lession.2  <p>This is sub topic.1</p> 
+ <p>This is sub topic.2</p> 
+ <p>This is sub topic.3</p> 
+ <p>This is sub topic.4</p> 
+ <p>This is sub topic.5</p> 
+ <p>This is sub topic.6</p> 
+ <p>This is sub topic.7</p> 
+ <p>This is sub topic.8</p> 
+ <p>This is sub topic.9</p> 
+ <p>This is sub topic.10</p> 
+ <p>This is sub topic.11</p> 
+ <p>This is sub topic.12</p> 
+ <p>This is sub topic.13</p>
+ <p>This is sub topic.14</p> 
+ <p>This is sub topic.15</p> 
+ <p>This is sub topic.16</p></div> 
+ <br /> 
+ <br /> 
+ <div id="lession3">Introduction of Lession.3  <p>This is sub topic.1</p> 
+ <p>This is sub topic.2</p> 
+ <p>This is sub topic.3</p> 
+ <p>This is sub topic.4</p> 
+ <p>This is sub topic.5</p> 
+ <p>This is sub topic.6</p> 
+ <p>This is sub topic.7</p> 
+ <p>This is sub topic.8</p> 
+ <p>This is sub topic.9</p> 
+ <p>This is sub topic.10</p> 
+ <p>This is sub topic.11</p> 
+ <p>This is sub topic.12</p> 
+ <p>This is sub topic.13</p> 
+ <p>This is sub topic.14</p> 
+ <p>This is sub topic.15</p> 
+ <p>This is sub topic.16</p></div> 
+ <br /> 
+ <br /> 
+</body> 
+</html> 
+Example 13: split and join 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<h2>JavaScript Arrays</h2> 
+<p>The Array.join() method returns an array as a string.</p> <p id="demo"></p> 
+<script> 
+var fruits = ["Banana","Orange","Apple","Mango"]; document.write(typeof(fruits)); 
+document.write("<br>"); 
+document.write(fruits.join('fgh'));//.split('fgh')); document.write("<br>"); 
+var y=fruits.join('fgh'); 
+var z=y.split('fgh');
+document.write("The type of z is "+typeof(z)); 
+document.write("<br>"); 
+document.write(z[2]); 
+document.write("<br>"); 
+document.write(y.split('fgh')); 
+document.write("<br>"); 
+document.write("The type of y is "+typeof(y)); 
+document.write("<br>"); 
+document.write(y[2]+"<br>"); 
+for(var i =0;i<fruits.length;i++) 
+{ 
+document.write(fruits[i]+"<br>"); 
+} 
+for(var i in fruits) 
+{ 
+document.write(fruits[i]+"<br>"); 
+} 
+</script> 
+</body> 
+</html> 
+Example 14 : Find lower, upper case using string object method 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>String </title> 
+<script> 
+checkCharType(); 
+function checkCharType() 
+{ 
+var str="HelloscriPt3"; 
+var upper=lower=num=0; 
+for(var i=0;i<str.length;i++) 
+{ 
+var charCode = str.charAt(i); 
+document.write(charCode+"<br>"); 
+if (charCode >= "A" && charCode <= "Z") 
+{ 
+upper++; 
+} 
+else if (charCode >= "a" && charCode <= "z") 
+{
+lower++; 
+} 
+else if (charCode >= "0" && charCode <= "9") 
+{ 
+num++; 
+} 
+ } 
+document.write("<p>The ans is "+ upper + " "+ lower+" "+num+" </p>"); } 
+ </script> 
+</head> 
+<body> 
+</body> 
+</html> 
+Example 15 : Math object 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset = "utf-8"> 
+<title>A Programmer-Defined square Function</title>  
+</head> 
+<script> 
+var x=19.64345; 
+document.write(Math.ceil(x)+"<br>"); 
+document.write(Math.abs(x)+"<br>"); 
+document.write(Math.abs(-2.5)+"<br>"); 
+document.write(Math.exp(x)+"<br>"); 
+document.write(Math.sin(x)+"<br>"); 
+document.write(Math.floor(x)+"<br>"); 
+document.write(Math.round(x)+"<br>"); 
+document.write(Math.PI); 
+</script> 
+</head> 
+<body> 
+</body> 
+</html>
+Example 16: Mouse event 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>String </title> 
+<script> 
+function start() 
+{ 
+document.getElementById("stringop").addEventListener("mousemove",mousemove1,false);  document.getElementById("stringop1").addEventListener("dblclick",mousemove2,false); } 
+function mousemove1() 
+{ 
+var s="ZEBRAANIMAL"; 
+var result=s.charAt(2); 
+document.getElementById("output").innerHTML=result; 
+} 
+function mousemove2() 
+{ 
+var s="ZEBRAANIMAL"; 
+var result=s.toLowerCase(); 
+document.getElementById("output").innerHTML=result; 
+} 
+ window.addEventListener("load",start,false); 
+</script> 
+</head> 
+<body> 
+<input type ="button" id="stringop" value ="String operations "> 
+ <input type ="button" id="stringop1" value ="String operations "> 
+<p id ="output"> 
+</body> 
+</html>
+
+
+
