@@ -41,6 +41,7 @@ alert(x.getAttribute("align"));
 } 
 </script> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------------
 String object 
 <html> 
 <head> 
@@ -77,6 +78,7 @@ window.addEventListener("load",start);
 <div id="results"> 
 </body> 
 </html>
+------------------------------------------------------------------------------------------------------------------------------------------
 Ternary operator 
 <!DOCTYPE html> 
 <html> 
@@ -97,6 +99,7 @@ document.getElementById("pId").innerHTML =donateable;
 </script> 
 </body> 
 </html> 
+----------------------------------------------------------------------------------------------------------------------------------------
 Split and reverse text 
 <!DOCTYPE html> 
 <html> 
@@ -128,6 +131,7 @@ document.getElementById("yy").style.textDecoration = "underline"; }
 <h3 id="xx">Heading3</h3> 
 </body>
 </html> 
+-----------------------------------------------------------------------------------------------------------------------------------------------
 DOM basic 
 <!DOCTYPE html> 
 <html> 
@@ -170,6 +174,7 @@ alert(list.length);
  <button onclick="GetNodeInfo ()">Get node info!</button> 
 </body> 
 </html> 
+-------------------------------------------------------------------------------------------------------------------------------------------
 DOM document object 
 <html>  
 <head>  
@@ -214,6 +219,7 @@ alert("The child of div is "+list[i]);}
 <img src="flower1.jpg" alt="sf"/> 
 </body>  
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 <!DOCTYPE html> 
 <html> 
 <head><title>Example 1</title> 
@@ -241,6 +247,7 @@ document.getElementById("yy").style.color="magenta"; document.getElementsByTagNa
 <h3 id="xx">Heading 3 content </h3> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 DOM nodetype 
 <!DOCTYPE html> 
 <html> 
@@ -263,6 +270,7 @@ document.write("The child of div is "+list[i].nextElementSibling+"<br>");} }
 <p>sdfdf</p></div> 
  <button onclick="GetNodeInfo ()">Get node info!</button> </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 Array 
 <!DOCTYPE html> 
 <html> 
@@ -309,6 +317,7 @@ window.addEventListener("load",start); </script>
 <h1>Sorting an Array</h1> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 Dynamic creation of element using DOM 
 <html> 
 <head> 
@@ -330,6 +339,7 @@ document.body.appendChild(newElem);
 <p>dgdfg</p> 
 </body> 
 </html>
+---------------------------------------------------------------------------------------------------------------------------------
 Document object 
 <!DOCTYPE html> 
 <html> 
@@ -364,6 +374,7 @@ data1[i].style.color="magenta";
 <p>sdfsdfd</p> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -392,6 +403,7 @@ window.addEventListener("load", check);
 <input type="button" value="Click me"onclick="check()" />  
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 NodeNAME 
 <!DOCTYPE html> 
 <html> 
@@ -409,6 +421,7 @@ function test() {
 <p id="example"></p>
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 Attribute 
 <!DOCTYPE html> 
 <html> 
@@ -459,6 +472,7 @@ function loadDoc() {
 </script> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 Nodetype 
 <!DOCTYPE html> 
 <html> 
@@ -494,6 +508,7 @@ x.style.color="blue";
 <div id="hh">sdftyyyy</div> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 To capture links in document 
 <!DOCTYPE html> 
 <html> 
@@ -527,6 +542,7 @@ window.addEventListener( "load", processLinks, false );
 <div id = "links"> </div> 
 </body> 
 </html>
+---------------------------------------------------------------------------------------------------------------------------------
 DOM insert before 
 <html> 
 <head><title>Inserting Before</title> 
@@ -549,6 +565,7 @@ window.addEventListener("load",insertMessage,false); </script>
 <p id="firstp">I was supposed to be first.</p> 
 </body> 
 </html>
+---------------------------------------------------------------------------------------------------------------------------------
 Document object for appendchild 
 <!DOCTYPE html> 
 <html> 
@@ -581,6 +598,7 @@ for(var i=0;i<Container.length;i++)
 <p id="demo"></p></div> 
 <input type="button" onclick="test()" value="click me"> </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 Math object 
 <!DOCTYPE html> 
 <html> 
@@ -602,6 +620,7 @@ document.write(Math.round(x)+"<br>");
 <body> 
 </body> 
 </html>
+---------------------------------------------------------------------------------------------------------------------------------
 Capturing by event target 
 <!DOCTYPE html> 
 <html> 
@@ -642,6 +661,7 @@ else
 </script> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 JqUERY 
 <!DOCTYPE html> 
 <html> 
@@ -675,6 +695,7 @@ $("h1").css("color","yellow");
 <button> submit</button> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 DoM attribute setting 
 <!DOCTYPE html> 
 <html><head><title>Example 1</title> 
@@ -703,6 +724,7 @@ alert(pElement.getAttribute("align"));
 <input type="button" value="clickme" onclick="test()"> 
 </body> 
 </html> 
+---------------------------------------------------------------------------------------------------------------------------------
 Creating and replacing child 
 <html>  
 <head>  
@@ -760,6 +782,7 @@ firstPara.appendChild(newPara);
 </ul> 
 <p id="firstp">I was supposed to be first.</p> <input type="button" onclick="myFunc()"> </body> 
 </html>
+---------------------------------------------------------------------------------------------------------------------------------
 <html>  
 <head>  
 <title> My page </title>  
@@ -813,6 +836,7 @@ window.addEventListener("load",myFunc);
 <p id="firstp">I was supposed to be first.</p> 
 </body> 
 </html>
+---------------------------------------------------------------------------------------------------------------------------------
 Identify and count nodetypes 
 <!DOCTYPE html> 
 <html><head><script type="text/javascript"> 
@@ -861,6 +885,7 @@ document.getElementById("myDiv1").innerHTML=output;
 <!--hello--> 
  <button onclick="GetNodeInfo ()">Get node info!</button> </body> 
 </html>
+---------------------------------------------------------------------------------------------------------------------------------
 Removechild 
 <!DOCTYPE html> 
 <html> 
@@ -3164,6 +3189,117 @@ document.getElementById("output").innerHTML=result;
  <input type ="button" id="stringop1" value ="String operations "> 
 <p id ="output"> 
 </body> 
+</html>
+
+<html>
+<head>
+<title> My page </title>
+<script type="text/javascript">
+function myFunc()
+{
+
+ var list = document.getElementsByTagName('div')[1].children;
+ var list1 = document.getElementsByTagName('div')[1].childNodes;
+ alert(list.length);
+
+ for(var i=0;i<list.length;i++)
+ {
+ alert("The child of div is "+list[i]);
+ }
+   alert(list1.length);
+
+ for(var i=0;i<list1.length;i++)
+ {
+ alert("The childnodes of div is "+list1[i]);
+ }
+ var x=document.body.children;
+ document.write("The length is "+x.length +"<br>");
+ for(var i=0;i<x.length;i++)
+ {
+ document.write("The ans is "+x[i] +"<br>");
+ }
+ }
+</script>
+</head>
+<body>
+<h1 id="title">This is main title</h1>
+<p>hello hai</p>
+<form name="FirstForm">
+<input type="button" value="Click Me" onclick="myFunc();" />
+<input type="text">
+</form>
+<div>dfg
+<p>sdf</p><!---hello--->
+<a href="https://www.google.com">ffg</a>
+</div>
+<div>dfg
+<p></p>
+<p></p>
+<p></p>
+<a href="https://www.google.com">ffg</a>
+</div>
+<a href="https://www.google.com">ffg</a>
+<img src="flower.jpg" alt="ttt"/>
+<img src="flower1.jpg" alt="sf"/>
+</body>
+</html>
+
+<!DOCTYPE html >
+<html lang="en">
+<head>
+<title>List Traversal Example</title>
+</head>
+<body>
+  <ul id="myList">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4</li>
+  </ul>
+  <script >
+var list = document.getElementById('myList');
+document.write(typeof(list));
+var count = 0;
+for (var i = 0; i < list.children.length; i++) {
+  count++;  // Increment the counter for each list item
+}
+document.write('List length:', count);
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Inserting Textnode and list</h1>
+<div id="d"></div>
+<ul id="myList">
+  <li>Python</li>
+  <li>Operating System</li>
+</ul>
+
+<p>Click "Append" to append an item to the end of the list:</p>
+
+<button onclick="fun1()">Append</button>
+
+<script>
+function fun1() {
+	var n1 = document.createElement("ul");
+	var n2 = document.createElement("li");
+	var tn = document.createTextNode("Computer Networks");
+	
+	n2.appendChild(tn);
+	n1.appendChild(n2);
+	
+	document.getElementById("d").appendChild(n1);
+	var node = document.createElement("li");
+	var textnode = document.createTextNode("Script");
+	node.appendChild(textnode);
+	document.getElementById("myList").appendChild(node);
+}
+</script>
+
+</body>
 </html>
 
 
