@@ -658,3 +658,396 @@ Hidden Inline GET
         <div id="divInfoToReturn"><%= message %></div>
     </body>
 </html>
+
+
+Ajaxxx
+
+Example 1 :
+<%@ page language="java" contentType="text/html" %>
+<html>
+<head>
+<title>A page with a counter</title>
+</head>
+<body >
+<form action ="ss.jsp">
+Number 1 : <input type="text" name="txtNum1"/>
+Number 2 : <input type="text" name="txtNum2"/>
+Operation : <input type="text" name="operation"/>
+<input type="submit" value="Click Me"/>
+</form>
+</body>
+</html>
+ss.jsp
+<%
+int x=Integer.parseInt(request.getParameter("txtNum1"));
+int y= Integer.parseInt(request.getParameter("txtNum2"));
+String z =request.getParameter("operation");%>
+<%!
+int calc(int m ,int n,String s)
+{
+if(s.equals("+"))
+{
+return (m+n);
+}
+else if(s.equals("-"))
+{
+return (m-n);
+}
+else if(s.equals("*"))
+{
+return (m*n);
+}
+else if(s.equals("/"))
+{
+return (m/n);
+}
+else{
+return -1;
+}
+}
+%>
+<%=calc(x,y,z)%>
+Example 2 (bean)
+<html>
+<body>
+<form action="success.jsp">
+<input type="text" name="txtUsername"><br><br>
+<input type="text" name="txtEmail"><br><br>
+<input type="text" name="txtluckynum"><br><br>
+gender<input type="radio" name="gender" value="f" >Female
+<input type="radio" name="gender" value="m">male<br>
+<input type="radio" name="gender" value="ss">INVALID<br>
+<input type ="submit" value="click me"><br>
+</form>
+</body>
+</html>
+Success.jsp
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<jsp:useBean id="obj" class="com.Factorial.Operations"/>
+<jsp:useBean id="obj1" class="com.greatest.Greatest"/>
+<jsp:useBean id="obj2" class="com.usertest.Tester"/>
+<jsp:useBean id="obj3" class="com.checkemail.Emailadd"/>
+<%
+int m=obj.factorial(5);
+out.print("cub of no 5 is "+m);
+out.print("<br>");
+int x=obj1.great(5,17,8);
+out.println("Greatest is "+x);
+out.print("<br>");
+String s=request.getParameter("txtUsername");
+boolean y=obj2.valid(s);
+if(y==true)
+{
+out.println("Username valid");
+}
+else
+{
+out.println("Username not valid");
+}
+String email=request.getParameter("txtEmail");
+boolean y1=obj3.emailval(email);
+if(y1==true)
+{
+out.println("Email valid");
+}
+else
+{
+out.println("Email not valid");
+}
+%>
+${param.txtluckynum}
+<c:set var="m1" value="${param.txtluckynum}"/>
+<c:if test ="${m1 > 100}">
+<p>Pls enter a number less than 100 </p>
+</c:if>
+<c:choose>
+<c:when test="${param.gender == 'f'}">
+<p> Female is selected </p>
+</c:when>
+<c:when test="${param.gender == 'm'}">
+<p> Male is selected </p>
+</c:when>
+<c:otherwise>
+<p> Select a valid gender </p>
+</c:otherwise>
+</c:choose>
+Ajax only programs:
+To paste code in C:\xampp\htdocs\srii
+& then run in http://localhost/srii/new%2019.html
+Start Apache
+Example 1: To read a text file and print it
+new 19.html
+<!DOCTYPE html>
+<html>
+<body>
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+<script>
+function loadDoc() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById("demo").innerHTML =
+this.responseText;
+}
+};
+xhttp.open("GET", "sri.txt", true);
+xhttp.send();
+}
+</script>
+</body>
+</html>
+sri.txt
+hello
+how
+are
+you
+Example 2 :
+To paste code in C:\xampp\htdocs\srii
+and then run in http://localhost/srii/new%2019.html
+<!DOCTYPE html>
+<html>
+<body>
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+<script>
+function loadDoc() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+var arry=this.responseText.split("\n");
+document.getElementById("demo").innerHTML = arry[0];
+}
+};
+xhttp.open("GET", "sri1.txt", true);
+xhttp.send();
+}
+</script>
+</body>
+</html>
+Sri1.txt
+hello
+how
+are
+you
+Example 3:
+Paste the code in C:\Program Files\Apache Software Foundation\Tomcat 8.0\webapps\ROOT\extra\new
+19.html and also paste ht.jsp in the same location
+Start apache and tomcat both to run the program.
+New 19.html
+<!DOCTYPE html>
+<html>
+<body>
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+<script>
+function loadDoc() {
+var username="sri"
+var email="ss";
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (xhttp.readyState == 4 && xhttp.status == 200) {
+document.getElementById("demo").innerHTML =
+xhttp.responseText;
+}
+};
+var url="ht.jsp?username1="+username +"&email1="+email;
+xhttp.open("POST", url, true);
+xhttp.send();
+}
+</script>
+</body>
+</html>
+ht.jsp
+<%
+String name1,city;
+name1=request.getParameter("username1");
+city=request.getParameter("email1");
+out.println(name1);
+out.println(city);
+%>
+Example 4: Ajax +jquery
+Paste the code in C:\Program Files\Apache Software Foundation\Tomcat 8.0\webapps\ROOT\extra\new
+20.html and also paste jq.txt in the same location
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("button").click(function(){
+$.ajax({url:"jq.txt",type:"GET",success:function(result){
+$("#div1").text(result);
+}});
+});
+});
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+<button>Get External Content</button>
+</body>
+</html>
+jq.txt
+gfhg
+hk
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+<div id="myTable"></div>
+<script>
+$(document).ready(function() {
+$.ajax({
+url: 'file.json',
+type:"GET",
+dataType: 'json',
+success: function(data) {
+for (var i=0; i<data.length; i++) {
+var row = $('<table border="1"><tr><td>' + data[i].zipcode+ '</td><td>' + data[i].city + '</td><td>'
++ data[i].county + '</td></tr></table>');
+$('#myTable').append(row);
+}
+},
+});
+});
+</script>
+</body>
+</html>
+'file.json'
+[
+{
+"zipcode": "01262",
+"city": "Stockbridge",
+"county": "Berkshire"
+},
+{
+"zipcode": "02881",
+"city": "Kingston",
+"county": "Washington"
+},
+{
+"zipcode": "03470",
+"city": "Winchester",
+"county": "Cheshire"
+},
+{
+"zipcode": "14477",
+"city": "Kent",
+"county": "Orleans"
+},
+{
+"zipcode": "28652",
+"city": "Minneapolis",
+"county": "Avery"
+},
+{
+"zipcode": "98101",
+"city": "Seattle",
+"county": "King"
+}
+]
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+<form ><br><br>
+name :<input type="text" name="txtName" id="txtName"/><br><br>
+<input type="submit" value="submit" id="save_data"/>
+<div id="divStatus"></div>
+</form>
+<script>
+$(document).ready(function() {
+$("#save_data").click(function() {
+$.ajax({
+url: "save.jsp",
+type: "post",
+data: {
+name:$('#txtName').val()
+}
+}).done(function(status, text){
+//$("#divStatus").html(status);
+alert(status);alert(text);
+});
+});
+});
+document.write(name);
+</script>
+</body>
+</html>
+Save.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<%@page import="java.sql.*,java.util.*"%>
+<%
+String name = request.getParameter("name");
+out.print(name);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("button").click(function(){
+$.ajax({url:"jq.txt",type:"GET",success:function(result){
+//$("#div1").text(result);
+var x=result.split("\n");
+//document.write(x.length);
+for(i=0;i<x.length;i++)
+{
+$("#div1").append(x[i]);
+}
+}});
+});
+});
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+<button>Get External Content</button>
+</body>
+</html>
+Jq.txt:
+dfd
+sr
+dg
+dfg
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("button").click(function(){
+$.post("ajx.jsp",{
+name:"Script",
+city:"Chennai"},function(data){
+$("#div1").append(data);
+});
+});
+});
+</script>
+</head>
+<body>
+<button>Send</button>
+<p>My para</p>
+<div id="div1"></div>
+</body>
+</html>
+Ajx.jsp
+<%
+String name1,city;
+name1=request.getParameter("name");
+city=request.getParameter("city");
+out.println(name1);
+out.println(city);
+%>
