@@ -1051,3 +1051,1947 @@ city=request.getParameter("city");
 out.println(name1);
 out.println(city);
 %>
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Ex No 1: Creation of a webpage using tables, frames, forms and lists
+Home.html
+<html>
+<head>
+<title>Home</title>
+</head>
+<frameset rows="25%,*%">
+<frame src="frame1.html">
+<frameset cols="25%,*">
+<frame src="frame2.html" name="f2">
+<frame src="frame3.html" name="f3">
+</frameset>
+</html>
+Frame1.html
+<html>
+<head><title>frame1</title>
+</head>
+<body bgcolor="Magenta">
+<h1 style="color.pink;font-size:15pt">
+<marquee bgcolor="#cccccc" loop="5" scrollamount="7" width="100%">
+WELCOME TO SASTRA DEEMED TO BE UNIVERSITY PROGRAMMING </marquee>
+</h1>
+</body>
+</html>
+Frame2.html
+<html>
+<head><title>frame2</title>
+<style type="text/css">
+h1
+{
+font-size:25pt;color:pink;
+}
+</style>
+</head>
+<body bgcolor="red">
+<h1>click the link</h1>
+<a href="intro.html" target="f3">Introduction</a><br>
+<a href="dept.html" target="f3">Departments</a><br>
+<a href="list.html" target="f3">Subjects</a><br>
+</body>
+</html>
+Frame3.html
+<html>
+<head><title>1st page</title>
+<link rel="stylesheet" type="text/css" href="C:\Documents and
+Settings\Administrator\Desktop\sri.css"/>
+</head>
+<body bgcolor="yellow">
+<h2> <center>YOU ARE IN HOME PAGE</center></h2>
+</body>
+</html>
+Intro.html
+<html>
+<head><title>intro</title>
+</head>
+<body bgcolor="black">
+<font color="red">
+<p>
+Welcome to Sastra Deemed University<br>
+<br>
+We offer great education for students in all aspects.
+Research is given more importance
+</p>
+</font>
+</body>
+</html>
+Dept.html
+<html>
+<head><title>Departments</title>
+</head>
+<body>
+<div align="center">
+<table border=2>
+<tr>
+<th>Dept code</th>
+<th>Dept name</th>
+</tr>
+<tr>
+<td>01</td>
+<td>CSE</td>
+</tr>
+<tr>
+<td>02</td>
+<td>ECE</td>
+</tr>
+<tr>
+<td>03</td>
+<td>EEE</td>
+</tr>
+<tr>
+<td>04</td>
+<td>IT</td>
+</tr>
+<tr>
+<td>05</td>
+<td>MECH</td>
+</tr>
+<tr>
+<td>06</td>
+<td>ICT</td>
+</tr>
+<tr>
+<td>07</td>
+<td>CIVIL</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+List.html
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Welcome</tiTLE>
+</head>
+<body>
+<ul>
+<li>Computer networks</li>
+<li>Cryptography and Network Security</li>
+<ul>
+<li>Data Structures</li>
+<li>Artificial Intelligence</li>
+<ul>
+<li>Machine Learning</li>
+<li>Data Base Management Systems</li>
+<ul>
+<li>BigQuery</li>
+</ul>
+</ul>
+<li>Data warehousing and Data Mining</li>
+</ul>
+</ul>
+<ol start="3">
+<li>Script Programming</li>
+<li>Computer Architecture</li>
+<ol type="I">
+<li>Mobile Computing</li>
+<li>Green Computing</li>
+<li>Edge Computing</li>
+</ol>
+<li>Quantum Computing</li>
+</ol>
+</body>
+</html>
+Ex. No 2: Working with controls in HTML 5
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>More Forms</title>
+</head>
+<body>
+<h1>Feedback Form</h1>
+<p>Please fill out this form to help us improve our site.</p>
+<form method = "get" action = "http://www.deitel.com">
+<p><label>Name:
+<input name = "name" type = "text" size = "25">
+</label></p>
+<p><label>Comments:<br>
+<textarea name = "comments"
+rows = "4" cols = "36">Enter comments here.</textarea>
+</label></p>
+<p><label>E-mail Address:
+<input name = "email" type = "password" size = "25">
+</label></p>
+<p>
+<strong>Things you liked:</strong><br>
+<label>Site design
+<input name = "thingsliked" type = "checkbox"
+value = "Design"></label>
+<label>Links
+<input name = "thingsliked" type = "checkbox"
+value = "Links"></label>
+<label>Ease of use
+<input name = "thingsliked" type = "checkbox"
+value = "Ease"></label>
+<label>Images
+<input name = "thingsliked" type = "checkbox"
+value = "Images"></label>
+<label>Source code
+<input name = "thingsliked" type = "checkbox"
+value = "Code"></label>
+</p>
+<p>
+<strong>How did you get to our site?:</strong><br>
+<label>Search engine
+<input name = "howtosite" type = "radio"
+value = "search engine" checked></label>
+<label>Links from another site
+<input name = "howtosite" type = "radio"
+value = "link"></label>
+<label>Deitel.com Web site
+<input name = "howtosite" type = "radio"
+value = "deitel.com"></label>
+<label>Reference in a book
+<input name = "howtosite" type = "radio"
+value = "book"></label>
+<label>Other
+<input name = "howtosite" type = "radio"
+value = "other"></label>
+</p>
+<p>
+<label>Rate our site:
+<select name = "rating">
+<option selected>Amazing</option>
+<option>10</option>
+<option>9</option>
+<option>8</option>
+<option>7</option>
+<option>6</option>
+<option>5</option>
+<option>4</option>
+<option>3</option>
+<option>2</option>
+<option>1</option>
+<option>Awful</option>
+</select>
+</label>
+</p>
+<p>
+<input type = "submit" value = "Submit">
+<input type = "reset" value = "Clear">
+</p>
+<p>
+<label>Date:
+<input type = "date" />
+(yyyy-mm-dd)
+</label>
+<p>
+<label>Month:
+<input type = "month" /> (yyyy-mm)
+</label></p>
+<p>
+<label>Number:
+<input type = "number"
+min = "0"
+max = "7"
+step = "1"
+value = "4" />
+</label> (Enter a number between 0 and 7)
+</p>
+<p>
+<label>Search:
+<input type = "search" placeholder = "search query" />
+</label> (Enter your search query here.)
+</p>
+<p>
+<label>Time:
+<input type = "time" /> (hh:mm:ss.ff)
+</label>
+</p>
+<p>
+<label>Tel:
+<input type = "tel" placeholder = "(###) ###-####"
+pattern = "\(\d{3}\) +\d{3}-\d{4}" required />
+(###) ###-####
+</label>
+<p>
+<label>Range:
+0 <input type = "range"
+min = "0"
+max = "20"
+value = "17" /> 20
+</label>
+</p>
+<p>
+<label>Color:
+<input type = "color" />
+(Hexadecimal code such as #ADD8E6)
+</label>
+</p>
+</form>
+</body>
+</html>
+3. Developing simple applications using Javascript (Using alert box,confirm,prompt,control
+structures,arrays)
+Alert Box
+a)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>A First Program in JavaScript</title>
+<script type = "text/javascript">
+window.alert( "Welcome to\nJavaScript\nProgramming!" );
+</script>
+</head>
+<body>
+</body>
+</html>
+b) Prompt
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>More Forms</title>
+</head>
+<script type="text/javascript">
+var degFahren = window.prompt("Enter the degrees in Fahrenheit", 50);
+var degCent;
+degCent = 5/9 * (degFahren - 32);
+alert(degFahren + " Fahrenheit is " + degCent + "centigrade");
+</script>
+<body>
+<p>hello</p>
+</body>
+</html>
+c) Confirm
+<!DOCTYPE html>
+<html>
+<body>
+<h2>JavaScript Prompt , alert and confirm </h2>
+<button onclick="myFunction1()">Prompt</button>
+<button onclick="myFunction2()">confirm</button>
+<p id="demo"></p>
+<script>
+function myFunction1() {
+var txt;
+var person = prompt("Please enter your name:", "tom");
+if (person == null || person == "") {
+txt = "User cancelled the prompt.";
+} else {
+txt = "Hello " + person + "! How are you today?";
+}
+alert(txt);
+}
+function myFunction2()
+{
+var isstudent = confirm("Are you a student?");
+alert( isstudent );
+}
+</script>
+</body>
+</html>
+Control Structure
+(i)
+<!DOCTYPE html>
+<!--First html5 example-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>welcome to script</title>
+<script type="text/javascript">
+var name;
+var x = new Date();// current date and time
+var hour = x.getHours(); // current hour (0-23)
+name = window.prompt( "Please enter your name" );
+if ( hour < 12 )
+document.write( "<h1>Good Morning, " );
+if ( hour >= 12 ){
+hour = hour - 12;
+if ( hour < 6 )
+document.write( "<h1>Good Afternoon, " );
+if ( hour >= 6 )
+document.write( "<h1>Good Evening, " );}
+document.write( name +", welcome to Js programming!</h1>" );
+</script>
+</head>
+<body>
+</body>
+</html>
+(ii)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Class Average Program</title>
+<script>
+var total; // sum of grades
+var gradeCounter; // number of grades entered
+var grade; // grade typed by user (as a string)
+var gradeValue;
+var average;
+var total = 0;
+gradeCounter = 1;
+while ( gradeCounter <= 10 )
+{
+grade = window.prompt( "Enter integer grade:", "0" );
+gradeValue = parseInt( grade );
+total = total + gradeValue;
+gradeCounter = gradeCounter + 1;
+}
+average = total / 10;
+document.writeln("<h1>Class average is " + average + "</h1>" );
+</script>
+</head><body></body>
+</html>
+(iii)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Class Average Program: Sentinel-controlled Repetition</title>
+<script type="text/javascript">
+var total; // sum of grades
+var gradeCounter; // number of grades entered
+var grade; // grade typed by user (as a string)
+var gradeValue; // grade value (converted to integer)
+var average;
+total = 0;
+gradeCounter = 0;
+grade = window.prompt("Enter Integer Grade, -1 to Quit:", "0" );
+gradeValue = parseInt( grade );
+while ( gradeValue != -1 )
+{
+// add gradeValue to total
+total = total + gradeValue;
+gradeCounter = gradeCounter + 1;
+grade = window.prompt("Enter Integer Grade, -1 to Quit:", "0" );
+gradeValue = parseInt( grade );}
+if ( gradeCounter != 0 ){
+average = total / gradeCounter;
+document.writeln("<h1>Class average is " + average + "</h1>" );
+} // end if
+else
+document.writeln( "<p>No grades were entered</p>" );
+</script>
+</head><body></body>
+</html>
+(iv)
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Calculating Compound Interest</title>
+<style type = "text/css">
+p{font-family: courier;
+font-size: 20px;
+color:red;
+background-color:magenta;}
+h1{font-family: courier;
+font-size: 20px;
+color:red;
+background-color:blue;}
+table { width: 200px;
+border-collapse: collapse;
+}
+th,td { border: 3px solid black;
+padding: 6px;color:magenta; }
+th { text-align: left;
+color: white;
+background-color: darkblue; }
+tr { background-color: yellow; }
+</style>
+<script>
+var amount; // current amount of money
+var principal = 1000.00; // principal amount
+var rate = 0.05;
+//document.writeln("<p>hello</p>");
+//document.writeln("<h1>hello</h1>");
+document.writeln("<table>"); // begin the table
+document.writeln("<caption>Calculating Compound Interest</caption>" );
+document.writeln("<thead><tr><th>Year</th>" ); // year column heading
+document.writeln("<th>Amount on deposit</th>" ); // amount column heading
+document.writeln( "</tr></thead><tbody>" );
+for ( var year = 1; year <= 10; ++year )
+{
+amount = principal * Math.pow( 1.0 + rate, year );
+if ( year % 2==0 )
+document.writeln( "<tr ><td>" + year +"</td><td>" + amount.toFixed(2) + "</td></tr>" );
+else
+document.writeln( "<tr><td>" + year +"</td><td>" + amount.toFixed(3) + "</td></tr>" );
+}
+document.writeln( "</tbody></table>" );
+</script>
+</head><body></body>
+</html>
+(v)
+<!doctype html>
+<html>
+<head>
+<script>
+var month = new Date().getMonth();
+switch (month) {
+// January, February, March
+case 0:
+case 1:
+case 2:
+document.write("Winter");
+break;
+// April, May, June
+case 3:
+case 4:
+case 5:
+document.write("Spring");
+break;
+// July, August, September
+case 6:
+case 7:
+case 8:
+document.write("Summer");
+break;
+// October, November, December
+case 9:
+case 10:
+case 11:
+document.write("Autumn");
+break;
+default:
+document.write("Something went wrong.");
+}
+</script>
+<body></body></html>
+(vi)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>table style</title>
+<script>
+for ( var count = 1; count <= 10; ++count )
+{
+if ( count == 5 )
+break;
+document.writeln( count + " " );
+} //end for
+document.writeln("<p>Broke out of loop at count = " + count + "</p>" );
+</script>
+</head>
+<body>
+</body>
+</html>
+(vii)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>table style</title>
+<script>
+for ( var count = 1; count <= 10; ++count )
+{
+if ( count == 5 )
+continue;
+document.writeln( count + " " );
+}
+</script>
+</head>
+<body>
+</body>
+</html>
+(viii)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Switching between HTML5 List Formats</title>
+<style>
+ol.a{
+background:red;
+color:white;
+list-style-type: upper-alpha;
+}
+ol.b{
+background:green;
+color:yellow;
+list-style-type: upper-roman;
+}
+ol.c{
+background:magenta;
+color:blue;
+list-style-type: upper-alpha;
+}
+</style>
+<script>
+var age=window.prompt("enter age");
+var x=parseInt(age);
+document.writeln("<ol>");
+if(age>5&&age<15){
+document.writeln("<ol class='a'>");
+//document.writeln("<ol style = 'list-style-type: upper-alpha; background:red' >");
+document.writeln("<li>Apple </li><li>banana</li><li>pineapple</li>");}
+else if(age>16&&age<40){
+document.writeln("<ol class='b'>");
+//document.writeln("<ol style = 'list-style-type: upper-alpha; background:blue' >");
+document.writeln("<li>Carrot </li><li>Beetroot</li><li>Ladysfinger</li>");}
+else
+{
+document.writeln("<ol class='c'>");
+//document.writeln("<ol style = 'list-style-type: upper-alpha; background:green' >");
+document.writeln("<li>Ragi</li><li>grains</li><li>spinach</li>");
+}
+document.writeln("</ol>");
+</script>
+</head><body></body>
+</html>
+Arrays
+One dimensional Array
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>A Programmer-Defined square Function</title>
+</head>
+<script>
+function start()
+{
+var a=[ 1, 2, 3, 4, 5 ];
+outputArray( "Original array: ", a,document.getElementById( "originalArray" ) );
+modifyArray( a );
+outputArray( "Modified array: ", a,document.getElementById( "modifiedArray" ) );
+document.getElementById( "originalElement" ).innerHTML ="a[3] before modifyElement: " + a[ 3 ];
+modifyElement( a[ 3 ] );
+document.getElementById( "modifiedElement" ).innerHTML ="a[3] after modifyElement: " + a[ 3 ];
+}
+function outputArray( heading, theArray, output )
+{
+output.innerHTML = heading + theArray.join( " " );
+}
+function modifyArray( theArray )
+{
+for ( var j in theArray )
+{
+theArray[ j ] *= 2;
+}
+}
+function modifyElement( e )
+{
+e *= 2;
+document.getElementById( "inModifyElement" ).innerHTML =
+"Value in modifyElement: " + e;
+}
+window.addEventListener( "load", start);
+</script>
+</head>
+<body>
+<body>
+<h2>Effects of passing entire array by reference</h2>
+<p id = "originalArray"></p>
+<p id = "modifiedArray"></p>
+<h2>Effects of passing array element by value</h2>
+<p id = "originalElement"></p>
+<p id = "inModifyElement"></p>
+<p id = "modifiedElement"></p>
+</body>
+</html>
+Two dimensional Arrays
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Initializing an Array</title>
+</head>
+<script>
+function start()
+{
+var array1 = [ [ 111, 22, 33 ],
+[ 41, 5, 6 ,7],
+[7,8,91 ],
+[9,10]];
+printArray(array1);
+}
+function printArray(theArray)
+{
+var x=theArray.length;
+var minimum=theArray[0][0];
+for (var i=0; i<x;i++)
+{
+var no=theArray[i].length;
+for (var j=0;j<no;j++)
+{
+if(theArray[i][j]<minimum)
+{
+minimum=theArray[i][j];
+}
+}
+}
+document.write(minimum );
+}
+window.addEventListener("load",start);
+</script>
+<body>
+</body>
+</html>
+4. Create an application using DOM
+<html>
+<head>
+<title> My page </title>
+<script type="text/javascript">
+function myFunc()
+{
+var ret = document.title;
+alert("Document Title : " + ret );
+var ret = document.URL;
+alert("Document URL : " + ret );
+var ret = document.forms[0];
+alert("Document First Form : " + ret );
+var ret = document.forms[0].elements[1];
+alert("Second element : " + ret );
+var ret = document.body.children[0];
+alert("third element : " + ret );
+}
+</script>
+</head>
+<body>
+<h1 id="title">This is main title</h1>
+<p>hello hai</p>
+<form name="FirstForm">
+<input type="button" value="Click Me" onclick="myFunc();" />
+<input type="text">
+</form>
+</body>
+</html>
+Example 65: Child nodes and children
+<html>
+<head>
+<title> My page </title>
+<script type="text/javascript">
+function myFunc()
+{
+var Container=document.body.childNodes;
+for(i=0;i<Container.length;i++)
+{
+document.writeln(Container[i]+"<br>");
+}
+}
+window.addEventListener("load",myFunc);
+</script>
+</head>
+<body><p>jgjh</p>
+<p>jgjh</p>
+<h3>jgjh</h3>
+<p></p>
+</body>
+</html>
+Example 66: Usage of firstchild , nextsibling , nodename properties
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function test() {
+var list = document.getElementById("myList1").firstChild.nextSibling.nodeName;
+document.getElementById("example").innerHTML = list;
+}
+</script>
+</head>
+<body>
+<p>Example list:</p>
+<ul id="myList1"><li>engg</li><ol>hgf</ol></ul>
+<button onclick="test()">Try it</button>
+<p id="example"></p>
+</body>
+</html>
+Example 66: Usage of nodename &type
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function GetNodeInfo () {
+var div = document.getElementById ("myDiv1");
+var commentNode = div.firstChild;
+//var message = "";
+alert (commentNode.nodeName);
+alert (commentNode.nodeType);
+}
+</script>
+</head>
+<body>
+<div id="myDiv"><!-- this text is not rendered --></div>
+<div id="myDiv1"><p>sdfdf</p></div>
+<button onclick="GetNodeInfo ()">Get node info!</button>
+</body>
+</html>
+Example 67: Attribute setting ,getting and removing
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1</title>
+<script>
+function test()
+{
+var pElement = document.getElementById("paragraph1");
+pElement.setAttribute("align", "right");
+//var pElement = document.getElementById("paragraph1");
+pElement.setAttribute("style", "color:red");
+var pElements = document.getElementById("table1");
+pElements.setAttribute("border", "4","cellspacing","33");
+var pElements = document.getElementsByTagName("tr")[0];
+pElements.setAttribute("style", "color:red");
+var x=document.getElementsByTagName("body")[0].firstChild;
+alert(x);
+alert(pElement.getAttribute("align"));
+pElement.removeAttribute("align");
+}
+</script>
+</head>
+<body>
+<p id="paragraph1">This is some text.</p>
+<table id="table1">
+<tr>
+<td>hgj</td>
+<td>hh</td>
+</tr>
+<tr>
+<td>hgj</td>
+<td>hh</td>
+</tr>
+</table>
+<input type="button" value="clickme" onclick="test()">
+</body>
+</html>
+5 . Using a timer and dynamic styles to create animated effects.
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Interval</title>
+</head>
+<script type="text/javascript">
+function showTime() {
+var dateTime= new Date();
+var time = dateTime.toLocaleTimeString();
+document.write(time);
+}
+var display = setInterval(showTime, 5000);
+</script>
+<body>
+<p>jjj</p>
+</html>
+<html>
+<head>
+<title>JavaScript Radio Example</title>
+<script type="text/javascript">
+function buttonPressed()
+{
+var myElement = document.getElementById("introtext");
+myElement.style.color="green";
+}
+</script>
+</head>
+<body>
+<p id="introtext">The color of the text sould change when the button is pressed"</p>
+<form action="" name="orderForm">
+<input type="BUTTON" value="Click to change text color" onClick="buttonPressed()" />
+</form>
+</body>
+</html>
+Creating a simple AJAX application using XMLHttpRequest object
+new 19.html
+<!DOCTYPE html>
+<html>
+<body>
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+<script>
+function loadDoc() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById("demo").innerHTML =
+this.responseText;
+}
+};
+xhttp.open("GET", "sri.txt", true);
+xhttp.send();
+}
+</script>
+</body>
+</html>
+sri.txt
+hello
+how
+are
+you
+<!DOCTYPE html>
+<html>
+<body>
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+<script>
+function loadDoc() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+var arry=this.responseText.split("\n");
+document.getElementById("demo").innerHTML = arry[0];
+}
+};
+xhttp.open("GET", "sri1.txt", true);
+xhttp.send();
+}
+</script>
+</body>
+</html>
+Sri1.txt
+hello
+how
+are
+you
+New 19.html
+<!DOCTYPE html>
+<html>
+<body>
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+<script>
+function loadDoc() {
+var username="sri"
+var email="ss";
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (xhttp.readyState == 4 && xhttp.status == 200) {
+document.getElementById("demo").innerHTML =
+xhttp.responseText;
+}
+};
+var url="ht.jsp?username1="+username +"&email1="+email;
+xhttp.open("POST", url, true);
+xhttp.send();
+}
+</script>
+</body>
+</html>
+ht.jsp
+<%
+String name1,city;
+name1=request.getParameter("username1");
+city=request.getParameter("email1");
+out.println(name1);
+out.println(city);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("button").click(function(){
+$.ajax({url:"jq.txt",type:"GET",success:function(result){
+$("#div1").text(result);
+}});
+});
+});
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+<button>Get External Content</button>
+</body>
+</html>
+jq.txt
+gfhg
+hk
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+<div id="myTable"></div>
+<script>
+$(document).ready(function() {
+$.ajax({
+url: 'file.json',
+type:"GET",
+dataType: 'json',
+success: function(data) {
+for (var i=0; i<data.length; i++) {
+var row = $('<table border="1"><tr><td>' + data[i].zipcode+ '</td><td>' + data[i].city + '</td><td>'
++ data[i].county + '</td></tr></table>');
+$('#myTable').append(row);
+}
+},
+});
+});
+</script>
+</body>
+</html>
+'file.json'
+[
+{
+"zipcode": "01262",
+"city": "Stockbridge",
+"county": "Berkshire"
+},
+{
+"zipcode": "02881",
+"city": "Kingston",
+"county": "Washington"
+},
+{
+"zipcode": "03470",
+"city": "Winchester",
+"county": "Cheshire"
+},
+{
+"zipcode": "14477",
+"city": "Kent",
+"county": "Orleans"
+},
+{
+"zipcode": "28652",
+"city": "Minneapolis",
+"county": "Avery"
+},
+{
+"zipcode": "98101",
+"city": "Seattle",
+"county": "King"
+}
+]
+7. Implementing communication techniques and cache control using AJAX
+9. Create a JSP application for Form validation
+<%@ page contentType="text/html" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<title>Us Ino Entry Form</title>
+</head>
+<body>
+<form action="new.jsp" method="post">
+<input type="text" name="userName"/>
+<input type="submit" value="Send Data">
+</form>
+<c:if test="${param.userName ==''}">
+<p> Please enter your Name </p>
+</c:if>
+<c:if test="${!empty param.userName}">
+<p>not empty </p>
+</c:if>
+Name :<c:out value="${param.userName}"/>
+</body>
+</html>
+<%@ page contentType="text/html" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<title>User Info Entry Form</title>
+</head>
+<body bgcolor="white">
+<form action="hht.jsp" method="post">
+<table>
+<tr>
+<td>Name:</td>
+<td>
+<input type="text" name="userName">
+</td>
+</tr>
+<tr>
+<td>Birth Date:</td>
+<td>
+<input type="text" name="birthDate">
+</td>
+<td>(Use format yyyy-mm-dd)</td>
+</tr>
+<tr>
+<td>Email Address:</td>
+<td>
+<input type="text" name="emailAddr">
+</td>
+<td>(Use format name@company.com)</td>
+</tr>
+<tr>
+<td>Gender:</td>
+<td>
+<input type="radio" name="gender" value="m"
+checked>Male<br>
+<input type="radio" name="gender" value="f">Female
+</td>
+</tr>
+<tr>
+<td>Lucky number:</td>
+<td>
+<input type="text" name="luckyNumber">
+</td>
+<td>(A number between 1 and 100)</td>
+</tr>
+<tr>
+<td>Favorite Foods:</td>
+<td>
+<input type="checkbox" name="food" value="z">Pizza<br>
+<input type="checkbox" name="food" value="p">Pasta<br>
+<input type="checkbox" name="food" value="c">Chinese
+</td>
+</tr>
+<tr>
+<td colspan=2>
+<input type="submit" value="Send Data">
+</td>
+</tr>
+</table>
+</form>
+You entered:<br>
+Name: <c:out value="${param.userName}" /><br>
+Birth Date: <c:out value="${param.birthDate}" /><br>
+Email Address: <c:out value="${param.emailAddr}" /><br>
+Gender: <c:out value="${param.gender}" /><br>
+Lucky Number: <c:out value="${param.luckyNumber}" /><br>
+Favorite Food:
+<c:forEach items="${paramValues.food}" var="current">
+<c:out value="${current}" />
+</c:forEach>
+</body>
+</html>
+10. Develop JSP applications for employee management system and establish database
+Connectivity.
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<jsp:useBean id="tt" class="java.util.Date"/>
+<html>
+<body>
+<%int sid=104;%>
+<sql:setDataSource var ="db" driver="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost/mysql1" user="root" password=""/>
+<sql:transaction dataSource="${db}">
+<sql:update>
+UPDATE bank SET balance = balance - 1000
+WHERE accno = 678
+</sql:update>
+<sql:update>
+UPDATE bank SET balance = balance + 1000
+WHERE accno = 563
+</sql:update>
+</sql:transaction>
+<sql:query dataSource="${db}" var="results">
+select * from bank
+</sql:query>
+<table border="2">
+<tr>
+<th>id</th>
+<th>first</th>
+<th>last</th>
+<th>dob</th></tr>
+<c:forEach items ="${results.rows}" var="row1">
+<tr>
+<td> <c:out value="${row1.id}"/></td>
+<td> <c:out value="${row1.accno}"/></td>
+<td> <c:out value="${row1.balance}"/></td>
+</tr>
+</c:forEach>
+</body>
+</html>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<jsp:useBean id="tt" class="java.util.Date"/>
+<html>
+<body>
+<form action="enter.jsp" >
+<input type="text" name="txtUsername" />
+<input type="submit" name="click me"/>
+<%int studentID=35;%>
+<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost/mysql1" user="root" password=""/>
+<sql:update dataSource="${db}" var="count">
+update students set dob=? where first=?
+<sql:param value="${tt}"/>
+<sql:param value="${param.txtUsername}"/>
+</sql:update>
+<sql:query dataSource="${db}" var ="result">
+SELECT * from students
+</sql:query>
+<table border="1">
+<tr> <th>ID </th>
+<th>first</th>
+<th>last</th>
+<th>dob</th>
+<tr>
+<c:forEach items="${result.rows}" var="row">
+<tr>
+<td><c:out value="${row.id}"/></td>
+<td><c:out value="${row.first}"/></td>
+<td><c:out value="${row.last}"/></td>
+<td><c:out value="${row.dob}"/></td>
+</tr>
+</c:forEach>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------
+Example 1:
+<%@ page contentType="text/html" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<title>JSP is Easy</title>
+</head>
+<body bgcolor="white">
+<h1>JSP is as easy as ...</h1>
+1 + 2 + 3 = <c:out value="${1 + 2 + 3" />
+</body>
+</html>
+Example 2:
+<%@ page language="java" contentType="text/html"%>
+<%@ page import="java.text.*,java.util.*" %>
+<html>
+<head>
+<title>Date JSP</title>
+</head>
+<% SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yyyy"); %>
+<body>
+<h1>Welcome to Tomcat! Today is <%= sdf.format(new Date()) %></h1>
+</body>
+</html>
+Example 3:
+<html>
+<head><title>First JSP</title></head>
+<body>
+<%
+double num = Math.random();
+if (num > 0.95) {
+%>
+<h2>You'll have a luck day!</h2><p>(<%= num %>)</p>
+<%
+} else {
+%>
+<h2>Well, life goes on ... </h2><p>(<%= num %>)</p>
+<%
+}
+%>
+<a href="<%= request.getRequestURI() %>"><h3>Try Again</h3></a>
+</body>
+</html>
+Example 4:
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+// Extend HttpServlet class
+public class HelloWorld extends HttpServlet {
+private String message;
+public void init() throws ServletException {
+message = "Hello World";
+}
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+// Set response content type
+response.setContentType("text/html");
+PrintWriter out = response.getWriter();
+out.println("<h1>" + message + "</h1>");
+}
+public void destroy() {
+// do nothing.
+}
+}
+Example 5
+<%@ page language="java" contentType="text/html" %>
+<%!
+int globalCounter = 0;
+%>
+<html>
+<head>
+<title>A page with a counter</title>
+</head>
+<body bgcolor="white">
+This page has been visited: <%= ++globalCounter %> times.
+<p>
+<%
+int localCounter = 0;
+%>
+This counter never increases its value: <%= ++localCounter %>
+</body>
+</html>
+Example 6:
+<html>
+<body>
+<p>This or that
+<%!int x=50;%>
+<%!"the val is"+x%>
+</p>
+</body>
+</html>
+Example 7:
+<html>
+<body>
+<% for (int i = 0; i < 5; i++) { %>
+<p>
+<% if (i%2==0) { %>
+Even number
+<% } else { %>
+Odd number
+<% } %>
+</p>
+<% } %>
+</body>
+</html>
+Example 8:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Printing 10 Even and Odd numbers</title>
+</head>
+<body>
+<%
+out.print("<b>First 10 Even numbers are</><br>");
+for( int i=1;i<=20;i++)
+{
+if(i%2==0)
+{
+out.print("<br><b>"+i+"</b>");
+}
+}
+out.print("<br><br><b> First 10 odd numbers are</b><br>");
+for( int i=1;i<=20;i++)
+{
+if(i%2!=0)
+{
+out.print("<br><b>"+i+"</b>");
+}
+}
+%>
+</body>
+</html>
+Example 9:
+<% String name = request.getParameter("name"); %>
+<html>
+<body>
+<p>
+<% if (name != null) { %>
+Hello, <%= name %>.
+<% } else { %>
+Welcome, anonymous user.
+<% } %>
+How are you?
+</p>
+</body>
+</html>
+Example 10:
+<html>
+<body>
+<%!
+int cube(int n){
+return n*n*n;
+}
+%>
+<%= "Cube of 3 is:"+cube(3) %>
+</body>
+</html>
+Example 11:
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<c:out value="${1 + 2 + 3}" />
+<html>
+<head>
+<title><c:if> Tag Example</title>
+</head>
+<body>
+<c:set var = "salary" scope = "session" value = "${2000*2}"/>
+<c:if test = "${salary > 2000}">
+<p>My salary is: <c:out value = "${salary}"/><p>
+</c:if>
+</body>
+</html>
+Example 12:
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<html>
+<head>
+<title> Tag Example</title>
+</head>
+<body>
+<c:import var = "data" url = "http://www.google.com"/>
+<c:out value = "${data}"/>
+</body>
+</html>
+Example 13:
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<html>
+<head><title>gg</title></head>
+<body>
+${11-2}<br>
+${'gf'}<br>
+${'star'>'gold'}<br>
+${1 eq 2}<br>
+${10 mod 3}<br>
+${4 div 2}
+</body>
+</html>
+Example 14:
+Param.jsp
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<html>
+<body>
+<c:set var="test" scope="session" value="50"/>
+<a href="param1.jsp">click here</a>
+</body>
+</html>
+Param1.jsp
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<html>
+<body>
+<c:out value="${sessionScope.test}"/>
+</body>
+</html>
+Example 15:
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
+<head>
+<title>c:param Example2</title>
+</head>
+<body>
+<c:redirect url="display.jsp" >
+<c:param name="UserId" value="5"/>
+<c:param name="UserName" value="script"/>
+</c:redirect>
+</body>
+</html>
+Display.jsp
+${param.UserId}
+${param.UserName}
+Example 16:
+%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
+<head>
+<title>Core Tag Example</title>
+</head>
+<body>
+<c:set var="x" scope="session" value="${30}"/>
+<c:if test="${x > 80}">
+<p>My val is: <c:out value="${income}"/><p>
+</c:if>
+</body>
+</html>
+Example 17:
+<html>
+<head>
+<title>add</title>
+</head>
+<body>
+<%String s=request.getParameter("name");
+String q=request.getParameter("t1");%>
+<%=s%>
+</body>
+</html>
+Example 18:
+<html>
+<body>
+<%!
+int fact(int n){
+int i,f=1;
+for(i=1;i<=n;i++)
+{
+f=f*i;
+}
+return f;
+}
+%>
+<%= "Fact is:"+fact(5) %>
+</body>
+</html>
+Example 19:
+<html>
+<head>
+<title>JSP include with parameters example</title>
+</head>
+<body>
+<jsp:forward page="params.jsp">
+<jsp:param name="fname" value='<%=request.getParameter("fname")%>'/>
+<jsp:param name="lname" value='<%=request.getParameter("lname")%>'/>
+</jsp:forward>
+</body>
+</html>
+params.jsp
+${param.fname}
+${param.lname}
+Example 20:
+<%
+int n=Integer.parseInt(request.getParameter("val"));
+out.print(Math.PI*n*n);
+%>
+Example 21:
+<%@ page contentType="text/html" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<title>User Info Entry Form</title>
+</head>
+<body bgcolor="white">
+<form action="hht.jsp" method="post">
+<table>
+<tr>
+<td>Name:</td>
+<td>
+<input type="text" name="userName">
+</td>
+</tr>
+<tr>
+<td>Birth Date:</td>
+<td>
+<input type="text" name="birthDate">
+</td>
+<td>(Use format yyyy-mm-dd)</td>
+</tr>
+<tr>
+<td>Email Address:</td>
+<td>
+<input type="text" name="emailAddr">
+</td>
+<td>(Use format name@company.com)</td>
+</tr>
+<tr>
+<td>Gender:</td>
+<td>
+<input type="radio" name="gender" value="m"
+checked>Male<br>
+<input type="radio" name="gender" value="f">Female
+</td>
+</tr>
+<tr>
+<td>Lucky number:</td>
+<td>
+<input type="text" name="luckyNumber">
+</td>
+<td>(A number between 1 and 100)</td>
+</tr>
+<tr>
+<td>Favorite Foods:</td>
+<td>
+<input type="checkbox" name="food" value="z">Pizza<br>
+<input type="checkbox" name="food" value="p">Pasta<br>
+<input type="checkbox" name="food" value="c">Chinese
+</td>
+</tr>
+<tr>
+<td colspan=2>
+<input type="submit" value="Send Data">
+</td>
+</tr>
+</table>
+</form>
+You entered:<br>
+Name: <c:out value="${param.userName}" /><br>
+Birth Date: <c:out value="${param.birthDate}" /><br>
+Email Address: <c:out value="${param.emailAddr}" /><br>
+Gender: <c:out value="${param.gender}" /><br>
+Lucky Number: <c:out value="${param.luckyNumber}" /><br>
+Favorite Food:
+<c:forEach items="${paramValues.food}" var="current">
+<c:out value="${current}" />
+</c:forEach>
+</body>
+</html>
+Example 22:
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<body>
+<c:set var="x" value="4"/>
+<c:set var ="y" value="8"/>
+<c:out value="${x+y}"/>
+${'script'}
+${4>8}
+${3 div 4}
+${10 mod 4}
+</body>
+</html>
+Example 23:
+<%@ page contentType="text/html" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<title>Request Info</title>
+</head>
+<body bgcolor="white">
+The following information was received:
+<ul>
+<li>Request Method:
+<c:out value="${pageContext.request.method}" />
+<li>Request Protocol:
+<c:out value="${pageContext.request.protocol}" />
+<li>Context Path:
+<c:out value="${pageContext.request.contextPath}" />
+<li>Servlet Path:
+<c:out value="${pageContext.request.servletPath}" />
+<li>Request URI:
+<c:out value="${pageContext.request.requestURI}" />
+<li>Request URL:
+<c:out value="${pageContext.request.requestURL}" />
+<li>Server Name:
+<c:out value="${pageContext.request.serverName}" />
+<li>Server Port:
+<c:out value="${pageContext.request.serverPort}" />
+<li>Cookies:<br>
+<c:forEach items="${pageContext.request.cookies}" var="c">
+&nbsp;&nbsp;<b><c:out value="${c.name}" /></b>:
+<c:out value="${c.value}" /><br>
+</c:forEach>
+<li>Headers:<br>
+<c:forEach items="${headerValues}" var="h">
+&nbsp;&nbsp;<b><c:out value="${h.key}" /></b>:
+<c:forEach items="${h.value}" var="value">
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${value}" />
+</c:forEach>
+<br>
+</c:forEach>
+</ul>
+</body>
+</html>
+Example 24:
+<%@ page contentType="text/html" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<title>Us Ino Entry Form</title>
+</head>
+<body>
+<form action="new.jsp" method="post">
+<input type="text" name="userName"/>
+<input type="submit" value="Send Data">
+</form>
+<c:if test="${param.userName ==''}">
+<p> Please enter your Name </p>
+</c:if>
+<c:if test="${!empty param.userName}">
+<p>not empty </p>
+</c:if>
+Name :<c:out value="${param.userName}"/>
+</body>
+</html>
+Example 25:
+<html>
+<body>
+<form action="s2.jsp">
+No1:<input type="text" name="n1" /><br/><br/>
+No1:<input type="text" name="n2" /><br/><br/>
+<input type="submit" value="divide"/>
+</form>
+</body>
+</html>
+S2.jsp
+<%@ page errorPage="s3.jsp" %>
+<%
+String num1=request.getParameter("n1");
+String num2=request.getParameter("n2");
+int a=Integer.parseInt(num1);
+int b=Integer.parseInt(num2);
+int c=a/b;
+out.print("division of numbers is: "+c);
+%>
+S3.jsp
+<%@ page isErrorPage="true" %>
+<h3>Sorry an exception occured!</h3>
+Exception is: <%= exception %>
+Example 26:
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<html>
+<body>
+<c:set var="x" value="<%=new java.util.Date()%>"/>
+<font color="magenta"> <h3> <c:out value="${x}"/> </h3></font>
+<font color="green">
+<fmt:formatDate type="time" value="${x}"/><br>
+<fmt:formatDate timeStyle="short" type="time" value="${x}"/><br>
+<fmt:formatDate timeStyle="long" type="time" value="${x}"/><br>
+<fmt:formatDate timeStyle="medium" type="time" value="${x}"/><br> </font>
+Date <font color="red"><fmt:formatDate type="date" value="${x}"/></font><br>
+<fmt:formatDate dateStyle="short" type="date" value="${x}"/><br>
+<fmt:formatDate pattern = "YYYY-MM-dd" value = "${x}" />
+</body>
+</html>
+Example 27:
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<html>
+<body>
+<c:set var="x" value="hello , &quot;how are you &quot;?"/>
+<c:out value="${x}"/>
+</body>
+</html>
+Example 28:
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<body>
+<c:set var ="para" scope="session" value="22"/>
+<a href="param11.jsp"> cclick </a>
+</body>
+</html>
+param11.jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<body>
+<c:out value="${sessionScope.para}"/>
+</body>
+</html>
+Example 29:
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<html>
+<head>
+<title>sql:quy Tag</title>
+</head>
+<body>
+<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost/mysql1"
+user="root" password=""/>
+<c:set var = "CustomerId" value = "30"/>
+<!--<sql:update dataSource = "${db}" var = "count">
+DELETE FROM customers WHERE CustomerId = 8
+</sql:update>-->
+<sql:query dataSource="${db}" var="rs" >
+SELECT * from customers;
+</sql:query>
+<table border="2" width="100%">
+<tr>
+<th>Student ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Age</th>
+</tr>
+<c:forEach var="table" items="${rs.rows}">
+<tr>
+<td><c:out value="${table.Name}"/></td>
+<td><c:out value="${table.Phone}"/></td>
+<td><c:out value="${table.State}"/></td>
+<td><c:out value="${table.City}"/></td>
+</tr>
+</c:forEach>
+</table>
+</body>
+</html>
+Example 30:
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<jsp:useBean id="tt" class="java.util.Date"/>
+<html>
+<body>
+<form action="enter.jsp" >
+<input type="text" name="txtUsername" />
+<input type="submit" name="click me"/>
+<%int studentID=35;%>
+<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost/mysql1" user="root" password=""/>
+<sql:update dataSource="${db}" var="count">
+update students set dob=? where first=?
+<sql:param value="${tt}"/>
+<sql:param value="${param.txtUsername}"/>
+</sql:update>
+<sql:query dataSource="${db}" var ="result">
+SELECT * from students
+</sql:query>
+<table border="1">
+<tr> <th>ID </th>
+<th>first</th>
+<th>last</th>
+<th>dob</th>
+<tr>
+<c:forEach items="${result.rows}" var="row">
+<tr>
+<td><c:out value="${row.id}"/></td>
+<td><c:out value="${row.first}"/></td>
+<td><c:out value="${row.last}"/></td>
+<td><c:out value="${row.dob}"/></td>
+</tr>
+</c:forEach>
+</body>
+</html>
+Example 31:
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<jsp:useBean id="tt" class="java.util.Date"/>
+<html>
+<body>
+<%int sid=104;%>
+<sql:setDataSource var ="db" driver="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost/mysql1" user="root" password=""/>
+<sql:transaction dataSource="${db}">
+<sql:update>
+UPDATE bank SET balance = balance - 1000
+WHERE accno = 678
+</sql:update>
+<sql:update>
+UPDATE bank SET balance = balance + 1000
+WHERE accno = 563
+</sql:update>
+</sql:transaction>
+<sql:query dataSource="${db}" var="results">
+select * from bank
+</sql:query>
+<table border="2">
+<tr>
+<th>id</th>
+<th>first</th>
+<th>last</th>
+<th>dob</th></tr>
+<c:forEach items ="${results.rows}" var="row1">
+<tr>
+<td> <c:out value="${row1.id}"/></td>
+<td> <c:out value="${row1.accno}"/></td>
+<td> <c:out value="${row1.balance}"/></td>
+</tr>
+</c:forEach>
+</body>
+</html>
+Example 32 :
+Java beans:
+package com.greatest;
+public class Greatest{
+public int great(int ,int b,int c)
+{
+if(a>b&&a>c)
+{
+return a;
+}
+else if(b>a&&b>c)
+{
+return b;
+}
+else
+{
+return c;
+}
+}
+}
+----------------------------------------------------------
+package com.Factorial;
+public class Operations{
+public int factorial(int n)
+{
+int i,fact=1;
+for(i=1;i<=n;i++){
+fact=fact*i;
+}
+return fact;
+}
+}
+package com.checkemail;
+import java.util.regex.*;
+public class Emailadd
+{
+public boolean emailval(String email)
+{
+if(email!=null)
+{
+Pattern p = Pattern.compile("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$");
+Matcher m = p.matcher(email);
+if(m.find())
+{
+return true;
+}
+else
+{
+return false;
+}}
+else
+{
+return false;
+}
+}
+}
+package com.usertest;
+public class Tester
+{
+public boolean valid(String username)
+{
+if(username==null || username.length()==0)
+{
+return false;
+}
+if(username.length()<5 || username.length()>10)
+{
+return false;
+}
+return true;
+}
+}
+beans.jsp
+<html>
+<body>
+<form action="fact.jsp">
+<input type="text" name="txtUsername"><br><br>
+<input type="text" name="txtEmail"><br><br>
+<input type ="submit" value="click me"><br>
+</form>
+<jsp:useBean id="obj" class="com.Factorial.Operations"/>
+<jsp:useBean id="obj1" class="com.greatest.Greatest"/>
+<jsp:useBean id="obj2" class="com.usertest.Tester"/>
+<jsp:useBean id="obj3" class="com.checkemail.Emailadd"/>
+<%
+int m=obj.factorial(5);
+out.print("cube of no 5 is "+m);
+out.print("<br>");
+int x=obj1.great(5,17,8);
+out.println("Greatest is "+x);
+out.print("<br>");
+String s=request.getParameter("txtUsername");
+boolean y=obj2.valid(s);
+if(y==true)
+{
+out.println("Username valid");
+}
+else
+{
+out.println("Username not valid");
+}
+String email=request.getParameter("txtEmail");
+boolean y1=obj3.emailval(email);
+if(y1==true)
+{
+out.println("Email valid");
+}
+else
+{
+out.println("Email not valid");
+}
+%>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements. See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+version="3.1"
+metadata-complete="true">
+<display-name>Welcome to Tomcat</display-name>
+<description>
+Welcome to Tomcat
+</description>
+<servlet>
+<servlet-name>Factorial</servlet-name>
+<servlet-class>com.Factorial.Operations</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>Greatest</servlet-name>
+<servlet-class>com.greatest.Greatest</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>Username</servlet-name>
+<servlet-class>com.usertest.Tester</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>Emailadd</servlet-name>
+<servlet-class>com.checkemail.Emailadd</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>Factorial</servlet-name>
+<url-pattern>/hello/sri</url-pattern>
+</servlet-mapping>
+<welcome-file-list>
+<welcome-file>fact.jsp</welcome-file>
+</welcome-file-list>
+</web-app>
