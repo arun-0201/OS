@@ -1,0 +1,660 @@
+JQueryy
+
+<%@page contentType="text/plain"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%!
+    protected String getCustomerData(int id){
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            
+            //database information
+            String dbservername = "localhost";
+            String dbname = "test";
+            String username = "root";
+            String password = "";
+            String url = "jdbc:mysql://" + dbservername + "/" + dbname + "?user=" + username + "&password=" + password;
+            
+            //create database connection
+            Connection conn = DriverManager.getConnection(url);
+            
+            //execute query
+            String sql = "Select * from CustomersX where CustomerId=" + id;
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            boolean found = rs.next();
+            StringBuffer buffer = new StringBuffer();
+                
+            //if there was a match...
+            if (found) {
+                
+                buffer.append(rs.getString("Name"));
+                buffer.append("<br />");                
+                buffer.append(rs.getString("Address"));                
+                buffer.append("<br />");                
+                buffer.append(rs.getString("City"));                
+                buffer.append("<br />");                
+                buffer.append(rs.getString("State"));                
+                buffer.append("<br />");                
+                buffer.append(rs.getString("Zip"));                
+                buffer.append("<br /><br />");                
+                buffer.append("Phone: " + rs.getString("Phone"));                
+                buffer.append("<br /><a href=\"mailto:");                
+                buffer.append(rs.getString("Email"));                
+                buffer.append("\">");                
+                buffer.append(rs.getString("Email"));                
+                buffer.append("</a>");
+            } else {
+                buffer.append("Customer with ID ");
+                buffer.append(id);
+                buffer.append(" could not be found.");
+            }
+            
+            rs.close();
+            conn.close();
+            
+            return buffer.toString();
+        } catch (Exception ex){
+            return "An error occurred while trying to get customer info.";
+        }
+        
+    }
+%>
+<%
+    String id = request.getParameter("id");
+    String callback = request.getParameter("callback");
+    String message = "";
+    int customerId = -1;
+    
+    try {
+        customerId = Integer.parseInt(id);
+        message = getCustomerData(customerId);
+    } catch (Exception ex) {
+        message = "Invalid customer ID.";
+    }
+              
+%>
+<%=message%>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-
+1"%>
+<%@page import="java.sql.*,java.util.*"%>
+
+<%
+String name = request.getParameter("name");
+String address = request.getParameter("address");
+String city = request.getParameter("city");
+String state = request.getParameter("state");
+String zipCode = request.getParameter("zipCode");
+String phone = request.getParameter("phone");
+String email = request.getParameter("email");
+String message="";
+out.println("Data is successfully inserted!");
+try
+{
+
+Class.forName("com.mysql.jdbc.Driver");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
+Statement st=conn.createStatement();
+st.executeUpdate("insert into customers2(Name,Address,City,State,Zip,Phone,Email)values('"+name+"','"+address+"','"+city+"','"+state+"','"+zipCode+"','"+phone+"','"+email+"')");
+
+//out.println("Data is successfully inserted!");
+
+}
+catch(Exception e)
+{
+System.out.print(e);
+e.printStackTrace();
+}
+%>
+
+Jquery Get 
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery GET Example</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+		
+        function requestCustomerInfo() {
+        
+            //get the ID
+            var sId = $("input#txtCustomerId").val();
+            
+            //send the request
+            $.get("GetCustomerData.jsp?id=" + sId, displayCustomerInfo);            
+        }
+        
+        function displayCustomerInfo(sText, sStatus) {
+            if (sStatus == "success") {
+                $("div#divCustomerInfo").html(sText);
+            } else {
+                $("div#divCustomerInfo").html("An error occurred.");
+            }
+        }
+		
+    </script>
+</head>
+<body>
+    <p>Enter customer ID number to retrieve information:</p>
+    <p>Customer ID: <input type="text" id="txtCustomerId" value="" /></p>
+    <p><input type="button" value="Get Customer Info" onclick="requestCustomerInfo()" /></p>
+    <div id="divCustomerInfo"></div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery GET Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function requestCustomerInfo() {
+            var sId = $("#txtCustomerId").val();
+            $.get("GetCustomerData.jsp?id=" + sId, displayCustomerInfo);            
+        }
+        
+        function displayCustomerInfo(sText, sStatus) {
+            if (sStatus === "success") {
+                $("#divCustomerInfo").html(sText);
+            } else {
+                $("#divCustomerInfo").html("An error occurred.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>Enter customer ID number to retrieve information:</p>
+    <p>Customer ID: <input type="text" id="txtCustomerId" /></p>
+    <p><input type="button" value="Get Customer Info" onclick="requestCustomerInfo()" /></p>
+    <div id="divCustomerInfo"></div>
+</body>
+</html>
+
+
+JQuery POST
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta >
+<title>new registration</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<form method="post"><br><br>
+name :<input type="text" name="txtName" id="txtName"/><br><br>
+address name :<input type="text" name="txtAddress" id="txtAddress"/><br><br>
+city_name :<input type="text" name="txtCity" id="txtCity" /><br><br>
+state :<input type="text" name="txtState" id="txtState"/><br><br>
+zip<input type="text" name="txtZipCode" id="txtZipCode"/><br><br>
+phone<input type="text" name="txtPhone" id="txtPhone"/><br><br>
+email<input type="text" name="txtEmail" id="txtEmail"/><br><br>
+<input type="submit" value="submit" id="save_data"/>
+</form>
+<script>
+$(document).ready(function() {
+$("#save_data").click(function() {
+
+$.ajax({
+url: "save.jsp",
+type: "post",
+data: {
+name:$('#txtName').val(),
+address:$('#txtAddress').val(),
+city:$('#txtCity').val(),
+
+state:$('#txtState').val(),
+zipCode:$('#txtZipCode').val(),
+phone:$('#txtPhone').val(),
+email:$('#txtEmail').val(),
+}
+});
+});
+});
+</script>
+</body>
+</html>
+
+JQuery Ajax Start
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery ajaxStart() Example</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    
+        $(document).ready(function () {
+            $("div#divStatus").ajaxStart(function () {
+                $(this).html("Contacting the server...");
+            }).ajaxStop(function () {
+                $(this).html("Response received.");
+            });
+        });				
+		
+		//function to get customer information
+        function requestCustomerInfo() {
+        
+            //get the ID
+            var sId = $("input#txtCustomerId").val();
+
+            //send the request
+            $("div#divCustomerInfo").load("GetCustomerData.jsp?id=" + sId);    		
+        }
+
+    </script>
+</head>
+<body>
+    <p>Enter customer ID number to retrieve information:</p>
+    <p>Customer ID: <input type="text" id="txtCustomerId" value="" /></p>
+    <p><input type="button" value="Get Customer Info" onclick="requestCustomerInfo()" /></p>
+    <div id="divStatus" style="color: blue"></div>
+    <div id="divCustomerInfo"></div>    
+</body>
+</html>
+
+
+Java Bean
+
+javac -target 1.7 -source 1.7 filename.java
+package com.greatest;  
+public class Greatest{  
+public int great(int a,int b,int c)
+{
+ if(a>b&&a>c)
+{
+return a;
+}
+else if(b>a&&b>c)
+{
+return b;
+} 
+else
+{
+return c;
+}
+}
+}
+
+package com.Factorial;
+public class Operations{  
+public int factorial(int n)
+{
+ int i,fact=1;  
+for(i=1;i<=n;i++){    
+      fact=fact*i;    
+  }    
+return fact;
+}
+} 
+
+beans.jsp
+<jsp:useBean id="obj" class="com.Factorial.Operations"/>
+<jsp:useBean id="obj1" class="com.greatest.Greatest"/>
+<%
+int m=obj.factorial(5);
+out.print("cube of no 5 is "+m);
+int x=obj1.great(5,7,8);
+out.print("tHE GREATEST IS "+x);
+%>
+
+
+Multi-Stage Download
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Article Example</title>
+    <script type="text/javascript" src="zxml.js"></script>
+    <script type="text/javascript" src="Article.js"></script>
+    <link rel="stylesheet" type="text/css" href="Article.css" />    
+</head>
+<body>
+    <h1>Article Title</h1>
+    <div id="divAdditionalLinks"></div>
+    <div id="divPage1">
+    <p>JavaScript is a versatile programming language 
+    </p>
+    <p>
+        JavaScript plays a critical role in modern web 
+    <p>
+        JavaScript engines, like Google’s V8 (used in 
+    </p>
+    <p>
+
+        JavaScript is inherently event-driven, meaning it 
+    </p>
+    <p>
+        JavaScript’s ability to manipulate the Document 
+    </p>
+    <p>
+    JavaScript is inherently event-driven, meaning it
+    </p>
+    </div>
+</body>
+</html>
+
+<h4>Additional Information</h4>
+<ul>
+    <li><a href="http://www.wrox.com">Wrox</a></li>
+    <li><a href="http://www.nczonline.net">NCZOnline</a></li>
+    <li><a href="http://www.wdonline.com">XWeb</a></li>
+</ul>
+    
+#divAdditionalLinks {
+    float: right;
+    padding: 10px;
+    border: 1px solid navy;
+    background-color: #cccccc;
+    display: none;
+}
+
+	
+function downloadLinks() {
+    var oXHR = new XMLHttpRequest();
+    
+    oXHR.open("get", "AdditionalLinks.txt", true);
+    oXHR.onreadystatechange = function () {
+        if (oXHR.readyState == 4) {
+            if (oXHR.status == 200) {
+                var divAdditionalLinks = document.getElementById("divAdditionalLinks");
+                divAdditionalLinks.innerHTML = oXHR.responseText;  
+                divAdditionalLinks.style.display = "block";          
+            } 
+        }    
+    }
+    oXHR.send(null);
+}
+
+    
+        downloadLinks();                  
+
+
+
+hidden frame GET
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Account Information</title>
+    <script type="text/javascript">
+        function requestCustomerInfo() {
+            var sId = document.getElementById("txtCustomerId").value;
+            top.frames["hiddenFrame"].location = "faact.jsp?id=" + sId;
+        }
+        
+        function displayCustomerInfo(sText) {
+            var divCustomerInfo = document.getElementById("divCustomerInfo");
+            divCustomerInfo.innerHTML = sText;
+        }
+  
+    </script>
+</head>
+<body>
+    <p>Enter a number to find factorial:</p>
+    <p>Factorial: <input type="text" id="txtCustomerId" value="" /></p>
+    <p><input type="button" value="Get Customer Info" onclick="requestCustomerInfo()" /></p>
+    <div id="divCustomerInfo"></div>
+</body>
+</html>
+
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html >
+<html  >
+    <head>
+        <title>Get Customer Data</title>
+        <script type="text/javascript">
+            window.onload = function () {
+                var divInfoToReturn = document.getElementById("divInfoToReturn");
+				//document.write("gg");
+                top.frames["displayFrame"].displayCustomerInfo(divInfoToReturn.innerHTML);        
+            };
+        
+        </script>    
+    </head>
+    <body>
+<%!
+   int getCustomerData(int id){                
+    
+        
+
+            int fact=1;
+			int i;
+			for( i=1;i<=id;i++)
+			{
+				fact=fact*i;
+			}
+return fact;			
+        }
+        
+            
+%>
+<%
+        String strId = request.getParameter("id");
+        int id = -1;
+        int  message ;
+
+        try {
+            id = Integer.parseInt(strId);
+			
+             message = getCustomerData(id);
+			 
+			 
+        } catch (Exception ex) {
+            message = 0;
+        }
+%>
+<p>jhj</p>
+        <div id="divInfoToReturn"><%= message %></div>
+		<p>sdda</p>
+    </body>
+</html>
+
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hidden Frame GET Example</title>
+</head>
+<frameset rows="100%,0" style="border: 0px">
+    <frame name="displayFrame" src="dispfact.jsp" noresize="noresize" />
+    <frame name="hiddenFrame" src="about:blank" noresize="noresize" />
+</frameset>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+Hidden Frame POST
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ page import="java.io.BufferedWriter.*" %>
+<%@ page import="java.io.FileWriter.*" %>
+
+<%@ page import="java.io.*" %>
+
+<!DOCTYPE html >
+<html  >
+    <head>
+        <title>Create New Customer</title>
+<%
+   //get information (replace apostrophes with double apostrophes to prevent SQL injection attacks)
+    String name = request.getParameter("name");
+    String address = request.getParameter("address");
+       String message="";      
+    try {
+        
+        FileWriter writer = new FileWriter("E://ss.txt", true);
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        bufferedWriter.append(name + address);
+        bufferedWriter.close();  
+		message="Success";		
+        
+    } catch (Exception ex){
+        message = "Error occurred while trying to connect to database: " + ex.getMessage();
+    }        
+
+%>      
+        <script type="text/javascript">//<![CDATA[
+            window.onload = function () {
+                top.frames["displayFrame"].saveResult("<%= message %>");        
+            }
+        //]]>
+        </script>     
+    </head>
+    <body>
+        
+    </body>
+</html>
+
+
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Create New Customer</title>
+    <script type="text/javascript">//<![CDATA[
+           
+        function saveResult(sMessage) {
+            var divStatus = document.getElementById("divStatus");
+            divStatus.innerHTML = "Request completed: " + sMessage;            
+        }
+    //]]>
+    </script>    
+</head>
+<body>
+    <form method="post" action="SaveCustomer.jsp" target="hiddenFrame">
+    <p>Enter customer information to be saved:</p>
+    <p>Customer Name: <input type="text" name="name" value="" /><br />
+    Address: <input type="text" name="address" value="" /><br />
+    </p>
+    <p><input type="submit" value="Save Customer Info" /></p>
+    </form>
+    <div id="divStatus"></div>
+</body>
+</html>
+
+
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>Hidden Frame POST Example</title>
+</head>
+<frameset rows="100%,0" style="border: 0px">
+    <frame name="displayFrame" src="DataEntry.jsp" noresize="noresize" style="border: 0px" />
+    <frame name="hiddenFrame" src="about:blank" noresize="noresize" style="border: 0px" />
+</frameset>
+</html>
+
+
+Hidden Inline GET
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hidden Inline IFrame GET Example</title>
+    <script type="text/javascript">//<![CDATA[
+        function requestCustomerInfo() {
+            var sId = document.getElementById("txtCustomerId").value;
+            top.frames["hiddenFrame"].location = "GetCustomerData.jsp?id=" + sId;
+        }
+        
+        function displayCustomerInfo(sText) {
+            var divCustomerInfo = document.getElementById("divCustomerInfo");
+            divCustomerInfo.innerHTML = sText;
+        }
+    //]]>
+    </script>
+</head>
+<body>
+    <p>Enter customer ID number to retrieve information:</p>
+    <p>Customer ID: <input type="text" id="txtCustomerId" value="" /></p>
+    <p><input type="button" value="Get Customer Info" onclick="requestCustomerInfo()" /></p>
+    <div id="divCustomerInfo"></div>
+    <iframe src="about:blank" name="hiddenFrame" style="display: none"></iframe>
+</body>
+</html>
+
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ page import="java.io.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    <head>
+        <title>Get Customer Data</title>
+        <script type="text/javascript">//<![CDATA[
+            window.onload = function () {
+                var divInfoToReturn = document.getElementById("divInfoToReturn");
+                parent.displayCustomerInfo(divInfoToReturn.innerHTML);        
+            };
+        //]]>
+        </script>    
+    </head>
+    <body>
+<%!
+    String getCustomerData(){                
+           File file = new File("E:\\ss.txt");
+ 
+        try (BufferedReader br = new BufferedReader(new FileReader(file)))
+        {
+            String line,line1="";
+            while ((line = br.readLine()) != null) {
+               line1+=line; 
+            }
+			return line1;
+        } catch (IOException e) {
+            e.printStackTrace(); return "xx";
+        }
+    }        
+%>
+<%
+        String strId = request.getParameter("id");
+        int id = -1;
+        String message = "";
+
+        try {
+           // id = Integer.parseInt(strId);
+            message = getCustomerData();
+        } catch (Exception ex) {
+            message = "Invalid customer ID.";
+        }
+%>
+        <div id="divInfoToReturn"><%= message %></div>
+    </body>
+</html>
