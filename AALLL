@@ -2995,3 +2995,12 @@ Welcome to Tomcat
 <welcome-file>fact.jsp</welcome-file>
 </welcome-file-list>
 </web-app>
+
+
+
+<!DOCTYPE html> <html lang="en"> <head> <title>Save Data to File</title> </head> <body> <h2>Enter Name and Address</h2> <label for="name">Name:</label> <input type="text" id="name" placeholder="Enter your name"><br><br> <label for="address">Address:</label> <input type="text" id="address" placeholder="Enter your address"><br><br> <button onclick="saveToFile()">Submit</button> <p id="response"></p> <script> function saveToFile() { const username = document.getElementById('name').value; const address = document.getElementById('address').value; // Create an XMLHttpRequest object const xhr = new XMLHttpRequest(); const url = 'save.jsp?name=' + username + '&address=' + address; // This is the JSP file that handles saving to a file // Open a POST request xhr.open('POST', url, true); // Set up a callback function to handle the response xhr.onreadystatechange = function() { if (xhr.readyState === 4 && xhr.status === 200) { document.getElementById('response').innerText = xhr.responseText; }
+
+
+}; // Send the username as POST data xhr.send(); } </script> </body> </html> #save.jsp <%@page contentType="text/html"%> <%@page pageEncoding="UTF-8"%> <%@ page import="java.io.BufferedWriter.*" %> <%@ page import="java.io.FileWriter.*" %> <%@ page import="java.io.*" %> <% //get information (replace apostrophes with double apostrophes to prevent SQL injection attacks) String name = request.getParameter("name"); String address = request.getParameter("address"); String message=""; try { FileWriter writer = new FileWriter("E://fill.txt", true); BufferedWriter bufferedWriter = new BufferedWriter(writer); bufferedWriter.append(name + address); bufferedWriter.close(); message="Success"; } catch (Exception ex){ message = "Error occurred while trying to connect to database: " + ex.getMessage(); }
+
+%>
